@@ -27,6 +27,7 @@ class EncodingType(Enum):
 	PBLIB_BDD = auto()
 	PBLIB_CARD = auto()
 	PBLIB_CARD_PYSAT = auto()
+	PYSAT = auto()
 	AT_MOST_SEQ_CARD_SEQUENTIAL_COUNTER = auto()
 
 
@@ -47,17 +48,19 @@ def str_to_type_enum(encoding_type: str) -> EncodingType:
 		return EncodingType.PBLIB_ADD
 	if "pblib_bdd" in encoding_type:
 		return EncodingType.PBLIB_BDD
-	if "pblib_card" in encoding_type:
-		return EncodingType.PBLIB_CARD
 	if "pblib_card_pysat" in encoding_type:
 		return EncodingType.PBLIB_CARD_PYSAT
+	if "pblib_card" in encoding_type:
+		return EncodingType.PBLIB_CARD
+	if "pysat_" in encoding_type:
+		return EncodingType.PYSAT
 	if "at_most_seq_card" in encoding_type:
 		return EncodingType.AT_MOST_SEQ_CARD_SEQUENTIAL_COUNTER
 	raise RuntimeError(f"No such encoding: {encoding_type}")
 
 
 class Encoder:
-	def __init__(self, encoding_type: EncodingType):
+	def __init__(self, encoding_type: EncodingType, str_encoding_type: str = ""):
 		if encoding_type == EncodingType.BINARY:
 			self.internal_encoder = BinaryEncoding()
 		elif encoding_type == EncodingType.BINOMIAL:
@@ -84,6 +87,8 @@ class Encoder:
 			self.internal_encoder = PBLibEncoding(config)
 		elif encoding_type == EncodingType.PBLIB_CARD_PYSAT:
 			self.internal_encoder = PBLibCardEncodingPysat()
+		elif encoding_type == EncodingType.PYSAT:
+			self.internal_encoder = PBLibCardEncodingPysat(str_encoding_type)
 		elif encoding_type == EncodingType.AT_MOST_SEQ_CARD_SEQUENTIAL_COUNTER:
 			self.internal_encoder = AtMostSeqCard.SequentialCounter()
 		else:

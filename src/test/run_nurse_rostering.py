@@ -19,6 +19,8 @@ from src.encoding.staircase_encoding import StaircaseEncoding
 from src.include.addline import write_full
 from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
+KISSAT_PATH = "/home/nghia/Desktop/Crew/SAT/kissat/build/kissat"
+
 
 def handler(signum, frame):
 	raise TimeoutError("Function execution time exceeded the limit")
@@ -81,7 +83,8 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 		if not os.path.exists("tmp/kissat_output"):
 			os.makedirs("tmp/kissat_output")
 		solver_output = f"tmp/kissat_output/output_{cannon_name}.txt"
-		ret = run(f"kissat -q {cnf_file} > {solver_output}")
+		# ret = run(f"kissat -q {cnf_file} > {solver_output}")
+		ret = run(f"{KISSAT_PATH} -q {cnf_file} > {solver_output}")
 		end_time = time.perf_counter()
 		elapsed_time_ms = (end_time - start_time) * 1000
 
@@ -282,7 +285,17 @@ def test_result(filename: str, nurse: int, day: int):
 
 
 def main():
-	to_test: list[str] = ["staircase_among", "pblib_card", "pblib_card_pysat"]
+	to_test: list[str] = [
+		"staircase_at_least",
+		"staircase_among",
+		"pblib_card",
+		"pysat_seqcounter",
+		"pysat_sortnetwrk",
+		"pysat_cardnetwrk",
+		"pysat_totalizer",
+		"pysat_mtotalizer",
+		"pysat_kmtotalizer"
+	]
 	time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	nks = get_all_number_in_file("input_nurse_rostering.txt")
 	excel_file_name = f"results_nurse_rostering_{time_now}.xlsx"
