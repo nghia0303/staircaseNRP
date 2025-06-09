@@ -286,15 +286,8 @@ def test_result(filename: str, nurse: int, day: int):
 
 def main():
 	to_test: list[str] = [
-		"staircase_at_least",
-		"staircase_among",
-		"pblib_card",
-		"pysat_seqcounter",
-		"pysat_sortnetwrk",
-		"pysat_cardnetwrk",
-		"pysat_totalizer",
-		"pysat_mtotalizer",
-		"pysat_kmtotalizer"
+		"pblib_bdd",
+		"pysat_pb_bdd"
 	]
 	time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	nks = get_all_number_in_file("input_nurse_rostering.txt")
