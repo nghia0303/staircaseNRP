@@ -19,7 +19,15 @@ from src.encoding.staircase_encoding import StaircaseEncoding
 from src.include.addline import write_full
 from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
+solver = "kissat"  # kissat, cadical, glucose, glucose-syrup
+
 KISSAT_PATH = "/home/nghia/Desktop/Crew/SAT/kissat/build/kissat"
+
+CADICAL_PATH = "/home/nghia/Desktop/Crew/SAT/cadical/build/cadical"
+
+GLUCOSE_PATH = "/home/nghia/Desktop/Crew/SAT/glucose/simp/glucose"
+
+GLUCOSE_SYRUP_PATH = "/home/nghia/Desktop/Crew/SAT/glucose/parallel/glucose-syrup"
 
 
 def handler(signum, frame):
@@ -84,7 +92,16 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 			os.makedirs("tmp/kissat_output")
 		solver_output = f"tmp/kissat_output/output_{cannon_name}.txt"
 		# ret = run(f"kissat -q {cnf_file} > {solver_output}")
-		ret = run(f"{KISSAT_PATH} -q {cnf_file} > {solver_output}")
+		if solver == "kissat":
+			ret = run(f"{KISSAT_PATH} -q {cnf_file} > {solver_output}")
+		elif solver == "cadical":
+			ret = run(f"{CADICAL_PATH} -q {cnf_file} > {solver_output}")
+		elif solver == "glucose":
+			ret = run(f"{GLUCOSE_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
+		elif solver == "glucose_syrup":
+			ret = run(f"{GLUCOSE_SYRUP_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
+		else:
+			raise RuntimeError(f"unknown solver {solver}")
 		end_time = time.perf_counter()
 		elapsed_time_ms = (end_time - start_time) * 1000
 
@@ -286,7 +303,14 @@ def test_result(filename: str, nurse: int, day: int):
 
 def main():
 	to_test: list[str] = [
+		"staircase_at_least",
+		"staircase_among",
+		"pblib_card",
 		"pblib_bdd",
+		"pysat_seqcounter",
+		"pysat_sortnetwrk",
+		"pysat_cardnetwrk",
+		"pysat_totalizer",
 		"pysat_pb_bdd"
 	]
 	time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')

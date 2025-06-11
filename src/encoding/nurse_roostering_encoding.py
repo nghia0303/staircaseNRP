@@ -224,7 +224,7 @@ class NurseRosteringEncoding:
 		self._encode_at_most_x_workshifts_per_y_days_binomial(6, 7)
 		self._encode_at_least_x_s_shifts_per_y_days(4, ShiftEnum.OFF_DAY, 14)
 		self._encode_between_x_and_y_s_shifts_per_z_days(4, 8, ShiftEnum.EVENING_SHIFT, 14)
-		self._encode_at_least_x_workshift_per_y_days(20, 28)
+		self._encode_at_least_x_workshift_per_y_days(19, 28)
 		# self._encode_at_most_x_s_shifts_per_y_days_using_at_least(4, ShiftEnum.NIGHT_SHIFT, 14)
 		# self._encode_at_least_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 14)
 		self._encode_between_x_and_y_s_shifts_per_z_days(1, 4, ShiftEnum.NIGHT_SHIFT, 14)

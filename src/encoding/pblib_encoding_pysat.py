@@ -2,7 +2,7 @@ from pysat.card import *
 from src.encoding.baseline_encoding import BaselineEncoding
 from src.include.common import AddClause, AuxVariable
 
-from pysat.pb import *
+from pysat.pb import PBEnc
 from pysat.pb import EncType as PbEncType
 
 
