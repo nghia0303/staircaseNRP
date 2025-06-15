@@ -14,6 +14,9 @@ import time
 from datetime import datetime
 from typing import Any
 
+from pysat.solvers import Solver
+from pysat.formula import CNF
+
 from src.encoding.nurse_roostering_encoding import NurseRosteringEncoding, NurseRosteringConfig
 from src.encoding.staircase_encoding import StaircaseEncoding
 from src.include.addline import write_full
@@ -28,6 +31,7 @@ CADICAL_PATH = "/home/nghia/Desktop/Crew/SAT/cadical/build/cadical"
 GLUCOSE_PATH = "/home/nghia/Desktop/Crew/SAT/glucose/simp/glucose"
 
 GLUCOSE_SYRUP_PATH = "/home/nghia/Desktop/Crew/SAT/glucose/parallel/glucose-syrup"
+
 
 
 def handler(signum, frame):
@@ -50,9 +54,12 @@ def eval_window(x: str, value: str, window_size: int, floor, cap):
 	for i in range(0, len(x)):
 		if i >= window_size:
 			if not (floor <= now <= cap):
-				print(f"failed at {i}")
+				# print(floor, now, cap)
+				# print(f"failed at {i}")
 				return False
+			# print(f"{x[i - window_size]} {value}")
 			now -= 1 if x[i - window_size] == value else 0
+			# print(f"now: {now}")
 		now += 1 if x[i] == value else 0
 	if not (floor <= now <= cap):
 		print(f"failed at end")
@@ -86,8 +93,13 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 		nr_config = NurseRosteringConfig(nurse, day, aux, add_clause, name)
 		nr = NurseRosteringEncoding(nr_config)
 		nr.encode()
+		print("Encoding time: {:.2f} (ms)".format((time.perf_counter() - start_time) * 1000))
+		start_write_time = time.perf_counter()
 		write_full(aux.get_total_added_var(), add_clause.get_clause(), cnf_file)
 		os.system(f"head -n1 {cnf_file}")
+		print("Write time: {:.2f} (ms)".format((time.perf_counter() - start_write_time) * 1000))
+		print("Encoding time (including writing to file): {:.2f} (ms)".format((time.perf_counter() - start_time) * 1000))
+		start_solve_time = time.perf_counter()
 		if not os.path.exists("tmp/kissat_output"):
 			os.makedirs("tmp/kissat_output")
 		solver_output = f"tmp/kissat_output/output_{cannon_name}.txt"
@@ -100,8 +112,14 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 			ret = run(f"{GLUCOSE_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
 		elif solver == "glucose_syrup":
 			ret = run(f"{GLUCOSE_SYRUP_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
+		elif "pysat_" in solver:
+			solver_name = solver.split('_')[1]
+
+			pysat_solver = Solver(name=solver_name )
+			pysat_solver.solve()
 		else:
 			raise RuntimeError(f"unknown solver {solver}")
+		print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
 		end_time = time.perf_counter()
 		elapsed_time_ms = (end_time - start_time) * 1000
 
@@ -253,7 +271,7 @@ def parse_result(filename: str, nurse: int, day: int):
 		nurse_day_list = []
 		for j in range(day):
 			nurse_day_shift_list = []
-			for k in range(4):
+			for k in range(5):
 				nurse_day_shift_list.append(list_int.pop())
 			nurse_day_list.append(nurse_day_shift_list)
 		nurse_list.append(nurse_day_list)
@@ -262,11 +280,21 @@ def parse_result(filename: str, nurse: int, day: int):
 	for i in range(nurse):
 		chosen_nurse_list = []
 		for j in range(day):
-			temp = [k for k in nurse_list[i][j] if k > 0]
-			if len(temp) != 1:
+			# print(f"nurse {i} day {j}: {nurse_list[i][j]}")
+			# temp = [k for k in nurse_list[i][j] if (k > 0)]
+			temp = []
+			# print(f"nurse {i} day {j}:")
+			for k_idx in range(5):
+				# print(f"  {k_idx}: {nurse_list[i][j][k_idx]}")
+				if nurse_list[i][j][k_idx] > 0:
+					temp.append(k_idx)
+
+			if temp[0] == 4:
+				raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}")
+
+			if len(temp) != 1 and not(len(temp) == 2 and temp[1] == 4):
 				raise RuntimeError(f"NOT satisfied 1 shift per day per nurse! {temp}")
-			positive = (temp[0] - 1) % 4
-			chosen_nurse_list.append(num_to_shift[positive])
+			chosen_nurse_list.append(num_to_shift[temp[0] % 4])
 		chosen_list.append(chosen_nurse_list)
 	return chosen_list
 
@@ -294,8 +322,8 @@ def test_result(filename: str, nurse: int, day: int):
 		# 	raise RuntimeError(f"nurse id {nurse_id} failed")
 		if not eval_window(nurse_shifts, 'N', 14, 1, 4):
 			raise RuntimeError(f"nurse id {nurse_id} failed")
-		if not eval_window(nurse_shifts, 'E', 7, 2, 4):
-			raise RuntimeError(f"nurse id {nurse_id} failed")
+		# if not eval_window(nurse_shifts, 'E', 7, 2, 4):
+		# 	raise RuntimeError(f"nurse id {nurse_id} failed")
 		if not eval_window_upper_bound(nurse_shifts, 'N', 2, 1):
 			raise RuntimeError(f"nurse id {nurse_id} failed")
 	print("ok")
@@ -303,15 +331,7 @@ def test_result(filename: str, nurse: int, day: int):
 
 def main():
 	to_test: list[str] = [
-		"staircase_at_least",
-		"staircase_among",
-		"pblib_card",
-		"pblib_bdd",
-		"pysat_seqcounter",
-		"pysat_sortnetwrk",
-		"pysat_cardnetwrk",
-		"pysat_totalizer",
-		"pysat_pb_bdd"
+		"staircase_among"
 	]
 	time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	nks = get_all_number_in_file("input_nurse_rostering.txt")

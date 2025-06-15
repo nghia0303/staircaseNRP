@@ -13,6 +13,8 @@ class ShiftEnum(Enum):
 	EVENING_SHIFT = 1,
 	NIGHT_SHIFT = 2,
 	OFF_DAY = 3,
+	EVENING_OR_NIGHT_SHIFT = 4,  # for constraint [2, 4] evening or night shifts per 7 days
+
 
 
 class NurseRosteringConfig:
@@ -34,9 +36,17 @@ class NurseRosteringVariable:
 			nurse_i = []
 			for _j in range(days):
 				# 4 shifts are D (day), E (evening), N (night), O (offday)
-				shifts = [aux.get_new_variable() for _ in range(4)]
+				# shifts = [aux.get_new_variable() for _ in range(4)]
+
+				# 5 shifts are D (day), E (evening), N (night), O (offday), EN (evening or night)
+				shifts = [aux.get_new_variable() for _ in range(5)]
+
 				nurse_i.append(shifts)
 			self.nurse.append(nurse_i)
+
+
+
+
 
 	def __del__(self):
 		del self.nurse
@@ -46,7 +56,7 @@ class NurseRosteringVariable:
 			raise RuntimeError(f"NurseRosteringVariable: nurse is {nurse} but max nurse {len(self.nurse)}")
 		if not (1 <= day <= len(self.nurse[0])):
 			raise RuntimeError(f"NurseRosteringVariable: day is {day} but max day {len(self.nurse[0])}")
-		if not (0 <= shift < 4):
+		if not (0 <= shift <= 4):
 			raise RuntimeError(f"NurseRosteringVariable: shift is {shift} (min 0 max 3)")
 		return self.nurse[nurse - 1][day - 1][shift]
 
@@ -55,9 +65,28 @@ class NurseRosteringEncoding:
 	def __init__(self, config: NurseRosteringConfig):
 		self.config = config
 		self.nurse_variable = NurseRosteringVariable(self.config.nurses, self.config.days, self.config.aux)
-
+		self.create_evening_or_night_shift_variables_relationship()
 	def __del(self):
 		del self.nurse_variable
+
+	def create_evening_or_night_shift_variables_relationship(self):
+
+		for nurse in myrange_inclusive(1, self.config.nurses):
+			for day in myrange_inclusive(1, self.config.days):
+				e_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.EVENING_SHIFT.value[0])
+				n_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.NIGHT_SHIFT.value[0])
+				en_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.EVENING_OR_NIGHT_SHIFT.value[0])
+
+				# print(f"Creating relationship for nurse {nurse}, day {day}: E={e_of_this_day}, N={n_of_this_day}, EN={en_of_this_day}")
+
+				# e or n -> en
+				self.config.add_clause.add(not_(e_of_this_day), en_of_this_day)
+				self.config.add_clause.add(not_(n_of_this_day), en_of_this_day)
+
+				# (not e and not n) -> not en
+				self.config.add_clause.add(e_of_this_day, n_of_this_day, not_(en_of_this_day))
+
+
 
 	def _encode_at_most_x_s_shifts_per_y_days_using_at_least(self, upper_bound: int, shift: ShiftEnum, days: int):
 		if self.config.encoding_type in ['staircase_at_least', 'staircase_among']:
@@ -224,9 +253,14 @@ class NurseRosteringEncoding:
 		self._encode_at_most_x_workshifts_per_y_days_binomial(6, 7)
 		self._encode_at_least_x_s_shifts_per_y_days(4, ShiftEnum.OFF_DAY, 14)
 		self._encode_between_x_and_y_s_shifts_per_z_days(4, 8, ShiftEnum.EVENING_SHIFT, 14)
-		self._encode_at_least_x_workshift_per_y_days(19, 28)
+		self._encode_at_least_x_workshift_per_y_days(20, 28)
 		# self._encode_at_most_x_s_shifts_per_y_days_using_at_least(4, ShiftEnum.NIGHT_SHIFT, 14)
 		# self._encode_at_least_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 14)
 		self._encode_between_x_and_y_s_shifts_per_z_days(1, 4, ShiftEnum.NIGHT_SHIFT, 14)
-		self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_SHIFT, 7)
+
+		# self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_SHIFT, 7)
+		# Changed now is between 2 and 4 evening or night shifts per 7 days
+		self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_OR_NIGHT_SHIFT, 7)
+
+
 		self._encode_at_most_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 2)

@@ -28,19 +28,19 @@ def create_at_least(encoding_type_str, n, var, k):
 
 
 def main():
-    n = 5
+    n = 10
     var = []
     for i in range(n):
         var.append(i+1)
     k = 3
 
-    encoding_type_str = "pysat_cardnetwrk"
+    encoding_type_str = "pysat_pb_bdd"
 
     create_at_most(encoding_type_str, n, var, k)
 
     create_at_least(encoding_type_str, n, var, k)
 
-    encoding_type_str = "pblib_card"
+    encoding_type_str = "pblib_bdd"
 
     create_at_most(encoding_type_str, n, var, k)
 

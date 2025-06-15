@@ -52,6 +52,7 @@ class BinomialEncoding(BaselineEncoding):
 				cl.append(g.not_x(i))
 			add_clause.add_list(cl)
 
+
 	def encode_at_least_k(self, var: list[int], k: int, _aux: AuxVariable, add_clause: AddClause):
 		n = len(var)
 		# At least k true <=> every comb(n, n - k + 1) has at least 1 true
