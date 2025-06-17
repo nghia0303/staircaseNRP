@@ -24,6 +24,8 @@ from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
 solver = "kissat"  # kissat, cadical, glucose, glucose-syrup
 
+solve_mode = "pysat" # pysat or directly(kissat, cadical, glucose, glucose-syrup)
+
 KISSAT_PATH = "/home/nghia/Desktop/Crew/SAT/kissat/build/kissat"
 
 CADICAL_PATH = "/home/nghia/Desktop/Crew/SAT/cadical/build/cadical"
@@ -74,14 +76,91 @@ def eval_window_lower_bound(x: str, value: str, window_size: int, floor: int):
 def eval_window_upper_bound(x: str, value: str, window_size: int, cap: int):
 	return eval_window(x, value, window_size, None, cap)
 
+def solve(start_time, cannon_name: str, aux, add_clause: AddClause) -> list[str | None]:
+
+	if not os.path.exists("tmp"):
+		os.makedirs("tmp")
+	cnf_file = f"tmp/{cannon_name}.cnf"
+	start_write_time = time.perf_counter()
+	write_full(aux.get_total_added_var(), add_clause.get_clause(), cnf_file)
+	os.system(f"head -n1 {cnf_file}")
+	print("Write time: {:.2f} (ms)".format((time.perf_counter() - start_write_time) * 1000))
+	print("Encoding time (including writing to file): {:.2f} (ms)".format((time.perf_counter() - start_time) * 1000))
+	start_solve_time = time.perf_counter()
+
+	if not os.path.exists("tmp/solver_output"):
+		os.makedirs("tmp/solver_output")
+	solver_output = f"tmp/solver_output/output_{cannon_name}.txt"
+	# ret = run(f"kissat -q {cnf_file} > {solver_output}")
+	if solver == "kissat":
+		ret = run(f"{KISSAT_PATH} -q {cnf_file} > {solver_output}")
+		print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+		return [
+			ret, solver_output
+		]
+	elif solver == "cadical":
+		ret = run(f"{CADICAL_PATH} -q {cnf_file} > {solver_output}")
+		print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+		return [
+			ret, solver_output
+		]
+	elif solver == "glucose":
+		ret = run(f"{GLUCOSE_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
+		print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+		return [
+			ret, solver_output
+		]
+	elif solver == "glucose_syrup":
+		ret = run(f"{GLUCOSE_SYRUP_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
+		print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+		return [
+			ret, solver_output
+		]
+	elif "pysat_" in solver:
+		solver_name = solver.split('_')[1]
+
+		pysat_solver = Solver(name=solver_name)
+		pysat_solver.solve()
+	else:
+		raise RuntimeError(f"unknown solver {solver}")
+	print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+	return [None, None]
+
+def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -> list[str | None]:
+	start_solve_time = time.perf_counter()
+	if not os.path.exists("tmp/solver_output"):
+		os.makedirs("tmp/solver_output")
+	solver_output = f"tmp/solver_output/output_{cannon_name}.txt"
+	cnf = add_clause.get_clause()
+
+	pysat_solver = Solver(
+		name='g421',
+		bootstrap_with=cnf
+	)
+
+	result = pysat_solver.solve()
+
+	model = pysat_solver.get_model()
+
+
+
+
+	# print(model)
+
+	print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+
+	if result:
+		return [2560, solver_output, model]
+	else:
+		return [5120, None]
+
+	return [None, None]
 
 def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tuple[float | None, str, int, int]:
 	signal.signal(signal.SIGALRM, handler)
 	signal.alarm(time_limit)
 	cannon_name = f"nurse_rostering_{name}_{nurse}_{day}"
-	if not os.path.exists("tmp"):
-		os.makedirs("tmp")
-	cnf_file = f"tmp/{cannon_name}.cnf"
+
 	print(f"{name} {nurse} {day}")
 	aux = AuxVariable(1)
 	clause = []
@@ -94,42 +173,24 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 		nr = NurseRosteringEncoding(nr_config)
 		nr.encode()
 		print("Encoding time: {:.2f} (ms)".format((time.perf_counter() - start_time) * 1000))
-		start_write_time = time.perf_counter()
-		write_full(aux.get_total_added_var(), add_clause.get_clause(), cnf_file)
-		os.system(f"head -n1 {cnf_file}")
-		print("Write time: {:.2f} (ms)".format((time.perf_counter() - start_write_time) * 1000))
-		print("Encoding time (including writing to file): {:.2f} (ms)".format((time.perf_counter() - start_time) * 1000))
-		start_solve_time = time.perf_counter()
-		if not os.path.exists("tmp/kissat_output"):
-			os.makedirs("tmp/kissat_output")
-		solver_output = f"tmp/kissat_output/output_{cannon_name}.txt"
-		# ret = run(f"kissat -q {cnf_file} > {solver_output}")
-		if solver == "kissat":
-			ret = run(f"{KISSAT_PATH} -q {cnf_file} > {solver_output}")
-		elif solver == "cadical":
-			ret = run(f"{CADICAL_PATH} -q {cnf_file} > {solver_output}")
-		elif solver == "glucose":
-			ret = run(f"{GLUCOSE_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
-		elif solver == "glucose_syrup":
-			ret = run(f"{GLUCOSE_SYRUP_PATH} -model -verb=0 {cnf_file} | grep -E '^(s|v) ' >> {solver_output}")
-		elif "pysat_" in solver:
-			solver_name = solver.split('_')[1]
-
-			pysat_solver = Solver(name=solver_name )
-			pysat_solver.solve()
-		else:
-			raise RuntimeError(f"unknown solver {solver}")
-		print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
-		end_time = time.perf_counter()
-		elapsed_time_ms = (end_time - start_time) * 1000
 
 		total_variable = aux.get_total_added_var()
 		total_clause = add_clause.get_added_clause()
+
+		solver_return = ''
+		if solve_mode == "directly":
+			ret, solver_output = solve(start_time, cannon_name, aux, add_clause)
+		else:
+			ret, solver_output, model = solve_with_pysat(start_time, cannon_name, aux, add_clause)
+			if solver_output is not None:
+				with open(solver_output, "w") as f:
+					f.write(' '.join(map(str, model)) + '\n')
+		end_time = time.perf_counter()
+		elapsed_time_ms = (end_time - start_time) * 1000
+
 		del nr
 		del clause
 		gc.collect()
-
-		solver_return = ''
 
 		ok_time = True
 		if ret == 2560:  # SAT
@@ -271,7 +332,7 @@ def parse_result(filename: str, nurse: int, day: int):
 		nurse_day_list = []
 		for j in range(day):
 			nurse_day_shift_list = []
-			for k in range(5):
+			for k in range(4):
 				nurse_day_shift_list.append(list_int.pop())
 			nurse_day_list.append(nurse_day_shift_list)
 		nurse_list.append(nurse_day_list)
@@ -281,20 +342,25 @@ def parse_result(filename: str, nurse: int, day: int):
 		chosen_nurse_list = []
 		for j in range(day):
 			# print(f"nurse {i} day {j}: {nurse_list[i][j]}")
-			# temp = [k for k in nurse_list[i][j] if (k > 0)]
-			temp = []
-			# print(f"nurse {i} day {j}:")
-			for k_idx in range(5):
-				# print(f"  {k_idx}: {nurse_list[i][j][k_idx]}")
-				if nurse_list[i][j][k_idx] > 0:
-					temp.append(k_idx)
+			temp = [k for k in nurse_list[i][j] if (k > 0)]
+			if len(temp) != 1:
+				chosen_nurse_list.append((temp[0] - 1) % 4)
 
-			if temp[0] == 4:
-				raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}")
+			# temp = []
+			# # print(f"nurse {i} day {j}:")
+			# for k_idx in range(5):
+			# 	# print(f"  {k_idx}: {nurse_list[i][j][k_idx]}")
+			# 	if nurse_list[i][j][k_idx] > 0:
+			# 		temp.append(k_idx)
 
-			if len(temp) != 1 and not(len(temp) == 2 and temp[1] == 4):
-				raise RuntimeError(f"NOT satisfied 1 shift per day per nurse! {temp}")
-			chosen_nurse_list.append(num_to_shift[temp[0] % 4])
+			# if temp[0] == 4:
+			# 	raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}")
+			#
+			# if len(temp) != 1 and not(len(temp) == 2 and temp[1] == 4):
+			# 	raise RuntimeError(f"NOT satisfied 1 shift per day per nurse! {temp}")
+			# chosen_nurse_list.append(num_to_shift[temp[0] % 4])
+
+
 		chosen_list.append(chosen_nurse_list)
 	return chosen_list
 

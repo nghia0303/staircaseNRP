@@ -1,4 +1,5 @@
 from openpyxl.styles import Alignment
+from pysat.formula import CNF
 
 
 def cl(x: list[int], file=None) -> None:
@@ -31,6 +32,23 @@ class AddClause:
 	def get_clause(self) -> list[list[int]]:
 		return self.__formula
 
+# New AddClause can be used directly with pysat
+# class AddClause:
+# 	def __init__(self, formula: list[list[int]] = None):
+# 		self.cnf= CNF()
+#
+# 	def add_list(self, x: list[int]):
+# 		if len(x) > 0:
+# 			self.cnf.append(x)
+#
+# 	def add(self, *args):
+# 		self.add_list(list(args))
+#
+# 	def get_added_clause(self) -> int:
+# 		return len(self.cnf.clauses)
+#
+# 	def get_clause(self) -> list[list[int]]:
+# 		return self.cnf.clauses
 
 class AuxVariable:
 	def __init__(self, first_new_var: int):
