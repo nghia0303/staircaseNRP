@@ -34,8 +34,10 @@ class NurseRosteringVariable:
 	def __init__(self, nurses: int, days: int, aux: AuxVariable):
 		# nurse[i][d][s] = nurse with id i on day d chooses shift s
 		self.nurse = []
+		self.e_n = []
 		for _i in range(nurses):
 			nurse_i = []
+			nurse_e_n = []
 			for _j in range(days):
 				# 4 shifts are D (day), E (evening), N (night), O (offday)
 				shifts = [aux.get_new_variable() for _ in range(4)]
@@ -44,7 +46,9 @@ class NurseRosteringVariable:
 				# shifts = [aux.get_new_variable() for _ in range(5)]
 
 				nurse_i.append(shifts)
+				nurse_e_n.append(aux.get_new_variable())
 			self.nurse.append(nurse_i)
+			self.e_n.append(nurse_e_n)
 
 
 
@@ -62,24 +66,29 @@ class NurseRosteringVariable:
 			raise RuntimeError(f"NurseRosteringVariable: shift is {shift} (min 0 max 3)")
 		return self.nurse[nurse - 1][day - 1][shift]
 
+	def get_nurse_evening_or_night_shift(self, nurse: int, day: int) -> int:
+		if not (1 <= nurse <= len(self.e_n)):
+			raise RuntimeError(f"NurseRosteringVariable: nurse is {nurse} but max nurse {len(self.e_n)}")
+		if not (1 <= day <= len(self.e_n[0])):
+			raise RuntimeError(f"NurseRosteringVariable: day is {day} but max day {len(self.e_n[0])}")
+		return self.e_n[nurse - 1][day - 1]
 
 class NurseRosteringEncoding:
 	def __init__(self, config: NurseRosteringConfig):
 		self.config = config
 		self.nurse_variable = NurseRosteringVariable(self.config.nurses, self.config.days, self.config.aux)
-		# self.create_evening_or_night_shift_variables_relationship()
+		self.create_evening_or_night_shift_variables_relationship()
 	def __del(self):
+		del self.config
 		del self.nurse_variable
+		gc.collect()
 
 	def create_evening_or_night_shift_variables_relationship(self):
-
 		for nurse in myrange_inclusive(1, self.config.nurses):
 			for day in myrange_inclusive(1, self.config.days):
 				e_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.EVENING_SHIFT.value[0])
 				n_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.NIGHT_SHIFT.value[0])
-				en_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.EVENING_OR_NIGHT_SHIFT.value[0])
-
-				# print(f"Creating relationship for nurse {nurse}, day {day}: E={e_of_this_day}, N={n_of_this_day}, EN={en_of_this_day}")
+				en_of_this_day = self.nurse_variable.get_nurse_evening_or_night_shift(nurse, day)
 
 				# e or n -> en
 				self.config.add_clause.add(not_(e_of_this_day), en_of_this_day)
@@ -88,37 +97,55 @@ class NurseRosteringEncoding:
 				# (not e and not n) -> not en
 				self.config.add_clause.add(e_of_this_day, n_of_this_day, not_(en_of_this_day))
 
+	# def create_evening_or_night_shift_variables_relationship(self):
+	#
+	# 	for nurse in myrange_inclusive(1, self.config.nurses):
+	# 		for day in myrange_inclusive(1, self.config.days):
+	# 			e_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.EVENING_SHIFT.value[0])
+	# 			n_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.NIGHT_SHIFT.value[0])
+	# 			en_of_this_day = self.nurse_variable.get_nurse_days_shift(nurse, day, ShiftEnum.EVENING_OR_NIGHT_SHIFT.value[0])
+	#
+	# 			# print(f"Creating relationship for nurse {nurse}, day {day}: E={e_of_this_day}, N={n_of_this_day}, EN={en_of_this_day}")
+	#
+	# 			# e or n -> en
+	# 			self.config.add_clause.add(not_(e_of_this_day), en_of_this_day)
+	# 			self.config.add_clause.add(not_(n_of_this_day), en_of_this_day)
+	#
+	# 			# (not e and not n) -> not en
+	# 			self.config.add_clause.add(e_of_this_day, n_of_this_day, not_(en_of_this_day))
+
 
 
 	def _encode_at_most_x_s_shifts_per_y_days_using_at_least(self, upper_bound: int, shift: ShiftEnum, days: int):
 
 		if self.config.encoding_type in ['staircase_at_least', 'staircase_among']:
-			encoder = StaircaseEncoding()
+			# encoder = StaircaseEncoding()
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				var = [not_(self.nurse_variable.get_nurse_days_shift(nurse, j, shift.value[0])) for j in
 				       myrange_inclusive(1, self.config.days)]
-
+				encoder = StaircaseEncoding()
 				encoder.encode_staircase_at_least(var, days, days - upper_bound, self.config.aux,
 				                                  self.config.add_clause)
 				del var
 			del encoder
 		elif self.config.encoding_type in ['pblib_bdd', 'pblib_card', 'pblib_card_pysat']:
-			encoder = Encoder(str_to_type_enum(self.config.encoding_type))
+			# encoder = Encoder(str_to_type_enum(self.config.encoding_type))
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				for i in myrange_inclusive(1, self.config.days - days + 1):
 					var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0]))
 					       for j in range(days)]
-
+					encoder = Encoder(str_to_type_enum(self.config.encoding_type))
 					encoder.encode_at_most_k(var, upper_bound, self.config.aux, self.config.add_clause)
 
 					del var
 			del encoder
 		elif self.config.encoding_type.startswith('pysat_'):
-			encoder = Encoder(str_to_type_enum(self.config.encoding_type), self.config.encoding_type)
+
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				for i in myrange_inclusive(1, self.config.days - days + 1):
 					var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0]))
 					       for j in range(days)]
+					encoder = Encoder(str_to_type_enum(self.config.encoding_type), self.config.encoding_type)
 					encoder.encode_at_most_k(var, upper_bound, self.config.aux, self.config.add_clause)
 					del var
 			del encoder
@@ -130,30 +157,31 @@ class NurseRosteringEncoding:
 
 	def _encode_at_least_x_s_shifts_per_y_days(self, lower_bound: int, shift: ShiftEnum, days: int):
 		if self.config.encoding_type in ['staircase_at_least', 'staircase_among']:
-			encoder = StaircaseEncoding()
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				var = [(self.nurse_variable.get_nurse_days_shift(nurse, j, shift.value[0])) for j in
 				       myrange_inclusive(1, self.config.days)]
-
+				encoder = StaircaseEncoding()
 				encoder.encode_staircase_at_least(var, days, lower_bound, self.config.aux, self.config.add_clause)
 				del var
 			del encoder
 		elif self.config.encoding_type in ['pblib_bdd', 'pblib_card', 'pblib_card_pysat']:
-			encoder = Encoder(str_to_type_enum(self.config.encoding_type))
+			# encoder = Encoder(str_to_type_enum(self.config.encoding_type))
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				for i in myrange_inclusive(1, self.config.days - days + 1):
 					var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0]))
 					       for j in range(days)]
+					encoder = Encoder(str_to_type_enum(self.config.encoding_type))
 					encoder.encode_at_least_k(var, lower_bound, self.config.aux, self.config.add_clause)
 
 					del var
 			del encoder
 		elif self.config.encoding_type.startswith('pysat_'):
-			encoder = Encoder(str_to_type_enum(self.config.encoding_type), self.config.encoding_type)
+
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				for i in myrange_inclusive(1, self.config.days - days + 1):
 					var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0]))
 					       for j in range(days)]
+					encoder = Encoder(str_to_type_enum(self.config.encoding_type), self.config.encoding_type)
 					encoder.encode_at_least_k(var, lower_bound, self.config.aux, self.config.add_clause)
 					del var
 			del encoder
@@ -174,27 +202,28 @@ class NurseRosteringEncoding:
 		if self.config.encoding_type == 'staircase_at_least':
 			# at least x s shift per z days
 			# at most y s shift per z days = at least not z - y s shift per z days
-			encoder = StaircaseEncoding()
+
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				var = [(self.nurse_variable.get_nurse_days_shift(nurse, j, shift.value[0])) for j in
 				       myrange_inclusive(1, self.config.days)]
+				encoder = StaircaseEncoding()
 				encoder.encode_staircase_at_least(var, days, lower_bound_s_shifts, self.config.aux,
 				                                  self.config.add_clause)
 				del var
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				var = [not_(self.nurse_variable.get_nurse_days_shift(nurse, j, shift.value[0])) for j in
 				       myrange_inclusive(1, self.config.days)]
-
+				encoder = StaircaseEncoding()
 				encoder.encode_staircase_at_least(var, days, days - upper_bound_s_shifts, self.config.aux,
 				                                  self.config.add_clause)
 				del var
 			del encoder
 		elif self.config.encoding_type == 'staircase_among':
-			encoder = StaircaseEncoding()
+
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				var = [(self.nurse_variable.get_nurse_days_shift(nurse, j, shift.value[0])) for j in
 				       myrange_inclusive(1, self.config.days)]
-				# encoder = StaircaseEncoding()
+				encoder = StaircaseEncoding()
 				encoder.encode_staircase_range(var, days, lower_bound_s_shifts, upper_bound_s_shifts, self.config.aux,
 				                                  self.config.add_clause)
 				del var
@@ -231,54 +260,84 @@ class NurseRosteringEncoding:
 
 	def _encode_at_most_x_workshifts_per_y_days_binomial(self, workshifts: int, days: int):
 		# at most x workshifts per y days = at least y - x offdays per y days
-		encoder = BinomialEncoding()
+
 		for nurse in myrange_inclusive(1, self.config.nurses):
 			for i in myrange_inclusive(1, self.config.days - days + 1):
 				var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, ShiftEnum.OFF_DAY.value[0])) for j in
 				       range(days)]
-
+				encoder = BinomialEncoding()
 				encoder.encode_at_least_k(var, days - workshifts, self.config.aux, self.config.add_clause)
 				del var
 		del encoder
 	def _encode_at_least_x_s_shifts_per_y_days_binomial(self, lower_bound_shifts: int, shift: ShiftEnum, days: int):
-		encoder = BinomialEncoding()
+
 		for nurse in myrange_inclusive(1, self.config.nurses):
 			for i in myrange_inclusive(1, self.config.days - days + 1):
 				var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0])) for j in range(days)]
-
+				encoder = BinomialEncoding()
 				encoder.encode_at_least_k(var, lower_bound_shifts, self.config.aux, self.config.add_clause)
-
+		del encoder
 	def _encode_at_most_x_s_shifts_per_y_days_binomial(self, upper_bound_shifts: int, shift: ShiftEnum, days: int):
 		# at most x s shifts per 7 days = at least not y - x s shifts per y days
-		encoder = BinomialEncoding()
+
 		for nurse in myrange_inclusive(1, self.config.nurses):
 			for i in myrange_inclusive(1, self.config.days - days + 1):
 				var = [not_(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0])) for j in
 				       range(days)]
-
+				encoder = BinomialEncoding()
 				encoder.encode_at_least_k(var, days - upper_bound_shifts, self.config.aux, self.config.add_clause)
 		del encoder
 	def _encode_ensure_nurse_1_shift_per_day(self):
-		encoder = BinomialEncoding()
+		# encoder = BinomialEncoding()
 		for nurse in myrange_inclusive(1, self.config.nurses):
 			for day in myrange_inclusive(1, self.config.days):
 				var = [self.nurse_variable.get_nurse_days_shift(nurse, day, j) for j in range(4)]
-
+				encoder = BinomialEncoding()
 				encoder.encode_exactly_k(var, 1, self.config.aux, self.config.add_clause)
 		del encoder
+
+	def _encode_night_or_evening_shift_per_day(self, lower_bound, upper_bounds, days):
+		if self.config.encoding_type in ['staircase_at_least', 'staircase_among']:
+			for nurse in myrange_inclusive(1, self.config.nurses):
+				var = [self.nurse_variable.get_nurse_evening_or_night_shift(nurse, j) for j in
+				       myrange_inclusive(1, self.config.days)]
+				encoder = StaircaseEncoding()
+				encoder.encode_staircase_range(var, days, lower_bound, upper_bounds, self.config.aux,
+				                                  self.config.add_clause)
+				del var
+			del encoder
+		elif self.config.encoding_type in ['pblib_bdd', 'pblib_card', 'pblib_card_pysat']:
+			encoder = Encoder(str_to_type_enum(self.config.encoding_type))
+			for nurse in myrange_inclusive(1, self.config.nurses):
+				for i in myrange_inclusive(1, self.config.days - days + 1):
+					var = [self.nurse_variable.get_nurse_evening_or_night_shift(nurse, i + j) for j in range(days)]
+					encoder.encode_range(var, lower_bound, upper_bounds, self.config.aux, self.config.add_clause)
+					del var
+			del encoder
+		elif self.config.encoding_type.startswith('pysat_'):
+			encoder = Encoder(str_to_type_enum(self.config.encoding_type), self.config.encoding_type)
+			for nurse in myrange_inclusive(1, self.config.nurses):
+				for i in myrange_inclusive(1, self.config.days - days + 1):
+					var = [self.nurse_variable.get_nurse_evening_or_night_shift(nurse, i + j) for j in range(days)]
+					encoder.encode_range(var, lower_bound, upper_bounds, self.config.aux, self.config.add_clause)
+					del var
+			del encoder
+
 	def encode(self):
 		self._encode_ensure_nurse_1_shift_per_day()
 		self._encode_at_most_x_workshifts_per_y_days_binomial(6, 7)
 		self._encode_at_least_x_s_shifts_per_y_days(4, ShiftEnum.OFF_DAY, 14)
+
 		self._encode_between_x_and_y_s_shifts_per_z_days(4, 8, ShiftEnum.EVENING_SHIFT, 14)
-		self._encode_at_least_x_workshift_per_y_days(20, 28)
+
 		# self._encode_at_most_x_s_shifts_per_y_days_using_at_least(4, ShiftEnum.NIGHT_SHIFT, 14)
 		# self._encode_at_least_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 14)
 		self._encode_between_x_and_y_s_shifts_per_z_days(1, 4, ShiftEnum.NIGHT_SHIFT, 14)
 
-		self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_SHIFT, 7)
+		# self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_SHIFT, 7)
 		# Changed now is between 2 and 4 evening or night shifts per 7 days
 		# self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_OR_NIGHT_SHIFT, 7)
-
+		self._encode_night_or_evening_shift_per_day(2, 4, 7)
 
 		self._encode_at_most_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 2)
+		self._encode_at_least_x_workshift_per_y_days(20, 28)

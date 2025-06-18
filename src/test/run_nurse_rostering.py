@@ -8,8 +8,7 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.cell import Cell
 from openpyxl.styles import Alignment
-from zipfile import BadZipFile
-from openpyxl.utils.dataframe import dataframe_to_rows
+
 import time
 from datetime import datetime
 from typing import Any
@@ -18,13 +17,12 @@ from pysat.solvers import Solver
 from pysat.formula import CNF
 
 from src.encoding.nurse_roostering_encoding import NurseRosteringEncoding, NurseRosteringConfig
-from src.encoding.staircase_encoding import StaircaseEncoding
 from src.include.addline import write_full
 from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
 solver = "kissat"  # kissat, cadical, glucose, glucose-syrup
 
-solve_mode = "pysat" # pysat or directly(kissat, cadical, glucose, glucose-syrup)
+solve_mode = "pysat" # pysat or local_solver (kissat, cadical, glucose, glucose-syrup)
 
 KISSAT_PATH = "/home/nghia/Desktop/Crew/SAT/kissat/build/kissat"
 
@@ -60,9 +58,18 @@ def eval_window(x: str, value: str, window_size: int, floor, cap):
 				# print(f"failed at {i}")
 				return False
 			# print(f"{x[i - window_size]} {value}")
-			now -= 1 if x[i - window_size] == value else 0
+			if value == "E_N":
+				now -= 1 if x[i - window_size] == "E" else 0
+				now -= 1 if x[i - window_size] == "N" else 0
+			else:
+				now -= 1 if x[i - window_size] == value else 0
+
 			# print(f"now: {now}")
-		now += 1 if x[i] == value else 0
+		if value == "E_N":
+			now += 1 if x[i - window_size] == "E" else 0
+			now += 1 if x[i - window_size] == "N" else 0
+		else:
+			now += 1 if x[i] == value else 0
 	if not (floor <= now <= cap):
 		print(f"failed at end")
 		return False
@@ -138,6 +145,9 @@ def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -
 		bootstrap_with=cnf
 	)
 
+	print("Total variables:", aux.get_total_added_var())
+	print("Total clauses:", add_clause.get_added_clause())
+
 	result = pysat_solver.solve()
 
 	model = pysat_solver.get_model()
@@ -178,7 +188,8 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 		total_clause = add_clause.get_added_clause()
 
 		solver_return = ''
-		if solve_mode == "directly":
+		# model = None
+		if solve_mode == "local_solver":
 			ret, solver_output = solve(start_time, cannon_name, aux, add_clause)
 		else:
 			ret, solver_output, model = solve_with_pysat(start_time, cannon_name, aux, add_clause)
@@ -332,7 +343,7 @@ def parse_result(filename: str, nurse: int, day: int):
 		nurse_day_list = []
 		for j in range(day):
 			nurse_day_shift_list = []
-			for k in range(4):
+			for k in range(5):
 				nurse_day_shift_list.append(list_int.pop())
 			nurse_day_list.append(nurse_day_shift_list)
 		nurse_list.append(nurse_day_list)
@@ -342,23 +353,23 @@ def parse_result(filename: str, nurse: int, day: int):
 		chosen_nurse_list = []
 		for j in range(day):
 			# print(f"nurse {i} day {j}: {nurse_list[i][j]}")
-			temp = [k for k in nurse_list[i][j] if (k > 0)]
-			if len(temp) != 1:
-				chosen_nurse_list.append((temp[0] - 1) % 4)
+			# temp = [k for k in nurse_list[i][j] if (k > 0)]
+			# if len(temp) != 1:
+			# 	chosen_nurse_list.append((temp[0] - 1) % 4)
 
-			# temp = []
-			# # print(f"nurse {i} day {j}:")
-			# for k_idx in range(5):
-			# 	# print(f"  {k_idx}: {nurse_list[i][j][k_idx]}")
-			# 	if nurse_list[i][j][k_idx] > 0:
-			# 		temp.append(k_idx)
+			temp = []
+			# print(f"nurse {i} day {j}:")
+			for k_idx in range(5):
+				# print(f"  {k_idx}: {nurse_list[i][j][k_idx]}")
+				if nurse_list[i][j][k_idx] > 0:
+					temp.append(k_idx)
 
-			# if temp[0] == 4:
-			# 	raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}")
-			#
-			# if len(temp) != 1 and not(len(temp) == 2 and temp[1] == 4):
-			# 	raise RuntimeError(f"NOT satisfied 1 shift per day per nurse! {temp}")
-			# chosen_nurse_list.append(num_to_shift[temp[0] % 4])
+			if temp[0] == 4:
+				raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}")
+
+			if len(temp) != 1 and not(len(temp) == 2 and temp[1] == 4):
+				raise RuntimeError(f"NOT satisfied 1 shift per day per nurse! {temp}")
+			chosen_nurse_list.append(num_to_shift[temp[0] % 4])
 
 
 		chosen_list.append(chosen_nurse_list)
@@ -388,8 +399,8 @@ def test_result(filename: str, nurse: int, day: int):
 		# 	raise RuntimeError(f"nurse id {nurse_id} failed")
 		if not eval_window(nurse_shifts, 'N', 14, 1, 4):
 			raise RuntimeError(f"nurse id {nurse_id} failed")
-		# if not eval_window(nurse_shifts, 'E', 7, 2, 4):
-		# 	raise RuntimeError(f"nurse id {nurse_id} failed")
+		if not eval_window(nurse_shifts, 'E_N', 7, 2, 4):
+			raise RuntimeError(f"nurse id {nurse_id} failed")
 		if not eval_window_upper_bound(nurse_shifts, 'N', 2, 1):
 			raise RuntimeError(f"nurse id {nurse_id} failed")
 	print("ok")
