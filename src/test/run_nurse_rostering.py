@@ -369,7 +369,7 @@ def parse_result(filename: str, nurse: int, day: int):
 					temp.append(k_idx)
 
 			if temp[0] == 4:
-				raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}")
+				raise RuntimeError(f"There was some error when encoding e_n relationship! {temp}. Maybe more than 1 shift per day per nurse?")
 
 			if len(temp) != 1 and not(len(temp) == 2 and temp[1] == 4):
 				raise RuntimeError(f"NOT satisfied 1 shift per day per nurse! {temp}")
