@@ -15,22 +15,22 @@ def not_(x: int) -> int:
 class AddClause:
 	def __init__(self, formula: list[list[int]]):
 		if formula is None:
-			self.__formula = []
+			self.formula = []
 		else:
-			self.__formula = formula
+			self.formula = formula
 
 	def add_list(self, x: list[int]):
 		if len(x) > 0:
-			self.__formula.append(x)
+			self.formula.append(x)
 
 	def add(self, *args):
 		self.add_list(list(args))
 
 	def get_added_clause(self) -> int:
-		return len(self.__formula)
+		return len(self.formula)
 
 	def get_clause(self) -> list[list[int]]:
-		return self.__formula
+		return self.formula
 
 # New AddClause can be used directly with pysat
 # class AddClause:

@@ -1,13 +1,19 @@
 #!/bin/bash
 
 # ==== Đường dẫn ====
-VENV_PATH="/home/nghia/Desktop/Crew/staircase/venv/bin/activate"
-SCRIPT1="/home/nghia/Desktop/NRP_nghia/src/test/run_nurse_rostering.py"
-SCRIPT2="/home/nghia/Desktop/NRP_nghia/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
+VENV_PATH="/home/nghia/Desktop/Crew/staircase/.venv/bin/activate"
+
+SRC_PATH="/home/nghia/Desktop/Staircase/staircaseNRP"
+
+SCRIPT1="${SRC_PATH}/src/test/run_nurse_rostering.py"
+SCRIPT2="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
 
 DATE_STR=$(date +%Y%m%d_%H%M%S)
-RESULT_CSV="/home/nghia/Desktop/NRP_nghia/Compare_NRP/result_${DATE_STR}.csv"
-RESULT_DIR="/home/nghia/Desktop/NRP_nghia/Compare_NRP/Gurobi-For-NRP/Gurobi/Results"
+RESULT_CSV="${SRC_PATH}/Compare_NRP/CSV/result_${DATE_STR}.csv"
+
+mkdir -p "${SRC_PATH}/Compare_NRP/CSV/"
+
+RESULT_DIR="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/Results"
 METHOD="staircase_among"
 
 # ==== Thông số chạy ====
@@ -26,6 +32,7 @@ cleanup_memory() {
 sudo -v  # Kiểm tra quyền sudo
 
 # ==== Kích hoạt môi trường ảo ====
+# shellcheck disable=SC1090
 source "$VENV_PATH"
 
 # Tạo file CSV nếu chưa có
@@ -38,6 +45,7 @@ fi
 mkdir -p "$RESULT_DIR"
 mkdir -p "tmp/solver_output/sat"
 mkdir -p "tmp/solver_output/gurobi"
+
 
 # ==== Chạy các tổ hợp ====
 for NURSES in "${NURSE_LIST[@]}"; do

@@ -141,7 +141,7 @@ def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -
 	if not os.path.exists("tmp/solver_output"):
 		os.makedirs("tmp/solver_output")
 	solver_output = f"tmp/solver_output/output_{cannon_name}.txt"
-	cnf = add_clause.get_clause()
+	cnf = add_clause.formula
 
 	pysat_solver = Solver(
 		name='g421',
