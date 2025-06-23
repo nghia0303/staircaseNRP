@@ -1,0 +1,9 @@
+
+Gurobi 12.0.2 (linux64, gurobi_cl) logging started Tue Jun 17 23:20:54 2025
+
+Set parameter WLSAccessID
+Set parameter WLSSecret
+Set parameter LicenseID to value 2675006
+Set parameter LogFile to value "gurobi.log"
+Using license file /home/nghia/Desktop/Gurobi/gurobi.lic
+Academic license 2675006 - for non-commercial use only - registered to 21___@vnu.edu.vn

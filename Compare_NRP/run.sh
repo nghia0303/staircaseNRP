@@ -3,11 +3,11 @@
 # ==== Đường dẫn ====
 VENV_PATH="/home/nghia/Desktop/Crew/staircase/venv/bin/activate"
 SCRIPT1="/home/nghia/Desktop/NRP_nghia/src/test/run_nurse_rostering.py"
-SCRIPT2="/home/nghia/Desktop/NRP_nghia/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
+SCRIPT2="/home/nghia/Desktop/NRP_nghia/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
 
 DATE_STR=$(date +%Y%m%d_%H%M%S)
 RESULT_CSV="/home/nghia/Desktop/NRP_nghia/Compare_NRP/result_${DATE_STR}.csv"
-RESULT_DIR="/home/nghia/Desktop/NRP_nghia/Gurobi-For-NRP/Gurobi/Results"
+RESULT_DIR="/home/nghia/Desktop/NRP_nghia/Compare_NRP/Gurobi-For-NRP/Gurobi/Results"
 METHOD="staircase_among"
 
 # ==== Thông số chạy ====
