@@ -5,3 +5,7 @@ tmp/
 venv/
 input*.txt
 /inputs/
+
+Compare_NRP/tmp
+CPLEX-For-NRP/MIP/runlim_log
+Gurobi-For-NRP/Gurobi/Results

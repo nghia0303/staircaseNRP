@@ -1,0 +1,3 @@
+nurses,week,model,encoding,clauses,vars,encoding_time,solving_time,total_time,validation
+120,24,Pysat,staircase_among,4473840,1098000,6009.588,2888.979,8898.603
+120,24,Gurobi,,,,4852.966, 5937.374, 10790.348
