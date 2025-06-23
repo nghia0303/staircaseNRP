@@ -4,6 +4,7 @@ import sys
 import datetime
 import gc
 import pandas as pd
+import psutil
 from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.cell import Cell
@@ -16,11 +17,13 @@ from typing import Any
 from pysat.solvers import Solver
 from pysat.formula import CNF
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from src.encoding.nurse_roostering_encoding import NurseRosteringEncoding, NurseRosteringConfig
 from src.include.addline import write_full
 from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
-solver = "kissat"  # kissat, cadical, glucose, glucose-syrup
+solver = "cadical"  # kissat, cadical, glucose, glucose-syrup
 
 solve_mode = "pysat" # pysat or local_solver (kissat, cadical, glucose, glucose-syrup)
 
@@ -32,7 +35,7 @@ GLUCOSE_PATH = "/home/nghia/Desktop/Crew/SAT/glucose/simp/glucose"
 
 GLUCOSE_SYRUP_PATH = "/home/nghia/Desktop/Crew/SAT/glucose/parallel/glucose-syrup"
 
-
+TIMEOUT = 600 # seconds
 
 def handler(signum, frame):
 	raise TimeoutError("Function execution time exceeded the limit")
@@ -134,7 +137,7 @@ def solve(start_time, cannon_name: str, aux, add_clause: AddClause) -> list[str 
 	return [None, None]
 
 def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -> list[str | None]:
-	start_solve_time = time.perf_counter()
+	# start_solve_time = time.perf_counter()
 	if not os.path.exists("tmp/solver_output"):
 		os.makedirs("tmp/solver_output")
 	solver_output = f"tmp/solver_output/output_{cannon_name}.txt"
@@ -150,14 +153,13 @@ def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -
 
 	result = pysat_solver.solve()
 
+	print(f"Result: {result}")
+
 	model = pysat_solver.get_model()
-
-
-
 
 	# print(model)
 
-	print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
+	# print(f"Solve time: {(time.perf_counter() - start_solve_time) * 1000:.2f} (ms)")
 
 	if result:
 		return [2560, solver_output, model]
@@ -166,7 +168,7 @@ def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -
 
 	return [None, None]
 
-def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tuple[float | None, str, int, int]:
+def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int):
 	signal.signal(signal.SIGALRM, handler)
 	signal.alarm(time_limit)
 	cannon_name = f"nurse_rostering_{name}_{nurse}_{day}"
@@ -182,23 +184,25 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 		nr_config = NurseRosteringConfig(nurse, day, aux, add_clause, name)
 		nr = NurseRosteringEncoding(nr_config)
 		nr.encode()
-		print("Encoding time: {:.2f} (ms)".format((time.perf_counter() - start_time) * 1000))
+		encoding_time = (time.perf_counter() - start_time) * 1000
+		print("Encoding time: {:.2f} (ms)".format(encoding_time))
 
 		total_variable = aux.get_total_added_var()
 		total_clause = add_clause.get_added_clause()
-
 		solver_return = ''
-		# model = None
+		model = None
+		start_solving_time = time.perf_counter()
 		if solve_mode == "local_solver":
 			ret, solver_output = solve(start_time, cannon_name, aux, add_clause)
 		else:
 			ret, solver_output, model = solve_with_pysat(start_time, cannon_name, aux, add_clause)
-			if solver_output is not None:
-				with open(solver_output, "w") as f:
-					f.write(' '.join(map(str, model)) + '\n')
+		solving_time = (time.perf_counter() - start_solving_time) * 1000
+		print("Solving time: {:.2f} (ms)".format(solving_time))
 		end_time = time.perf_counter()
 		elapsed_time_ms = (end_time - start_time) * 1000
-
+		if solver_output is not None:
+			with open(solver_output, "w") as f:
+				f.write(' '.join(map(str, model)) + '\n')
 		del nr
 		del clause
 		gc.collect()
@@ -216,18 +220,18 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int) -> tup
 
 		print(f"took {elapsed_time_ms:.2f} (ms)")
 		if ok_time:
-			return elapsed_time_ms, solver_return, total_variable, total_clause
+			return encoding_time, solving_time, elapsed_time_ms, solver_return, total_variable, total_clause
 		else:
 			return None, 'timeout', total_variable, total_clause
 	except TimeoutError as te:
 		print(te)
-		return None, 'timeout', total_variable, total_clause
+		return None, None, None, 'timeout', total_variable, total_clause
 	except RecursionError as re:
 		print(re)
-		return None, 'timeout', total_variable, total_clause
+		return None, None, None, 'timeout', total_variable, total_clause
 	except OSError as e:
 		print(e)
-		return None, 'timeout', total_variable, total_clause
+		return None, None, None, 'timeout', total_variable, total_clause
 	finally:
 		signal.alarm(0)
 
@@ -406,7 +410,7 @@ def test_result(filename: str, nurse: int, day: int):
 	print("ok")
 
 
-def main():
+def run_multiple_nurse_rostering():
 	to_test: list[str] = [
 		"staircase_among"
 	]
@@ -442,6 +446,32 @@ def main():
 
 			writer.write_more(name, result_dict)
 		print()
+
+
+def run_single_nurse_rostering():
+	process = psutil.Process(os.getpid())
+	mem_before = process.memory_info().rss / (1024 * 1024)
+	print(f"Memory before: {mem_before:.2f} MB")
+	number_nurses = int(sys.argv[1])  # Number of nurses
+	number_weeks = int(sys.argv[2])  # Number of weeks
+	encoding = sys.argv[3] if len(sys.argv) > 3 else "staircase_among"
+	result_file_path = sys.argv[4] if len(sys.argv) > 4 else "results_nurse_rostering.csv"
+
+	number_days = number_weeks * 7
+	encoding_time, solving_time, elapsed_time_ms, solver_return, num_var, num_clause = run_nurse_rostering(encoding, number_nurses, number_days, TIMEOUT)
+	mem_after = process.memory_info().rss / (1024 * 1024)
+	print(f"Memory after: {mem_after:.2f} MB")
+	print(f"Memory used: {mem_after - mem_before:.2f} MB")
+
+	# model,encoding,clauses,var,encoding_time,solving_time,total_time
+	result_line = f"{number_nurses},{number_weeks},Pysat,{encoding},{num_clause},{num_var},{encoding_time:.3f},{solving_time:.3f},{elapsed_time_ms:.3f}\n"
+
+	with open(result_file_path, 'a') as result_file:
+		result_file.write(result_line)
+
+def main():
+	# Add the 'src' directory to sys.path
+	run_single_nurse_rostering()
 	pass
 
 

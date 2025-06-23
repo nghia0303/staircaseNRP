@@ -41,21 +41,16 @@ class NurseRosteringVariable:
 			for _j in range(days):
 				# 4 shifts are D (day), E (evening), N (night), O (offday)
 				shifts = [aux.get_new_variable() for _ in range(4)]
-
 				# 5 shifts are D (day), E (evening), N (night), O (offday), EN (evening or night)
 				# shifts = [aux.get_new_variable() for _ in range(5)]
-
 				nurse_i.append(shifts)
 				nurse_e_n.append(aux.get_new_variable())
 			self.nurse.append(nurse_i)
 			self.e_n.append(nurse_e_n)
 
-
-
-
-
 	def __del__(self):
 		del self.nurse
+		gc.collect()
 
 	def get_nurse_days_shift(self, nurse: int, day: int, shift: int) -> int:
 		if not (1 <= nurse <= len(self.nurse)):
@@ -326,6 +321,8 @@ class NurseRosteringEncoding:
 	def encode(self):
 		self._encode_ensure_nurse_1_shift_per_day()
 		self._encode_at_most_x_workshifts_per_y_days_binomial(6, 7)
+		self._encode_at_most_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 2)
+
 		self._encode_at_least_x_s_shifts_per_y_days(4, ShiftEnum.OFF_DAY, 14)
 
 		self._encode_between_x_and_y_s_shifts_per_z_days(4, 8, ShiftEnum.EVENING_SHIFT, 14)
@@ -339,5 +336,4 @@ class NurseRosteringEncoding:
 		# self._encode_between_x_and_y_s_shifts_per_z_days(2, 4, ShiftEnum.EVENING_OR_NIGHT_SHIFT, 7)
 		self._encode_night_or_evening_shift_per_day(2, 4, 7)
 
-		self._encode_at_most_x_s_shifts_per_y_days_binomial(1, ShiftEnum.NIGHT_SHIFT, 2)
 		self._encode_at_least_x_workshift_per_y_days(20, 28)
