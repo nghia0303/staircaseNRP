@@ -23,9 +23,9 @@ from src.encoding.nurse_roostering_encoding import NurseRosteringEncoding, Nurse
 from src.include.addline import write_full
 from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
-solver = "cadical"  # kissat, cadical, glucose, glucose-syrup
+solver = "kissat"  # kissat, cadical, glucose, glucose-syrup
 
-solve_mode = "pysat" # pysat or local_solver (kissat, cadical, glucose, glucose-syrup)
+solve_mode = "local_solver" # pysat or local_solver (kissat, cadical, glucose, glucose-syrup)
 
 KISSAT_PATH = "/home/nghia/Desktop/Crew/SAT/kissat/build/kissat"
 
@@ -200,7 +200,7 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int):
 		print("Solving time: {:.2f} (ms)".format(solving_time))
 		end_time = time.perf_counter()
 		elapsed_time_ms = (end_time - start_time) * 1000
-		if solver_output is not None:
+		if solver_output is not None and model is not None:
 			with open(solver_output, "w") as f:
 				f.write(' '.join(map(str, model)) + '\n')
 		del nr
@@ -412,7 +412,7 @@ def test_result(filename: str, nurse: int, day: int):
 
 def run_multiple_nurse_rostering():
 	to_test: list[str] = [
-		"staircase_among"
+		"pblib_bdd"
 	]
 	time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	nks = get_all_number_in_file("input_nurse_rostering.txt")
@@ -431,7 +431,7 @@ def run_multiple_nurse_rostering():
 				DataToXlsx.time: "",
 				DataToXlsx.sat_status: ""
 			}
-			elapsed_time_ms, solver_return, num_var, num_clause = run_nurse_rostering(name, nurse, day, timeout)
+			encoding_time, solving_time, elapsed_time_ms, solver_return, num_var, num_clause = run_nurse_rostering(name, nurse, day, timeout)
 			if elapsed_time_ms is None:
 				result_dict[DataToXlsx.time] = "timeout"
 			else:
@@ -471,7 +471,8 @@ def run_single_nurse_rostering():
 
 def main():
 	# Add the 'src' directory to sys.path
-	run_single_nurse_rostering()
+	# run_single_nurse_rostering()
+	run_multiple_nurse_rostering()
 	pass
 
 

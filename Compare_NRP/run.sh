@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # ==== Đường dẫn ====
-VENV_PATH="/home/nghia/Desktop/Crew/staircase/.venv/bin/activate"
+VENV_PATH="/home/nghia/Desktop/Crew/staircase/venv/bin/activate"
 
-SRC_PATH="/home/nghia/Desktop/Staircase/staircaseNRP"
+SRC_PATH="/home/nghia/Desktop/NRP_nghia"
 
 SCRIPT1="${SRC_PATH}/src/test/run_nurse_rostering.py"
 SCRIPT2="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
@@ -14,11 +14,11 @@ RESULT_CSV="${SRC_PATH}/Compare_NRP/CSV/result_${DATE_STR}.csv"
 mkdir -p "${SRC_PATH}/Compare_NRP/CSV/"
 
 RESULT_DIR="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/Results"
-METHOD="staircase_among"
+METHOD="pblib_bdd"
 
 # ==== Thông số chạy ====
-NURSE_LIST=(120)
-WEEK_LIST=(24)
+NURSE_LIST=(100)
+WEEK_LIST=(16 20 24)
 
 #NURSE_LIST=(120)
 #WEEK_LIST=(24)
@@ -60,9 +60,9 @@ for NURSES in "${NURSE_LIST[@]}"; do
     cleanup_memory
 
     # Chạy script Gurobi
-    echo "[Gurobi] Running..."
-    python3 "$SCRIPT2" "$NURSES" "$WEEKS" "$RESULT_CSV" > "tmp/solver_output/gurobi/NRP_gurobi_${NURSES}_${WEEKS}.txt"
-    cleanup_memory
+#    echo "[Gurobi] Running..."
+#    python3 "$SCRIPT2" "$NURSES" "$WEEKS" "$RESULT_CSV" > "tmp/solver_output/gurobi/NRP_gurobi_${NURSES}_${WEEKS}.txt"
+#    cleanup_memory
 
   done
 done

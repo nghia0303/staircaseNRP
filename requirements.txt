@@ -20,8 +20,6 @@ pluggy==1.5.0
 portalocker==3.1.1
 psutil==7.0.0
 pypblib==0.0.4
-# Editable install with no version control (pysat==3.2.2)
--e /home/nghia/Desktop/Crew/staircase/pysat
 pytest==8.3.5
 python-dateutil==2.9.0.post0
 python-sat==1.8.dev16

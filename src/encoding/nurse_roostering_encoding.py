@@ -133,9 +133,8 @@ class NurseRosteringEncoding:
 					encoder.encode_at_most_k(var, upper_bound, self.config.aux, self.config.add_clause)
 
 					del var
-			del encoder
+					del encoder
 		elif self.config.encoding_type.startswith('pysat_'):
-
 			for nurse in myrange_inclusive(1, self.config.nurses):
 				for i in myrange_inclusive(1, self.config.days - days + 1):
 					var = [(self.nurse_variable.get_nurse_days_shift(nurse, i + j, shift.value[0]))
