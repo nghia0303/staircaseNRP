@@ -71,11 +71,11 @@ constraints{
     }
 }
 
-// At least 2 and at most 4 evening shifts per 7 consecutive days
+// At least 2 and at most 4 evening or night shifts per 7 consecutive days
 constraints {
     forall(n in Nurses, d in 1..nbDays - 6) {
-        sum(offset in 0..6) schedule[n][d+offset][1] >= 2;
-        sum(offset in 0..6) schedule[n][d+offset][1] <= 4;
+        sum(offset in 0..6) (schedule[n][d+offset][1] + schedule[n][d+offset][2]) >= 2;
+        sum(offset in 0..6) (schedule[n][d+offset][1] + schedule[n][d+offset][2]) <= 4;
     }
 }
 
