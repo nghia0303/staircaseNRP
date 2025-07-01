@@ -1,106 +1,24 @@
-/*********************************************
- * OPL 22.1.1.0 Model
- * Author: truon
- * Creation Date: May 19, 2025 at 10:48:19 AM
- *********************************************/
-
 using CP;
-
-int nurse = ...; // Number of nurses
-int week = ...; // Number of weeks
-int msPer28 = ...; // Min shifts per 28 days
-int nbDays = week * 7; // Number of days
-
+int nurse = ...;
+int week = ...;
+int nbDays = week * 7;
 range Nurses = 1..nurse;
 range Days = 1..nbDays;
-range Shifts = 0..2;
+int NightShift = 2;
 
-dvar boolean schedule[Nurses][Days][Shifts];
+dvar interval schedule[Nurses][Days][0..2] optional size 1;
 
-execute {
-    cp.param.ParallelMode = 1; 
-    cp.param.Workers = 8;
-}
+subject to {
+  // Tối đa 1 ca/ngày
+  forall(n in Nurses, d in Days)
+    sum(s in 0..2) presenceOf(schedule[n][d][s]) <= 1;
 
-// At most 1 shift per day
-constraints {
-    forall(n in Nurses, d in Days)
-        sum(s in Shifts) schedule[n][d][s] <= 1;
-}
-
-// At most 6 shifts per 7 consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 6) {
-        sum(offset in 0..6, s in Shifts) schedule[n][d + offset][s] <= 6;
-    }    
-}
-
-// At least 4 dayoffs per 14 consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 13) {
-        sum(offset in 0..13) (sum(s in Shifts) schedule[n][d + offset][s] == 0 ? 1 : 0) >= 4;
-    }    
-}
-
-// At least 4 and at most 8 evening shifts per 14 consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 13) {
-        sum(offset in 0..13) schedule[n][d + offset][1] >= 4;
-        sum(offset in 0..13) schedule[n][d + offset][1] <= 8;
-    }
-}
-
-// At least msPer28 shifts per 28 consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 27) {
-        sum(offset in 0..27, s in Shifts) schedule[n][d + offset][s] >= msPer28;
-    }
-}
-
-// At most 2 night shifts per 7 consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 6){
-        sum(offset in 0..6) schedule[n][d + offset][2] <= 2;
-    }
-}
-
-// At least 1 night shift per 14 consecutive days
-constraints{
-    forall(n in Nurses, d in 1..nbDays - 13){
-        sum(offset in 0..13) schedule[n][d + offset][2] >= 1;
-    }
-}
-
-// At least 2 and at most 4 evening shifts per 7 consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 6) {
-        sum(offset in 0..6) schedule[n][d+offset][1] >= 2;
-        sum(offset in 0..6) schedule[n][d+offset][1] <= 4;
-    }
-}
-
-// Two night shifts cannot occur in two consecutive days
-constraints {
-    forall(n in Nurses, d in 1..nbDays - 1)
-        schedule[n][d][2] + schedule[n][d + 1][2] <= 1;
-}
-
-execute {
-    writeln("Nurse scheduling:");
-    for (var n in Nurses) {
-        write("Nurse ", n, ":\t");
-        for (var d in Days) {
-            var shiftAssigned = "O";
-            for (var s in Shifts) {
-                if (schedule[n][d][s] == 1) {
-                if (s == 0) shiftAssigned = "D";
-                else if (s == 1) shiftAssigned = "E";
-                else if (s == 2) shiftAssigned = "N";
-                }
-            }
-            write(shiftAssigned, " ");
+  // At most 2 night shifts in any 7 consecutive days (using IloSequence)
+  forall(n in Nurses, d in 1..nbDays-6)
+    sequence([schedule[n][dd][NightShift] | dd in d..d+6], 7, 0, 2);
         }
-        writeln();
-    }
+
+// Giải mô hình
+execute {
+  cp.param.Workers = 8;
 }
- 
