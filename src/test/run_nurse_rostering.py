@@ -412,7 +412,7 @@ def test_result(filename: str, nurse: int, day: int):
 
 def run_multiple_nurse_rostering():
 	to_test: list[str] = [
-		"pblib_bdd"
+		"staircase_among"
 	]
 	time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	nks = get_all_number_in_file("input_nurse_rostering.txt")

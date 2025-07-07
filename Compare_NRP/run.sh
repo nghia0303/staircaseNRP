@@ -17,8 +17,8 @@ RESULT_DIR="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/Results"
 METHOD="pblib_bdd"
 
 # ==== Thông số chạy ====
-NURSE_LIST=(100)
-WEEK_LIST=(16 20 24)
+NURSE_LIST=(30)
+WEEK_LIST=(12 16 20 24)
 
 #NURSE_LIST=(120)
 #WEEK_LIST=(24)
