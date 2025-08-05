@@ -471,8 +471,8 @@ def run_single_nurse_rostering():
 
 def main():
 	# Add the 'src' directory to sys.path
-	# run_single_nurse_rostering()
-	run_multiple_nurse_rostering()
+	run_single_nurse_rostering()
+	# run_multiple_nurse_rostering()
 	pass
 
 
