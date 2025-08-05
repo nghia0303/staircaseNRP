@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/amongsum.dir/examples/mdd/amongsum.cpp.o -o amongsum  libcopl.a 

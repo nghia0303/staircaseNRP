@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/alldiffOverlap0.dir/examples/mdd/alldiffOverlap0.cpp.o -o alldiffOverlap0  libcopl.a 

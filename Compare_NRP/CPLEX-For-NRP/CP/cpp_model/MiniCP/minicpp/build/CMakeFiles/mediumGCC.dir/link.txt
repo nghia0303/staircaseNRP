@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -msse4.2 -D_NDEBUG -DNDEBUG CMakeFiles/mediumGCC.dir/examples/mdd/mediumGCC.cpp.o -o mediumGCC  libcopl.a 

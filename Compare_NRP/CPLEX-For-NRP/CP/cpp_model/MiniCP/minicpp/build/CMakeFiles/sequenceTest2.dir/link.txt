@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -msse4.2 -D_NDEBUG -DNDEBUG CMakeFiles/sequenceTest2.dir/examples/mdd/sequenceTest2.cpp.o -o sequenceTest2  libcopl.a 

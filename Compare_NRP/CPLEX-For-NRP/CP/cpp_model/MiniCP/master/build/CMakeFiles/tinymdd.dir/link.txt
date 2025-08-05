@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/tinymdd.dir/examples/mdd/tinymdd.cpp.o -o tinymdd  libcopl.a 

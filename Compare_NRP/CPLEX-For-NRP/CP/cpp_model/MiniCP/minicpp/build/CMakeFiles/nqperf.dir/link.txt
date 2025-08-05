@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -msse4.2 -D_NDEBUG -DNDEBUG CMakeFiles/nqperf.dir/examples/nqperf.cpp.o -o nqperf  libcopl.a 

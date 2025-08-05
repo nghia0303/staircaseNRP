@@ -1,0 +1,842 @@
+[
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/RuntimeMonitor.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/RuntimeMonitor.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/RuntimeMonitor.cpp",
+  "output": "CMakeFiles/copl.dir/RuntimeMonitor.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fail.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fail.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fail.cpp",
+  "output": "CMakeFiles/copl.dir/fail.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/acstr.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/acstr.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/acstr.cpp",
+  "output": "CMakeFiles/copl.dir/acstr.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/bitset.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/bitset.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/bitset.cpp",
+  "output": "CMakeFiles/copl.dir/bitset.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/commandList.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/commandList.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/commandList.cpp",
+  "output": "CMakeFiles/copl.dir/commandList.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/constraint.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/constraint.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/constraint.cpp",
+  "output": "CMakeFiles/copl.dir/constraint.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/domain.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/domain.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/domain.cpp",
+  "output": "CMakeFiles/copl.dir/domain.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/bool_array.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_array.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_array.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/bool_array.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/bool_bin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_bin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_bin.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/bool_bin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/bool_lin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_lin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_lin.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/bool_lin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/bool_misc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_misc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_misc.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/bool_misc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/flatzinc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/flatzinc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/flatzinc.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/flatzinc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/int_array.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_array.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_array.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/int_array.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/int_bin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_bin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_bin.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/int_bin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/int_lin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_lin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_lin.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/int_lin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_constraints/int_tern.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_tern.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_tern.cpp",
+  "output": "CMakeFiles/copl.dir/fz_constraints/int_tern.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_parser/flatzinc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/flatzinc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/flatzinc.cpp",
+  "output": "CMakeFiles/copl.dir/fz_parser/flatzinc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_parser/lexer.yy.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/lexer.yy.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/lexer.yy.cpp",
+  "output": "CMakeFiles/copl.dir/fz_parser/lexer.yy.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_parser/parser.tab.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/parser.tab.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/parser.tab.cpp",
+  "output": "CMakeFiles/copl.dir/fz_parser/parser.tab.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/fz_parser/registry.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/registry.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/registry.cpp",
+  "output": "CMakeFiles/copl.dir/fz_parser/registry.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/intvar.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/intvar.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/intvar.cpp",
+  "output": "CMakeFiles/copl.dir/intvar.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/lex.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/lex.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/lex.cpp",
+  "output": "CMakeFiles/copl.dir/lex.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mallocWatch.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mallocWatch.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mallocWatch.cpp",
+  "output": "CMakeFiles/copl.dir/mallocWatch.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/matching.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/matching.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/matching.cpp",
+  "output": "CMakeFiles/copl.dir/matching.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mdd.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mdd.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mdd.cpp",
+  "output": "CMakeFiles/copl.dir/mdd.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddAlldiff.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddAlldiff.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddAlldiff.cpp",
+  "output": "CMakeFiles/copl.dir/mddAlldiff.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddAmong.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddAmong.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddAmong.cpp",
+  "output": "CMakeFiles/copl.dir/mddAmong.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddGcc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddGcc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddGcc.cpp",
+  "output": "CMakeFiles/copl.dir/mddGcc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddAbs.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddAbs.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddAbs.cpp",
+  "output": "CMakeFiles/copl.dir/mddAbs.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddMaximumCutObjective.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddMaximumCutObjective.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddMaximumCutObjective.cpp",
+  "output": "CMakeFiles/copl.dir/mddMaximumCutObjective.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddPrecedence.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddPrecedence.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddPrecedence.cpp",
+  "output": "CMakeFiles/copl.dir/mddPrecedence.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddGoc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddGoc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddGoc.cpp",
+  "output": "CMakeFiles/copl.dir/mddGoc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddSeq.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddSeq.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddSeq.cpp",
+  "output": "CMakeFiles/copl.dir/mddSeq.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddSum.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddSum.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddSum.cpp",
+  "output": "CMakeFiles/copl.dir/mddSum.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddTSPSum.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddTSPSum.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddTSPSum.cpp",
+  "output": "CMakeFiles/copl.dir/mddTSPSum.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mdddelta.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mdddelta.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mdddelta.cpp",
+  "output": "CMakeFiles/copl.dir/mdddelta.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddnode.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddnode.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddnode.cpp",
+  "output": "CMakeFiles/copl.dir/mddnode.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddrelax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddrelax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddrelax.cpp",
+  "output": "CMakeFiles/copl.dir/mddrelax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/mddstate.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddstate.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/mddstate.cpp",
+  "output": "CMakeFiles/copl.dir/mddstate.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/regular.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/regular.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/regular.cpp",
+  "output": "CMakeFiles/copl.dir/regular.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/search.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/search.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/search.cpp",
+  "output": "CMakeFiles/copl.dir/search.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/solver.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/solver.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/solver.cpp",
+  "output": "CMakeFiles/copl.dir/solver.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/store.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/store.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/store.cpp",
+  "output": "CMakeFiles/copl.dir/store.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/table.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/table.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/table.cpp",
+  "output": "CMakeFiles/copl.dir/table.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/tracer.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/tracer.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/tracer.cpp",
+  "output": "CMakeFiles/copl.dir/tracer.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/trail.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/trail.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/trail.cpp",
+  "output": "CMakeFiles/copl.dir/trail.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/copl.dir/trailable.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/trailable.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/trailable.cpp",
+  "output": "CMakeFiles/copl.dir/trailable.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/bool_array.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_array.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_array.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/bool_array.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/bool_bin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_bin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_bin.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/bool_bin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/bool_lin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_lin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_lin.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/bool_lin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/bool_misc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_misc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/bool_misc.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/bool_misc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/flatzinc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/flatzinc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/flatzinc.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/flatzinc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/int_array.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_array.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_array.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/int_array.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/int_bin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_bin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_bin.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/int_bin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/int_lin.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_lin.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_lin.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/int_lin.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_constraints/int_tern.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_tern.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_constraints/int_tern.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_constraints/int_tern.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_parser/flatzinc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/flatzinc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/flatzinc.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_parser/flatzinc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_parser/lexer.yy.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/lexer.yy.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/lexer.yy.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_parser/lexer.yy.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_parser/parser.tab.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/parser.tab.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/parser.tab.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_parser/parser.tab.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzl.dir/fz_parser/registry.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/registry.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/fz_parser/registry.cpp",
+  "output": "CMakeFiles/fzl.dir/fz_parser/registry.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/adac.dir/examples/adac.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/adac.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/adac.cpp",
+  "output": "CMakeFiles/adac.dir/examples/adac.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/ais.dir/examples/ais.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/ais.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/ais.cpp",
+  "output": "CMakeFiles/ais.dir/examples/ais.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/bibd.dir/examples/bibd.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/bibd.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/bibd.cpp",
+  "output": "CMakeFiles/bibd.dir/examples/bibd.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/inout.dir/examples/inout.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/inout.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/inout.cpp",
+  "output": "CMakeFiles/inout.dir/examples/inout.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/magicserie.dir/examples/magicserie.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/magicserie.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/magicserie.cpp",
+  "output": "CMakeFiles/magicserie.dir/examples/magicserie.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/magicsquare.dir/examples/magicsquare.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/magicsquare.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/magicsquare.cpp",
+  "output": "CMakeFiles/magicsquare.dir/examples/magicsquare.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/magicsquarePaper.dir/examples/magicsquarePaper.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/magicsquarePaper.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/magicsquarePaper.cpp",
+  "output": "CMakeFiles/magicsquarePaper.dir/examples/magicsquarePaper.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/main2.dir/examples/main2.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/main2.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/main2.cpp",
+  "output": "CMakeFiles/main2.dir/examples/main2.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/main3.dir/examples/main3.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/main3.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/main3.cpp",
+  "output": "CMakeFiles/main3.dir/examples/main3.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/MCP.dir/examples/mdd/MCP.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/MCP.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/MCP.cpp",
+  "output": "CMakeFiles/MCP.dir/examples/mdd/MCP.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/MISP.dir/examples/mdd/MISP.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/MISP.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/MISP.cpp",
+  "output": "CMakeFiles/MISP.dir/examples/mdd/MISP.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/MISPfile.dir/examples/mdd/MISPfile.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/MISPfile.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/MISPfile.cpp",
+  "output": "CMakeFiles/MISPfile.dir/examples/mdd/MISPfile.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/SOP.dir/examples/mdd/SOP.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/SOP.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/SOP.cpp",
+  "output": "CMakeFiles/SOP.dir/examples/mdd/SOP.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/aisMDDTuto.dir/examples/mdd/aisMDDTuto.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/aisMDDTuto.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/aisMDDTuto.cpp",
+  "output": "CMakeFiles/aisMDDTuto.dir/examples/mdd/aisMDDTuto.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/allInterval.dir/examples/mdd/allInterval.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/allInterval.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/allInterval.cpp",
+  "output": "CMakeFiles/allInterval.dir/examples/mdd/allInterval.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/allIntervalBC.dir/examples/mdd/allIntervalBC.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/allIntervalBC.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/allIntervalBC.cpp",
+  "output": "CMakeFiles/allIntervalBC.dir/examples/mdd/allIntervalBC.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/alldiff.dir/examples/mdd/alldiff.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/alldiff.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/alldiff.cpp",
+  "output": "CMakeFiles/alldiff.dir/examples/mdd/alldiff.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/alldiffOverlap.dir/examples/mdd/alldiffOverlap.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/alldiffOverlap.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/alldiffOverlap.cpp",
+  "output": "CMakeFiles/alldiffOverlap.dir/examples/mdd/alldiffOverlap.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/alldiffOverlap0.dir/examples/mdd/alldiffOverlap0.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/alldiffOverlap0.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/alldiffOverlap0.cpp",
+  "output": "CMakeFiles/alldiffOverlap0.dir/examples/mdd/alldiffOverlap0.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/among2.dir/examples/mdd/among2.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among2.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among2.cpp",
+  "output": "CMakeFiles/among2.dir/examples/mdd/among2.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/among2Relax.dir/examples/mdd/among2Relax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among2Relax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among2Relax.cpp",
+  "output": "CMakeFiles/among2Relax.dir/examples/mdd/among2Relax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/among4.dir/examples/mdd/among4.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among4.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among4.cpp",
+  "output": "CMakeFiles/among4.dir/examples/mdd/among4.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/among4Relax.dir/examples/mdd/among4Relax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among4Relax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/among4Relax.cpp",
+  "output": "CMakeFiles/among4Relax.dir/examples/mdd/among4Relax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/amongNurse.dir/examples/mdd/amongNurse.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongNurse.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongNurse.cpp",
+  "output": "CMakeFiles/amongNurse.dir/examples/mdd/amongNurse.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/amongNurse2.dir/examples/mdd/amongNurse2.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongNurse2.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongNurse2.cpp",
+  "output": "CMakeFiles/amongNurse2.dir/examples/mdd/amongNurse2.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/amongNurse_test.dir/examples/mdd/amongNurse_test.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongNurse_test.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongNurse_test.cpp",
+  "output": "CMakeFiles/amongNurse_test.dir/examples/mdd/amongNurse_test.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/amongSeqGcc.dir/examples/mdd/amongSeqGcc.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongSeqGcc.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongSeqGcc.cpp",
+  "output": "CMakeFiles/amongSeqGcc.dir/examples/mdd/amongSeqGcc.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/amongsum.dir/examples/mdd/amongsum.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongsum.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/amongsum.cpp",
+  "output": "CMakeFiles/amongsum.dir/examples/mdd/amongsum.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/carSeq.dir/examples/mdd/carSeq.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeq.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeq.cpp",
+  "output": "CMakeFiles/carSeq.dir/examples/mdd/carSeq.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/carSeqMDD.dir/examples/mdd/carSeqMDD.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeqMDD.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeqMDD.cpp",
+  "output": "CMakeFiles/carSeqMDD.dir/examples/mdd/carSeqMDD.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/carSeqMDD_WVH.dir/examples/mdd/carSeqMDD_WVH.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeqMDD_WVH.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeqMDD_WVH.cpp",
+  "output": "CMakeFiles/carSeqMDD_WVH.dir/examples/mdd/carSeqMDD_WVH.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/carSeq_newSearch.dir/examples/mdd/carSeq_newSearch.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeq_newSearch.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/carSeq_newSearch.cpp",
+  "output": "CMakeFiles/carSeq_newSearch.dir/examples/mdd/carSeq_newSearch.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/gccTest.dir/examples/mdd/gccTest.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/gccTest.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/gccTest.cpp",
+  "output": "CMakeFiles/gccTest.dir/examples/mdd/gccTest.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumAllDiff.dir/examples/mdd/mediumAllDiff.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumAllDiff.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumAllDiff.cpp",
+  "output": "CMakeFiles/mediumAllDiff.dir/examples/mdd/mediumAllDiff.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumAllDiffRelax.dir/examples/mdd/mediumAllDiffRelax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumAllDiffRelax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumAllDiffRelax.cpp",
+  "output": "CMakeFiles/mediumAllDiffRelax.dir/examples/mdd/mediumAllDiffRelax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumAmong.dir/examples/mdd/mediumAmong.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumAmong.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumAmong.cpp",
+  "output": "CMakeFiles/mediumAmong.dir/examples/mdd/mediumAmong.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumGCC.dir/examples/mdd/mediumGCC.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumGCC.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumGCC.cpp",
+  "output": "CMakeFiles/mediumGCC.dir/examples/mdd/mediumGCC.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumGCCRelax.dir/examples/mdd/mediumGCCRelax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumGCCRelax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumGCCRelax.cpp",
+  "output": "CMakeFiles/mediumGCCRelax.dir/examples/mdd/mediumGCCRelax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumSeq.dir/examples/mdd/mediumSeq.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumSeq.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumSeq.cpp",
+  "output": "CMakeFiles/mediumSeq.dir/examples/mdd/mediumSeq.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mediumSeqRelax.dir/examples/mdd/mediumSeqRelax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumSeqRelax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mediumSeqRelax.cpp",
+  "output": "CMakeFiles/mediumSeqRelax.dir/examples/mdd/mediumSeqRelax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mis1.dir/examples/mdd/mis1.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis1.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis1.cpp",
+  "output": "CMakeFiles/mis1.dir/examples/mdd/mis1.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mis2.dir/examples/mdd/mis2.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis2.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis2.cpp",
+  "output": "CMakeFiles/mis2.dir/examples/mdd/mis2.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mis3.dir/examples/mdd/mis3.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis3.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis3.cpp",
+  "output": "CMakeFiles/mis3.dir/examples/mdd/mis3.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mis4.dir/examples/mdd/mis4.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis4.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/mis4.cpp",
+  "output": "CMakeFiles/mis4.dir/examples/mdd/mis4.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/multipletTinyAmong.dir/examples/mdd/multipletTinyAmong.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/multipletTinyAmong.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/multipletTinyAmong.cpp",
+  "output": "CMakeFiles/multipletTinyAmong.dir/examples/mdd/multipletTinyAmong.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sequenceNurse.dir/examples/mdd/sequenceNurse.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceNurse.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceNurse.cpp",
+  "output": "CMakeFiles/sequenceNurse.dir/examples/mdd/sequenceNurse.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sequenceNurseSplit.dir/examples/mdd/sequenceNurseSplit.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceNurseSplit.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceNurseSplit.cpp",
+  "output": "CMakeFiles/sequenceNurseSplit.dir/examples/mdd/sequenceNurseSplit.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sequenceTest.dir/examples/mdd/sequenceTest.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTest.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTest.cpp",
+  "output": "CMakeFiles/sequenceTest.dir/examples/mdd/sequenceTest.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sequenceTest2.dir/examples/mdd/sequenceTest2.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTest2.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTest2.cpp",
+  "output": "CMakeFiles/sequenceTest2.dir/examples/mdd/sequenceTest2.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sequenceTest3.dir/examples/mdd/sequenceTest3.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTest3.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTest3.cpp",
+  "output": "CMakeFiles/sequenceTest3.dir/examples/mdd/sequenceTest3.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sequenceTestSplit.dir/examples/mdd/sequenceTestSplit.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTestSplit.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sequenceTestSplit.cpp",
+  "output": "CMakeFiles/sequenceTestSplit.dir/examples/mdd/sequenceTestSplit.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sumAlldiff.dir/examples/mdd/sumAlldiff.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sumAlldiff.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sumAlldiff.cpp",
+  "output": "CMakeFiles/sumAlldiff.dir/examples/mdd/sumAlldiff.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/sumMDD.dir/examples/mdd/sumMDD.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sumMDD.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/sumMDD.cpp",
+  "output": "CMakeFiles/sumMDD.dir/examples/mdd/sumMDD.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tinyAllDiff.dir/examples/mdd/tinyAllDiff.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinyAllDiff.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinyAllDiff.cpp",
+  "output": "CMakeFiles/tinyAllDiff.dir/examples/mdd/tinyAllDiff.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tinyAllDiffRelax.dir/examples/mdd/tinyAllDiffRelax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinyAllDiffRelax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinyAllDiffRelax.cpp",
+  "output": "CMakeFiles/tinyAllDiffRelax.dir/examples/mdd/tinyAllDiffRelax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tinyGCC.dir/examples/mdd/tinyGCC.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinyGCC.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinyGCC.cpp",
+  "output": "CMakeFiles/tinyGCC.dir/examples/mdd/tinyGCC.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tinySeq.dir/examples/mdd/tinySeq.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinySeq.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinySeq.cpp",
+  "output": "CMakeFiles/tinySeq.dir/examples/mdd/tinySeq.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tinySeqRelax.dir/examples/mdd/tinySeqRelax.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinySeqRelax.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinySeqRelax.cpp",
+  "output": "CMakeFiles/tinySeqRelax.dir/examples/mdd/tinySeqRelax.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tinymdd.dir/examples/mdd/tinymdd.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinymdd.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/tinymdd.cpp",
+  "output": "CMakeFiles/tinymdd.dir/examples/mdd/tinymdd.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/workForce.dir/examples/mdd/workForce.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/workForce.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/workForce.cpp",
+  "output": "CMakeFiles/workForce.dir/examples/mdd/workForce.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/workForceClassic.dir/examples/mdd/workForceClassic.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/workForceClassic.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/workForceClassic.cpp",
+  "output": "CMakeFiles/workForceClassic.dir/examples/mdd/workForceClassic.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/workForceWVH.dir/examples/mdd/workForceWVH.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/workForceWVH.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mdd/workForceWVH.cpp",
+  "output": "CMakeFiles/workForceWVH.dir/examples/mdd/workForceWVH.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/mddamong.dir/examples/mddamong.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mddamong.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/mddamong.cpp",
+  "output": "CMakeFiles/mddamong.dir/examples/mddamong.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/msperf.dir/examples/msperf.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/msperf.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/msperf.cpp",
+  "output": "CMakeFiles/msperf.dir/examples/msperf.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/nqperf.dir/examples/nqperf.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/nqperf.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/nqperf.cpp",
+  "output": "CMakeFiles/nqperf.dir/examples/nqperf.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/nqueensAC.dir/examples/nqueensAC.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/nqueensAC.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/nqueensAC.cpp",
+  "output": "CMakeFiles/nqueensAC.dir/examples/nqueensAC.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/qap.dir/examples/qap.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/qap.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/qap.cpp",
+  "output": "CMakeFiles/qap.dir/examples/qap.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/qaplns.dir/examples/qaplns.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/qaplns.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/qaplns.cpp",
+  "output": "CMakeFiles/qaplns.dir/examples/qaplns.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/regular.dir/examples/regular.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/regular.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/regular.cpp",
+  "output": "CMakeFiles/regular.dir/examples/regular.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/stablemarriage.dir/examples/stablemarriage.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/stablemarriage.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/stablemarriage.cpp",
+  "output": "CMakeFiles/stablemarriage.dir/examples/stablemarriage.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/steel.dir/examples/steel.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/steel.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/steel.cpp",
+  "output": "CMakeFiles/steel.dir/examples/steel.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/table.dir/examples/table.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/table.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/table.cpp",
+  "output": "CMakeFiles/table.dir/examples/table.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/tsp.dir/examples/tsp.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tsp.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tsp.cpp",
+  "output": "CMakeFiles/tsp.dir/examples/tsp.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/aisCP.dir/examples/tutorial/aisCP.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/aisCP.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/aisCP.cpp",
+  "output": "CMakeFiles/aisCP.dir/examples/tutorial/aisCP.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/aisMDD.dir/examples/tutorial/aisMDD.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/aisMDD.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/aisMDD.cpp",
+  "output": "CMakeFiles/aisMDD.dir/examples/tutorial/aisMDD.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/atMost.dir/examples/tutorial/atMost.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/atMost.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/atMost.cpp",
+  "output": "CMakeFiles/atMost.dir/examples/tutorial/atMost.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/atMostHandout.dir/examples/tutorial/atMostHandout.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/atMostHandout.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/atMostHandout.cpp",
+  "output": "CMakeFiles/atMostHandout.dir/examples/tutorial/atMostHandout.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/misCP.dir/examples/tutorial/misCP.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/misCP.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/misCP.cpp",
+  "output": "CMakeFiles/misCP.dir/examples/tutorial/misCP.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/misMDD.dir/examples/tutorial/misMDD.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/misMDD.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/tutorial/misMDD.cpp",
+  "output": "CMakeFiles/misMDD.dir/examples/tutorial/misMDD.cpp.o"
+},
+{
+  "directory": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build",
+  "command": "/usr/bin/g++-10  -I/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/. -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG -std=gnu++17 -o CMakeFiles/fzn-minicpp.dir/examples/fz.cpp.o -c /home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/fz.cpp",
+  "file": "/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/examples/fz.cpp",
+  "output": "CMakeFiles/fzn-minicpp.dir/examples/fz.cpp.o"
+}
+]

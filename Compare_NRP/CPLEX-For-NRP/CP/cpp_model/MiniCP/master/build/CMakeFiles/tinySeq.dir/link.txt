@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/tinySeq.dir/examples/mdd/tinySeq.cpp.o -o tinySeq  libcopl.a 

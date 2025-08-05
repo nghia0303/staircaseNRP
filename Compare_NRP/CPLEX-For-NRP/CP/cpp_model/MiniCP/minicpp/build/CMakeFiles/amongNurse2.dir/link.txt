@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -msse4.2 -D_NDEBUG -DNDEBUG CMakeFiles/amongNurse2.dir/examples/mdd/amongNurse2.cpp.o -o amongNurse2  libcopl.a 

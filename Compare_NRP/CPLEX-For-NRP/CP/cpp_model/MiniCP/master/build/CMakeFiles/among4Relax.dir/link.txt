@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/among4Relax.dir/examples/mdd/among4Relax.cpp.o -o among4Relax  libcopl.a 

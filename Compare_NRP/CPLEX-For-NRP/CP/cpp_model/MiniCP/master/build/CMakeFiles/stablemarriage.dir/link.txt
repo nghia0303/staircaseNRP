@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/stablemarriage.dir/examples/stablemarriage.cpp.o -o stablemarriage  libcopl.a 

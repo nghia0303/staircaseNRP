@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/mis1.dir/examples/mdd/mis1.cpp.o -o mis1  libcopl.a 

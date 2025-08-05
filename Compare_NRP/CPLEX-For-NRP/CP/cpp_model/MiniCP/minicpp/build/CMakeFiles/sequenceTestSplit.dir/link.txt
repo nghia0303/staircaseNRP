@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -msse4.2 -D_NDEBUG -DNDEBUG CMakeFiles/sequenceTestSplit.dir/examples/mdd/sequenceTestSplit.cpp.o -o sequenceTestSplit  libcopl.a 

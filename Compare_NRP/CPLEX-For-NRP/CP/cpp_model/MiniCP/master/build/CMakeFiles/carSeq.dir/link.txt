@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/carSeq.dir/examples/mdd/carSeq.cpp.o -o carSeq  libcopl.a 

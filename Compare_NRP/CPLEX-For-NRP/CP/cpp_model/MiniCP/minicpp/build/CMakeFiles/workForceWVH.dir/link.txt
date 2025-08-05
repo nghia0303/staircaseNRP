@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -msse4.2 -D_NDEBUG -DNDEBUG CMakeFiles/workForceWVH.dir/examples/mdd/workForceWVH.cpp.o -o workForceWVH  libcopl.a 

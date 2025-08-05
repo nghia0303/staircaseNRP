@@ -1,0 +1,1 @@
+/usr/bin/g++-10 -Wall -Wsign-compare -O3 -D_NDEBUG -DNDEBUG CMakeFiles/among4.dir/examples/mdd/among4.cpp.o -o among4  libcopl.a 
