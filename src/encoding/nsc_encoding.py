@@ -31,6 +31,7 @@ class NSCEncoding(BaselineEncoding):
 					continue
 				for _ in myrange_inclusive(1, min(k, i)):
 					r.append(aux.get_new_variable())
+					# print(f"r[{i}][{_}]: {aux.get_last_used_var()}")
 				self._r.append(r)
 			# print(f"var: {x}")
 			# for i in myrange_inclusive(1, self._n):
@@ -353,9 +354,11 @@ class NSCEncoding(BaselineEncoding):
 				if i >= 2:
 					add_clause.add(self.g.not_x(i), self.g.not_r(i - 1, k))
 
+
+	# k is lower bound, m is upper bound
 	def encode_range(self, var: list[int], k: int, m: int, aux: AuxVariable, add_clause: AddClause):
 		n = len(var)
-		self.g = NSCEncoding.GetVariableNSC(var, m, self._full, aux)
+		self.g = NSCEncoding.GetVariableNSC(var, m, aux)
 		range_to_build = n if self._full else n - 1
 		if True:  # add a block here for ease manage
 			# (1)

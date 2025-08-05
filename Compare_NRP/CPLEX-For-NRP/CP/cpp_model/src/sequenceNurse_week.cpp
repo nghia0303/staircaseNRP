@@ -201,7 +201,7 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
       unsigned i;
       // This is a lexicographic ordering search (skup bound variables)
       // ======================================================================
-      for (i = 0u; i < allVars.size(); ++i)
+      for (i = 0; i < allVars.size(); ++i)
             if (allVars[i]->size() > 1) break;
       auto x = (i < allVars.size()) ? allVars[i] : nullptr;
       if (x) {

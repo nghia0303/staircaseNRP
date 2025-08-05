@@ -272,6 +272,8 @@ class StaircaseEncoding:
 		for window_num in range(0, self.num_window - 1):
 			self.__glue_window_at_most(window_num)
 
+
+	# At most
 	def encode_staircase(self, var: list[int], window_size: int, cap: int, aux: AuxVariable, add_clause: AddClause):
 		self.var = var
 		self.n = len(var)

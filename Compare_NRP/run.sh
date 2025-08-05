@@ -60,9 +60,9 @@ for NURSES in "${NURSE_LIST[@]}"; do
     cleanup_memory
 
     # Chạy script Gurobi
-#    echo "[Gurobi] Running..."
-#    python3 "$SCRIPT2" "$NURSES" "$WEEKS" "$RESULT_CSV" > "tmp/solver_output/gurobi/NRP_gurobi_${NURSES}_${WEEKS}.txt"
-#    cleanup_memory
+    echo "[Gurobi] Running..."
+    python3 "$SCRIPT2" "$NURSES" "$WEEKS" "$RESULT_CSV" > "tmp/solver_output/gurobi/NRP_gurobi_${NURSES}_${WEEKS}.txt"
+    cleanup_memory
 
   done
 done

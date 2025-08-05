@@ -1,0 +1,41 @@
+import cp.
+
+main([CClassStr,HorizonStr]) =>
+    CClass = to_integer(CClassStr),    % 1 = C-I, 2 = C-II, 3 = C-III
+    Horizon = to_integer(HorizonStr),
+
+    % -- Class-specific constraints
+    UBs = [[6,8], [6,9], [7,9]],
+    LBs = [[22,30], [20,30], [22,30]],
+    UB = UBs[CClass,1],   % e.g., max work days in window
+    UBWin = UBs[CClass,2],
+    LB = LBs[CClass,1],   % e.g., min work days in window
+    LBWin = LBs[CClass,2],
+
+    % -- Decision variables: Work: 1 if nurse works that day, 0 otherwise
+    Vars = new_list(Horizon),
+    Vars :: 0..1,
+
+    % -- 4 to 5 days per week constraint
+    Weeks = Horizon // 7,
+    foreach(W in 0..Weeks-1)
+        WeekStart = W*7+1, WeekEnd = min(WeekStart+6,Horizon),
+        WeekVars = Vars[WeekStart..WeekEnd],
+        4 #=< sum(WeekVars),
+        sum(WeekVars) #=< 5
+    end,
+
+    % -- Sliding UB constraint: at most UB in any UBWin-day window
+    foreach(S in 1..Horizon-UBWin+1)
+        sum(Vars[S..S+UBWin-1]) #=< UB
+    end,
+
+    % -- Sliding LB constraint: at least LB in any LBWin-day window
+    foreach(S in 1..Horizon-LBWin+1)
+        sum(Vars[S..S+LBWin-1]) #>= LB
+    end,
+
+    % -- Count ALL solutions
+    AllSols = findall(Vars, solve(Vars)),
+    N = length(AllSols),
+    printf("solns : %d\n", N).
