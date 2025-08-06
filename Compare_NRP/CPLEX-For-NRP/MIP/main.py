@@ -1,3 +1,5 @@
+import time
+
 from docplex.mp.model import Model
 import sys
 
@@ -7,6 +9,7 @@ WEEKS = int(sys.argv[2])
 MIN_SHIFTS_28DAYS = 20
 # MIN_SHIFTS_28DAYS = int(sys.argv[3])
 
+start_time = time.perf_counter()
 
 DAYS_PER_WEEK = 7
 DAYS = WEEKS * DAYS_PER_WEEK
@@ -102,6 +105,10 @@ for n in range(NURSES):
 
 # === Solve ===
 solution = mdl.solve(log_output=True)
+
+end_time = time.perf_counter()
+
+print(f"Total time: {(end_time - start_time) * 1000:.2f} (ms)")
 
 # === Output sample solution ===
 if solution:

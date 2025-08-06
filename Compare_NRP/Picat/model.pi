@@ -1,0 +1,62 @@
+import cp.
+
+main =>
+
+    Nurse = 5, % Thay bằng số thực tế
+    Week = 4,
+    MsPer28 = 15,
+
+    NbDays = Week * 7,
+    Nurses = 1..Nurse,
+    Days = 1..NbDays,
+    Shifts = 0..2,
+
+    array3d(Schedule, Nurse, NbDays, 3),
+    Schedule :: 0..1,
+
+    % Ràng buộc 1
+    foreach (N in Nurses, D in Days)
+        sum([Schedule[N,D,S] : S in Shifts]) #=< 1
+    end,
+
+    % Ràng buộc 2
+    foreach (N in Nurses, D in 1..NbDays-6)
+        sum([Schedule[N,D+Offset,S] : Offset in 0..6, S in Shifts]) #=< 6
+    end,
+
+    % Ràng buộc 3
+    foreach (N in Nurses, D in 1..NbDays-13)
+        sum([(sum([Schedule[N,D+Offset,S] : S in Shifts]) #= 0) : Offset in 0..13]) #>= 4
+    end,
+
+    % Ràng buộc 4
+    foreach (N in Nurses, D in 1..NbDays-13)
+        sum([Schedule[N,D+Offset,1] : Offset in 0..13]) #>= 4,
+        sum([Schedule[N,D+Offset,1] : Offset in 0..13]) #=< 8
+    end,
+
+    % Ràng buộc 5
+    foreach (N in Nurses, D in 1..NbDays-27)
+        sum([Schedule[N,D+Offset,S] : Offset in 0..27, S in Shifts]) #>= MsPer28
+    end,
+
+    % Ràng buộc 6
+    foreach (N in Nurses, D in 1..NbDays-6)
+        sum([Schedule[N,D+Offset,2] : Offset in 0..6]) #=< 2
+    end,
+
+    % Ràng buộc 7
+    foreach (N in Nurses, D in 1..NbDays-13)
+        sum([Schedule[N,D+Offset,2] : Offset in 0..13]) #>= 1
+    end,
+
+    % Ràng buộc 8
+    foreach (N in Nurses, D in 1..NbDays-6)
+        sum([Schedule[N,D+Offset,1] + Schedule[N,D+Offset,2] : Offset in 0..6]) #>= 2,
+        sum([Schedule[N,D+Offset,1] + Schedule[N,D+Offset,2] : Offset in 0..6]) #=< 4
+    end,
+
+    % Ràng buộc 9
+    foreach (N in Nurses, D in 1..NbDays-1)
+        Schedule[N,D,2] + Schedule[N,D+1,2] #=< 1
+    end.

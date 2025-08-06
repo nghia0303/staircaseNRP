@@ -3,11 +3,9 @@ import signal
 import sys
 import datetime
 import gc
-import pandas as pd
+
 import psutil
-from openpyxl import load_workbook
 from openpyxl import Workbook
-from openpyxl.cell import Cell
 from openpyxl.styles import Alignment
 
 import time
@@ -15,7 +13,6 @@ from datetime import datetime
 from typing import Any
 
 from pysat.solvers import Solver
-from pysat.formula import CNF
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
@@ -169,71 +166,72 @@ def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -
 	return [None, None]
 
 def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int):
-	signal.signal(signal.SIGALRM, handler)
-	signal.alarm(time_limit)
-	cannon_name = f"nurse_rostering_{name}_{nurse}_{day}"
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(time_limit)
+    cannon_name = f"nurse_rostering_{name}_{nurse}_{day}"
 
-	print(f"{name} {nurse} {day}")
-	aux = AuxVariable(1)
-	clause = []
-	add_clause = AddClause(clause)
-	total_variable = -1
-	total_clause = -1
-	try:
-		start_time = time.perf_counter()
-		nr_config = NurseRosteringConfig(nurse, day, aux, add_clause, name)
-		nr = NurseRosteringEncoding(nr_config)
-		nr.encode()
-		encoding_time = (time.perf_counter() - start_time) * 1000
-		print("Encoding time: {:.2f} (ms)".format(encoding_time))
+    print(f"{name} {nurse} {day}")
+    aux = AuxVariable(1)
+    clause = []
+    add_clause = AddClause(clause)
+    total_variable = -1
+    total_clause = -1
+    try:
+        start_time = time.perf_counter()
+        nr_config = NurseRosteringConfig(nurse, day, aux, add_clause, name)
+        nr = NurseRosteringEncoding(nr_config)
+        nr.encode()
+        encoding_time = (time.perf_counter() - start_time) * 1000
+        print("Encoding time: {:.2f} (ms)".format(encoding_time))
 
-		total_variable = aux.get_total_added_var()
-		total_clause = add_clause.get_added_clause()
-		solver_return = ''
-		model = None
-		start_solving_time = time.perf_counter()
-		if solve_mode == "local_solver":
-			ret, solver_output = solve(start_time, cannon_name, aux, add_clause)
-		else:
-			ret, solver_output, model = solve_with_pysat(start_time, cannon_name, aux, add_clause)
-		solving_time = (time.perf_counter() - start_solving_time) * 1000
-		print("Solving time: {:.2f} (ms)".format(solving_time))
-		end_time = time.perf_counter()
-		elapsed_time_ms = (end_time - start_time) * 1000
-		if solver_output is not None and model is not None:
-			with open(solver_output, "w") as f:
-				f.write(' '.join(map(str, model)) + '\n')
-		del nr
-		del clause
-		gc.collect()
+        total_variable = aux.get_total_added_var()
+        total_clause = add_clause.get_added_clause()
+        solver_return = ''
+        model = None
+        start_solving_time = time.perf_counter()
+        if solve_mode == "local_solver":
+            ret, solver_output = solve(start_time, cannon_name, aux, add_clause)
+        else:
+            ret, solver_output, model = solve_with_pysat(start_time, cannon_name, aux, add_clause)
+        solving_time = (time.perf_counter() - start_solving_time) * 1000
+        print("Solving time: {:.2f} (ms)".format(solving_time))
+        end_time = time.perf_counter()
+        elapsed_time_ms = (end_time - start_time) * 1000
+        print(f"Total time: {elapsed_time_ms:.2f} (ms)")
+        if solver_output is not None and model is not None:
+            with open(solver_output, "w") as f:
+                f.write(' '.join(map(str, model)) + '\n')
+        del nr
+        del clause
+        gc.collect()
 
-		ok_time = True
-		if ret == 2560:  # SAT
-			solver_return = 'SAT'
-			test_result(solver_output, nurse, day)
-		elif ret == 5120:  # UNSAT
-			print("UNSAT")
-			solver_return = 'UNSAT'
-		else:
-			if ret == 0:  # timeout
-				ok_time = False
+        ok_time = True
+        if ret == 2560:  # SAT
+            solver_return = 'SAT'
+            test_result(solver_output, nurse, day)
+        elif ret == 5120:  # UNSAT
+            print("UNSAT")
+            solver_return = 'UNSAT'
+        else:
+            if ret == 0:  # timeout
+                ok_time = False
 
-		print(f"took {elapsed_time_ms:.2f} (ms)")
-		if ok_time:
-			return encoding_time, solving_time, elapsed_time_ms, solver_return, total_variable, total_clause
-		else:
-			return None, 'timeout', total_variable, total_clause
-	except TimeoutError as te:
-		print(te)
-		return None, None, None, 'timeout', total_variable, total_clause
-	except RecursionError as re:
-		print(re)
-		return None, None, None, 'timeout', total_variable, total_clause
-	except OSError as e:
-		print(e)
-		return None, None, None, 'timeout', total_variable, total_clause
-	finally:
-		signal.alarm(0)
+        print(f"took {elapsed_time_ms:.2f} (ms)")
+        if ok_time:
+            return encoding_time, solving_time, elapsed_time_ms, solver_return, total_variable, total_clause
+        else:
+            return None, 'timeout', total_variable, total_clause
+    except TimeoutError as te:
+        print(te)
+        return None, None, None, 'timeout', total_variable, total_clause
+    except RecursionError as re:
+        print(re)
+        return None, None, None, 'timeout', total_variable, total_clause
+    except OSError as e:
+        print(e)
+        return None, None, None, 'timeout', total_variable, total_clause
+    finally:
+        signal.alarm(0)
 
 
 def get_all_number_in_file(file: str) -> list[list[int]]:
