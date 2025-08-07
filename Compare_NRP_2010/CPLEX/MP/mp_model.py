@@ -47,7 +47,7 @@ class NRP:
         ]
 
         self.model = Model(name="AmongNurse")
-        self.model.context.cplex_parameters.threads = 1
+        # self.model.context.cplex_parameters.threads = 1
         self.x = self.model.binary_var_list(self.horizon, name="x")
 
 

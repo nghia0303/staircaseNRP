@@ -13,6 +13,8 @@ CPLEX_MP_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/CPLEX/MP/mp_model.
 GUROBI_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/Gurobi/gurobi_model.py"
 PICAT_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/Picat/sample.pi"
 
+TIMEOUT=300  # Thời gian timeout cho mỗi lệnh (300 giây)
+
 DATE_STR=$(date +%Y%m%d_%H%M%S)
 RESULT_CSV="${SRC_PATH}/Compare_NRP_2010/CSV/result_${DATE_STR}.csv"
 mkdir -p "${SRC_PATH}/Compare_NRP_2010/CSV/"
@@ -34,141 +36,124 @@ chmod +x "$AMONG_NURSE_SCRIPT"
 
 W_LIST=(1)
 M_LIST=(0)
-C_LIST=(2)
-H_LIST=(80)
+C_LIST=(1)
+H_LIST=(40)
 R_LIST=(1)
 I_LIST=(1)
-
+SOLVER_LIST=("cd195" "g421" "m22")
 
 # Chạy script AmongNurse
 #"$AMONG_NURSE_SCRIPT" -w128 -m2 -r2147483647 -i2147483647 -c1 -h
 for C in "${C_LIST[@]}"; do
   for H in "${H_LIST[@]}"; do
-
-    # Run MDD
-#    for R in "${R_LIST[@]}"; do
-#      for I in "${I_LIST[@]}"; do
-#        for W in "${W_LIST[@]}"; do
-#          for M in "${M_LIST[@]}"; do
-#            echo "============================================"
-#            echo ">>> Running for W=$W, M=$M, R=$R, I=$I C=$C, H=$H..."
-#
-#            # Chạy script AmongNurse
-#            echo "[AmongNurse] Running..."
-#            OUTPUT=$("$AMONG_NURSE_SCRIPT" -w"$W" -m"$M" -r"$R" -i"$I" -c"$C" -h"$H")
-#
-#            TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
-#            TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
-#            SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
-#
-#            echo "Time: $TIME"
-#            echo "Time to First Solution: $TIME_TO_FIRST_SOL"
-#            echo "Solutions: $SOLNS"
-#            # Ghi kết quả vào file CSV
-#            echo "MDD,$W,$M,$R,$I,$C,$H,$TIME,$TIME_TO_FIRST_SOL,$SOLNS" >> "$RESULT_CSV"
-#
-# 95310
-
-#            cleanup_memory
-#
-#
-#          done
-#        done
-#      done
-#    done
-    # Run Staircase
-
     # Try best MDD configuration based on 2022 paper
+    echo "${C} ${H}"
+    echo "============================================"
+#    OUTPUT=$("$AMONG_NURSE_SCRIPT" -w64 -m0 -r5 -i10 -c"$C" -h"$H" -n0 -na1 -d2 -ca1 -a1 -e1 -p0 -t3 -maxP0 -minP0 -wP0 -j1)
+    mem_file=$(mktemp)
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" "$AMONG_NURSE_SCRIPT" -w64 -m0 -r5 -i10 -c"$C" -h"$H" -n0 -na1 -d2 -ca1 -a1 -e1 -p0 -t3 -maxP0 -minP0 -wP0 -j1)
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
+    TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
+    TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
+    SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
+
+    echo "Time: $TIME"
+    echo "Time by measure: "
+    echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+    echo "Peak RAM: $PEAK_RAM"
+    echo "Solutions: $SOLNS"
+            # Ghi kết quả vào file CSV
+    echo "MDD,64,0,$C,$H,$TIME,$TIME_TO_FIRST_SOL,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
 
     echo "${C} ${H}"
     echo "============================================"
-    OUTPUT=$("$AMONG_NURSE_SCRIPT" -w64 -m0 -r5 -i10 -c"$C" -h"$H" -n0 -na1 -d2 -ca1 -a1 -e1 -p0 -t3 -maxP0 -minP0 -wP0 -j1)
-
+#    OUTPUT=$(timeout "$TIMEOUT" "$AMONG_NURSE_SCRIPT" -w64 -m1 -r5 -i10 -c"$C" -h"$H" -n0 -na1 -d2 -ca1 -a1 -e1 -p0 -t3 -maxP0 -minP0 -wP0 -j1)
+    mem_file=$(mktemp)
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" "$AMONG_NURSE_SCRIPT" -w64 -m1 -r5 -i10 -c"$C" -h"$H" -n0 -na1 -d2 -ca1 -a1 -e1 -p0 -t3 -maxP0 -minP0 -wP0 -j1)
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
     TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
     SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
 
     echo "Time: $TIME"
     echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+    echo "Peak RAM: $PEAK_RAM"
     echo "Solutions: $SOLNS"
             # Ghi kết quả vào file CSV
-    echo "MDD,64,0,$C,$H,$TIME,$TIME_TO_FIRST_SOL,$SOLNS" >> "$RESULT_CSV"
+    echo "MDD,64,1,$C,$H,$TIME,$TIME_TO_FIRST_SOL,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
 
-    echo "${C} ${H}"
-    echo "============================================"
-    OUTPUT=$(timeout 300 "$AMONG_NURSE_SCRIPT" -w64 -m1 -r5 -i10 -c"$C" -h"$H" -n0 -na1 -d2 -ca1 -a1 -e1 -p0 -t3 -maxP0 -minP0 -wP0 -j1)
-
-    TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
-    TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
-    SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
-
-    echo "Time: $TIME"
-    echo "Time to First Solution: $TIME_TO_FIRST_SOL"
-    echo "Solutions: $SOLNS"
-            # Ghi kết quả vào file CSV
-    echo "MDD,64,1,$C,$H,$TIME,$TIME_TO_FIRST_SOL,$SOLNS" >> "$RESULT_CSV"
     echo "============================================"
     echo "Staircase"
     source "$VENV_3_12_PATH"
-    OUTPUT=$(timeout 300 python3 "$STAIRCASE_PATH" "$H" "$C" "staircase" "m22")
-    TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
-    TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
-    SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
 
-    echo "Time: $TIME"
-    echo "Time to First Solution: $TIME_TO_FIRST_SOL"
-    echo "Solutions: $SOLNS"
-    # Ghi kết quả vào file CSV
-    echo "Staircase,,$C,$H,$TIME,,$SOLNS" >> "$RESULT_CSV"
+    for SOLVER in "${SOLVER_LIST[@]}"; do
+      echo "Solver: $SOLVER"
+      OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$STAIRCASE_PATH" "$H" "$C" "staircase" "$SOLVER")
+      PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
+      TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
+      TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
+      SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
 
-    echo ""
+      echo "Time: $TIME"
+      echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+      echo "Peak RAM: $PEAK_RAM"
+      echo "Solutions: $SOLNS"
+      echo "Staircase,,$SOLVER,$C,$H,$TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
+      echo ""
+    done
     echo ""
 
     echo "============================================"
     echo "CPLEX CP"
     source "$VENV_3_8_PATH"
-    OUTPUT=$(timeout 300 python3 "$CPLEX_CP_PATH" "$H" "$C")
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$CPLEX_CP_PATH" "$H" "$C")
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
     TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
     SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
 
     echo "Time: $TIME"
     echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+    echo "Peak RAM: $PEAK_RAM"
     echo "Solutions: $SOLNS"
     # Ghi kết quả vào file CSV
-    echo "CPLEX_CP,,$C,$H,$TIME,,$SOLNS" >> "$RESULT_CSV"
+    echo "CPLEX_CP,,,$C,$H,$TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
 
     echo ""
     echo ""
 
     echo "============================================"
     echo "CPLEX MP"
-    OUTPUT=$(timeout 300 python3 "$CPLEX_MP_PATH" "$H" "$C")
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$CPLEX_MP_PATH" "$H" "$C")
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
     TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
     SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
 
     echo "Time: $TIME"
     echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+    echo "Peak RAM: $PEAK_RAM"
     echo "Solutions: $SOLNS"
     # Ghi kết quả vào file CSV
-    echo "CPLEX_MP,,$C,$H,$TIME,,$SOLNS" >> "$RESULT_CSV"
+    echo "CPLEX_MP,,,$C,$H,$TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
 
     echo ""
     echo ""
 
     echo "============================================"
     echo "Gurobi"
-    OUTPUT=$(timeout 300 python3 "$GUROBI_PATH" "$H" "$C")
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$GUROBI_PATH" "$H" "$C")
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
     TIME_TO_FIRST_SOL=$(echo "$OUTPUT" | grep 'timeToFirstSol' | awk '{print $3}' | tr -d ',')
     SOLNS=$(echo "$OUTPUT" | grep 'solns' | awk '{print $3}' | tr -d ',')
 
     echo "Time: $TIME"
     echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+    echo "Peak RAM: $PEAK_RAM"
     echo "Solutions: $SOLNS"
     # Ghi kết quả vào file CSV
-    echo "Gurobi,,$C,$H,$TIME,,$SOLNS" >> "$RESULT_CSV"
+    echo "Gurobi,,,$C,$H,$TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
 
     echo ""
     echo ""
@@ -176,7 +161,8 @@ for C in "${C_LIST[@]}"; do
     echo "============================================"
     echo "Picat"
     START_TIME=$(date +%s%N)
-    OUTPUT=$(timeout 300 picat "$PICAT_PATH" "$C" "$H")
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" picat "$PICAT_PATH" "$C" "$H")
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     END_TIME=$(date +%s%N)
     ELAPSED_TIME=$((($END_TIME - $START_TIME)/1000000)) # Convert nanoseconds to milliseconds
 #    TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
@@ -185,9 +171,10 @@ for C in "${C_LIST[@]}"; do
 
     echo "Time: $ELAPSED_TIME"
 #    echo "Time to First Solution: $TIME_TO_FIRST_SOL"
+    echo "Peak RAM: $PEAK_RAM"
     echo "Solutions: $SOLNS"
     # Ghi kết quả vào file CSV
-    echo "Picat,,$C,$H,$ELAPSED_TIME,,$SOLNS" >> "$RESULT_CSV"
+    echo "Picat,,,$C,$H,$ELAPSED_TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
 
     echo ""
     echo ""

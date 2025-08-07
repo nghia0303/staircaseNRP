@@ -46,7 +46,7 @@ class NRP:
             [22, 30]   # Class C-III
         ]
         env = gurobipy.Env()
-        env.setParam("Threads", 1)
+        # env.setParam("Threads", 1)
         self.model = gp.Model(env=env)
         self.x = [self.model.addVar(vtype=GRB.BINARY, name=f"x_{i}") for i in range(horizon)]
         self.model.update()
