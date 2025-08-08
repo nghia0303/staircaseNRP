@@ -1,8 +1,9 @@
 import cp.
 
-main([CClassStr,HorizonStr]) =>
+main([CClassStr,HorizonStr,SolveOneStr]) =>
     CClass = to_integer(CClassStr),    % 1 = C-I, 2 = C-II, 3 = C-III
     Horizon = to_integer(HorizonStr),
+    SolveOne = to_integer(SolveOneStr),  % 1 = solve one solution, 0 = count all solutions
 
     % -- Class-specific constraints
     UBs = [[6,8], [6,9], [7,9]],
@@ -36,6 +37,20 @@ main([CClassStr,HorizonStr]) =>
     end,
 
     % -- Count ALL solutions
-    AllSols = findall(Vars, solve(Vars)),
-    N = length(AllSols),
-    printf("solns : %d\n", N).
+
+    if SolveOne = 1 then
+        % Solve one solution
+        printf("solving one solution...\n"),
+        if solve(Vars) then
+            printf("solns : %d\n", 1)
+        else
+            printf("solns : 0\n")
+    else
+        AllSols = findall(Vars, solve(Vars)),
+        N = length(AllSols),
+        printf("solns : %d\n", N).
+
+
+
+
+
