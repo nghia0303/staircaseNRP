@@ -151,7 +151,25 @@ class NRP:
         """
         pass
 
+    def solve_one_solution(self):
 
+        """
+        Solve the model and return the first solution found.
+        """
+        if not self.added_constraints:
+            raise ValueError("Constraints have not been added to the model.")
+
+        # self.model.setParam(GRB.Param.OutputFlag, 0)
+        # self.model.setParam(GRB.Param.PoolSearchMode, 1)
+        # self.model.setParam(GRB.Param.PoolSolutions, 1)  # Giới hạn tối đa số nghiệm
+        # Tắt log nếu muốn
+
+        self.model.optimize()
+
+        if self.model.status == gp.GRB.Status.OPTIMAL:
+            return 1
+        else:
+            return 0
 
 
     def solve(self):
@@ -164,7 +182,7 @@ class NRP:
         # self.model.setParam(GRB.Param.WorkLimit, 1)
         self.model.setParam(GRB.Param.PoolSearchMode, 2)  # Tìm tất cả nghiệm
         self.model.setParam(GRB.Param.PoolSolutions, 1000000)  # Giới hạn tối đa số nghiệm
- # Tắt log nếu muốn
+        # Tắt log nếu muốn
         self.model.optimize()
 
         sol_count = self.model.SolCount
@@ -278,7 +296,10 @@ def main():
     else:
         constraint = 1
 
-
+    solve_one_solution = False
+    if len(sys.argv) > 3:
+        if sys.argv[3] == 'true':
+            solve_one_solution = True
 
     start_time = time.perf_counter()
 
@@ -287,7 +308,11 @@ def main():
     )
 
     nrp.add_constraints()
-    nrp.solve()
+
+    if solve_one_solution:
+        sol_count = nrp.solve_one_solution()
+    else:
+        sol_count = nrp.solve()
 
     # nrp = NRP(
     #     horizon=horizon, constraint=constraint, encoding_mode=encoding_mode,
@@ -295,7 +320,7 @@ def main():
     #     use_tseintin=use_tseintin, chunk_width=chunk_width
     # )
     # nrp.add_constraints()
-    sol_count = nrp.solve()
+    # sol_count = nrp.solve()
     end_time = time.perf_counter()
 
     print(f"\"time\" : {(end_time - start_time)*1000:.0f}")

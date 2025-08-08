@@ -22,6 +22,9 @@ import os
 from cplex.exceptions import CplexSolverError
 from docplex.mp.model import Model
 
+
+from test.run_nurse_rostering import solve_mode
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
 
@@ -161,8 +164,19 @@ class NRP:
             return 0
 
 
+    def solve_one_solution(self):
 
-
+        # Get one solution
+        solution = self.model.solve()
+        if solution is None:
+            # print("No solution found.")
+            return 0
+        else:
+            return 1
+        print("Solution found:")
+        # for day in range(1, self.horizon + 1):
+        #     var = self.get_variables_of_day(day)
+        #     print(f"Day {day}: {var.solution_value}")
 
     def solve(self):
 
@@ -300,6 +314,10 @@ def main():
     else:
         constraint = 1
 
+    solve_one_solution = False
+    if len(sys.argv) > 3:
+        if sys.argv[3] == 'true':
+            solve_one_solution = True
 
 
     start_time = time.perf_counter()
@@ -309,7 +327,10 @@ def main():
     )
 
     nrp.add_constraints()
-    nrp.solve()
+    if solve_one_solution:
+        sol_count = nrp.solve_one_solution()
+    else:
+        sol_count = nrp.solve()
 
     # nrp = NRP(
     #     horizon=horizon, constraint=constraint, encoding_mode=encoding_mode,
@@ -317,7 +338,7 @@ def main():
     #     use_tseintin=use_tseintin, chunk_width=chunk_width
     # )
     # nrp.add_constraints()
-    sol_count = nrp.solve()
+    # sol_count = nrp.solve()
     end_time = time.perf_counter()
 
     print(f"\"time\" : {(end_time - start_time)*1000:.0f}")
