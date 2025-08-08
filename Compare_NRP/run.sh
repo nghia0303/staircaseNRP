@@ -98,6 +98,8 @@ for NURSES in "${NURSE_LIST[@]}"; do
     total_time=$(echo "$OUTPUT" | grep "Total time:" | awk '{print $3}')
     echo "Total time for CPLEX MP: $total_time ms"
     echo "cplex_mp,$NURSES,$WEEKS,$total_time" >> "$SHORTEN_RESULT_CSV"
+
+
   done
 done
 

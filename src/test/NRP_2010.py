@@ -204,6 +204,50 @@ class NRP:
             for clause in self.clauses:
                 f.write(" ".join(map(str, clause)) + " 0\n")
 
+    def solve_one_solution(self):
+
+        """
+        Solve the NRP and return the first solution found.
+        """
+        solution_count = 0
+        time_to_first_solution = None
+
+        if not self.use_local_solver:
+            pysat_solver = Solver(
+                name=self.solver_name,
+                bootstrap_with=self.get_clauses()
+            )
+
+            result = pysat_solver.solve()
+
+            if result:
+                solution_count = 1
+
+            time_to_first_solution = time.perf_counter()
+
+        else:
+            if not os.path.exists('tmp/cnf'):
+                os.mkdir('tmp/cnf')
+
+            self.to_cnf('tmp/cnf/nrp.cnf')
+
+            local_solver = LocalSolver()
+            ret = 0
+            res = []
+
+            ret, res = local_solver.solve(
+                    solver_name=self.solver_name,
+                    cnf_path='tmp/cnf/nrp.cnf',
+                    output_directory='tmp/cnf'
+                )
+
+            if ret == 2560:  # SATISFIABLE
+                solution_count = 1
+                time_to_first_solution = time.perf_counter()
+
+
+        return solution_count, time_to_first_solution
+
     def solve(self):
         if not self.added_constraints:
             raise ValueError("Constraints have not been added yet. Call add_constraints() before solving.")
@@ -329,6 +373,8 @@ class NRP:
 
 
         return solution_count, time_to_first_solution
+
+
 
     def validate_solution(self, solution):
         """
@@ -459,6 +505,11 @@ def main():
     else:
         chunk_width = 5
 
+    if len(sys.argv) > 8:
+        solve_one_solution = sys.argv[8].lower() == 'true'
+    else:
+        solve_one_solution = False
+
     print(sys.argv)
     print(f"Running NRP with horizon={horizon}, constraint={constraint}, encoding_mode={encoding_mode}, solver_name={solver_name}, use_local_solver={use_local_solver}, use_tseintin={use_tseintin}, chunk_width={chunk_width}")
 
@@ -469,7 +520,11 @@ def main():
         use_tseintin=use_tseintin, chunk_width=chunk_width
     )
     nrp.add_constraints()
-    sol_count, time_to_first_solve = nrp.solve()
+
+    if not solve_one_solution:
+        sol_count, time_to_first_solve = nrp.solve()
+    else:
+        sol_count, time_to_first_solve = nrp.solve_one_solution()
     end_time = time.perf_counter()
 
     print(f"\"time\" : {(end_time - start_time)*1000:.0f}")

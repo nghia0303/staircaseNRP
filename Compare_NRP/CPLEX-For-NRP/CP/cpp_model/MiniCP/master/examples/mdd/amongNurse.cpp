@@ -102,7 +102,7 @@ void addMDDConstraint(CPSolver::Ptr cp, MDDRelax* mdd, int relaxSize, int maxReb
    }
 }
 
-void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int maxRebootDistance, int maxSplitIter, int constraintSet, int horizonSize, int nodePriority, int nodePriorityAggregateStrategy, int candidatePriority, int candidatePriorityAggregateStrategy, bool useApproxEquiv, bool approxThenExact, int approxEquivMode, int equivalenceThreshold, int maxWorkConstraintPriority, int minWorkConstraintPriority, int weeklyWorkConstraintPriority, bool sameMDD)
+void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int maxRebootDistance, int maxSplitIter, int constraintSet, int horizonSize, int nodePriority, int nodePriorityAggregateStrategy, int candidatePriority, int candidatePriorityAggregateStrategy, bool useApproxEquiv, bool approxThenExact, int approxEquivMode, int equivalenceThreshold, int maxWorkConstraintPriority, int minWorkConstraintPriority, int weeklyWorkConstraintPriority, bool sameMDD, bool solveOne)
 {
 
    /***
@@ -508,13 +508,24 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int maxRebootDistance
       }
    });
 
-
-   stat = search.solve([&stat](const SearchStatistics& stats) {
-      stat = stats;
-      //return stats.numberOfNodes() > 1;
-      return stats.numberOfSolutions() > INT_MAX;
-      //return stats.numberOfSolutions() > 0;
-   }); 
+   if (solveOne){
+      stat = search.solve([&stat](const SearchStatistics& stats) {
+         stat = stats;
+         // return stats.numberOfNodes() > 1;
+         
+         // return stats.numberOfSolutions() > INT_MAX;
+         return stats.numberOfSolutions() > 0;
+      }); 
+   } else {
+      stat = search.solve([&stat](const SearchStatistics& stats) {
+         stat = stats;
+         //return stats.numberOfNodes() > 1;
+         
+         return stats.numberOfSolutions() > INT_MAX;
+         //return stats.numberOfSolutions() > 0;
+      }); 
+   }
+   
    cout << stat << endl;
   
    auto end = RuntimeMonitor::cputime();
@@ -603,6 +614,7 @@ int main(int argc,char* argv[])
    int minWorkConstraintPriority = (argc >= 17 && strncmp(argv[16],"-minP",5)==0) ? atoi(argv[16]+5) : 0;
    int weeklyWorkConstraintPriority = (argc >= 18 && strncmp(argv[17],"-wP",3)==0) ? atoi(argv[17]+3) : 0;
    bool sameMDD = (argc >= 19 && strncmp(argv[18],"-j",2)==0) ? atoi(argv[18]+2) : true;
+   bool solveOne = (argc >= 20 && strncmp(argv[19],"-so",3)==0) ? atoi(argv[19]+3) : false;
 
    // mode: 0 (Cumulative sums),  1 (Among MDD), 2 (Sequence MDD)
    // mode: 3 (Cumulative Sums with isMember constraint)
@@ -628,7 +640,7 @@ int main(int argc,char* argv[])
    
    TRYFAIL
       CPSolver::Ptr cp  = Factory::makeSolver();
-      buildModel(cp, width, mode, maxRebootDistance, maxSplitIter, constraintSet, horizonSize, nodePriority, nodePriorityAggregateStrategy, candidatePriority, candidatePriorityAggregateStrategy, useApproxEquiv, approxThenExact, approxEquivMode, equivalenceThreshold, maxWorkConstraintPriority, minWorkConstraintPriority, weeklyWorkConstraintPriority, sameMDD);
+      buildModel(cp, width, mode, maxRebootDistance, maxSplitIter, constraintSet, horizonSize, nodePriority, nodePriorityAggregateStrategy, candidatePriority, candidatePriorityAggregateStrategy, useApproxEquiv, approxThenExact, approxEquivMode, equivalenceThreshold, maxWorkConstraintPriority, minWorkConstraintPriority, weeklyWorkConstraintPriority, sameMDD, solveOne);
    ONFAIL
       std::cout << "model infeasible during post" << std::endl;
    ENDFAIL

@@ -23,7 +23,6 @@ from cplex.exceptions import CplexSolverError
 from docplex.mp.model import Model
 
 
-from test.run_nurse_rostering import solve_mode
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
