@@ -15,6 +15,7 @@
     * The planning horizon H ranges from 40 to 80 days.
 
 """
+import gc
 import time
 import sys
 import os
@@ -142,7 +143,8 @@ class NRP:
             var = self.variables.get_all_variables()
             encoder = Encoder(str_to_type_enum(encoding_mode))
             encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
-
+        del encoder
+        gc.collect()
 
     def add_at_least_x_working_day_per_y_day(self, x: int, y: int, encoding_mode: str):
         """
@@ -156,7 +158,8 @@ class NRP:
             var = self.variables.get_all_variables()
             encoder = Encoder(str_to_type_enum(encoding_mode))
             encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
-
+        del encoder
+        gc.collect()
     def separate_clauses(self, clauses: list[int], width: int):
         """
             Separate long clauses into smaller ones by Tseitin Method
@@ -488,9 +491,9 @@ def main():
 
     if len(sys.argv) > 3:
         # encoding_mode = sys.argv[3]
-        if "_" in sys.argv[3]:
-            encoding_mode = sys.argv[3].split("_")[0]
-            second_encoding_mode = sys.argv[3].split("_")[1]
+        if "-" in sys.argv[3]:
+            encoding_mode = sys.argv[3].split("-")[0]
+            second_encoding_mode = sys.argv[3].split("-")[1]
         else:
             encoding_mode = sys.argv[3]
             second_encoding_mode = 'nsc'

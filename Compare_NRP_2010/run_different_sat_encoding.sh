@@ -36,14 +36,14 @@ chmod +x "$AMONG_NURSE_SCRIPT"
 
 W_LIST=(1)
 M_LIST=(0)
-C_LIST=(1)
-H_LIST=(40)
+C_LIST=(3)
+H_LIST=(70 80)
 R_LIST=(1)
 I_LIST=(1)
-SOLVER_LIST=("cd195" "g421" "m22")
+SOLVER_LIST=("m22")
 
-ENCODING_LIST=("staircase" "binomial")
-SECOND_ENCODING_LIST=("nsc" "binomial")
+ENCODING_LIST=("staircase")
+SECOND_ENCODING_LIST=("nsc" "binomial" "pblib_bdd" "pblib_card")
 
 # Chạy script AmongNurse
 #"$AMONG_NURSE_SCRIPT" -w128 -m2 -r2147483647 -i2147483647 -c1 -h
@@ -51,7 +51,7 @@ for C in "${C_LIST[@]}"; do
   for H in "${H_LIST[@]}"; do
 
     echo "============================================"
-    echo "Staircase"
+    echo "${C} ${H}"
     source "$VENV_3_12_PATH"
 
     for ENCODING in "${ENCODING_LIST[@]}"; do
@@ -60,7 +60,7 @@ for C in "${C_LIST[@]}"; do
           echo "Solver: $SOLVER"
           echo "Encoding: $ENCODING"
           echo "Second Encoding: $SECOND_ENCODING"
-          MERGE_ENCODING="$ENCODING"_"$SECOND_ENCODING"
+          MERGE_ENCODING="$ENCODING"-"$SECOND_ENCODING"
           echo "Merge Encoding: $MERGE_ENCODING"
           mem_file=$(mktemp)
           OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$STAIRCASE_PATH" "$H" "$C" "$MERGE_ENCODING" "$SOLVER")
@@ -73,7 +73,7 @@ for C in "${C_LIST[@]}"; do
           echo "Time to First Solution: $TIME_TO_FIRST_SOL"
           echo "Peak RAM: $PEAK_RAM"
           echo "Solutions: $SOLNS"
-          echo "Staircase,,$SOLVER,$C,$H,$TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
+          echo "$MERGE_ENCODING,,$SOLVER,$C,$H,$TIME,,$PEAK_RAM,$SOLNS" >> "$RESULT_CSV"
           echo ""
         done
         echo ""
