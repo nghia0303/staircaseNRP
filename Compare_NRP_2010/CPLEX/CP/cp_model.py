@@ -25,9 +25,6 @@ from docplex.cp.config import context
 context.solver.local.execfile = "/home/nghia/cplex/CPLEX_Studio2211/cpoptimizer/bin/x86-64_linux/cpoptimizer"
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
-
-
-
 class NRP:
     def __init__(self, horizon: int, constraint: int=1):
         self.horizon = horizon

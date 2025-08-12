@@ -22,13 +22,12 @@ from pysat.solvers import Solver
 
 
 
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from src.include.allSATSolver import LocalSolver
 from src.encoding.nsc_encoding import NSCEncoding
 from src.encoding.staircase_encoding import StaircaseEncoding
 from src.include.common import AuxVariable, AddClause
-
+from src.encoding.all import Encoder, str_to_type_enum
 
 class Variables:
     """
@@ -57,13 +56,14 @@ class Variables:
             raise ValueError(f"Day {day} is out of bounds for horizon {self.horizon}.")
 
 class NRP:
-    def __init__(self, horizon: int, constraint: int=1, encoding_mode: str='staircase', solver_name: str='g421', use_local_solver: bool=False, use_tseintin: bool=False, chunk_width: int=5,):
+    def __init__(self, horizon: int, constraint: int=1, encoding_mode: str='staircase', second_encoding_mode: str='nsc', solver_name: str='g421', use_local_solver: bool=False, use_tseintin: bool=False, chunk_width: int=5,):
         self.horizon = horizon
         self.constraint = constraint
         self.aux = AuxVariable(1)
         self.variables = Variables(horizon, self.aux)
         self.clauses = []
         self.encoding_mode = encoding_mode
+        self.second_encoding_mode = second_encoding_mode
         self.solver_name = solver_name
         self.use_local_solver = use_local_solver
         self.use_tseintin = use_tseintin
@@ -127,7 +127,7 @@ class NRP:
             start_day = week * 7 + 1
             end_day = start_day + 6
             week_days = [self.variables.get_variable(day) for day in range(start_day, end_day + 1)]
-            encoder = NSCEncoding()
+            encoder = Encoder(str_to_type_enum(self.second_encoding_mode))
             encoder.encode_range(week_days, x,  y, self.aux, self.add_clauses)
 
     def add_at_most_x_working_day_per_y_day(self, x: int, y: int, encoding_mode: str):
@@ -138,8 +138,11 @@ class NRP:
             var = self.variables.get_all_variables()
             encoder = StaircaseEncoding()
             encoder.encode_staircase(var, y, x, self.aux, self.add_clauses)
+        else:
+            var = self.variables.get_all_variables()
+            encoder = Encoder(str_to_type_enum(encoding_mode))
+            encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
 
-            pass
 
     def add_at_least_x_working_day_per_y_day(self, x: int, y: int, encoding_mode: str):
         """
@@ -149,8 +152,10 @@ class NRP:
             var = self.variables.get_all_variables()
             encoder = StaircaseEncoding()
             encoder.encode_staircase_at_least(var, y, x, self.aux, self.add_clauses)
-
-        pass
+        else:
+            var = self.variables.get_all_variables()
+            encoder = Encoder(str_to_type_enum(encoding_mode))
+            encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
 
     def separate_clauses(self, clauses: list[int], width: int):
         """
@@ -482,9 +487,18 @@ def main():
         constraint = 1
 
     if len(sys.argv) > 3:
-        encoding_mode = sys.argv[3]
+        # encoding_mode = sys.argv[3]
+        if "_" in sys.argv[3]:
+            encoding_mode = sys.argv[3].split("_")[0]
+            second_encoding_mode = sys.argv[3].split("_")[1]
+        else:
+            encoding_mode = sys.argv[3]
+            second_encoding_mode = 'nsc'
     else:
         encoding_mode = 'staircase'
+        second_encoding_mode = 'nsc'
+
+
 
     if len(sys.argv) > 4:
         solver_name = sys.argv[4]
@@ -511,11 +525,11 @@ def main():
         solve_one_solution = False
 
     print(sys.argv)
-    print(f"Running NRP with horizon={horizon}, constraint={constraint}, encoding_mode={encoding_mode}, solver_name={solver_name}, use_local_solver={use_local_solver}, use_tseintin={use_tseintin}, chunk_width={chunk_width}")
+    print(f"Running NRP with horizon={horizon}, constraint={constraint}, encoding_mode={encoding_mode}, second_encoding_mode={second_encoding_mode}, solver_name={solver_name}, use_local_solver={use_local_solver}, use_tseintin={use_tseintin}, chunk_width={chunk_width}")
 
     start_time = time.perf_counter()
     nrp = NRP(
-        horizon=horizon, constraint=constraint, encoding_mode=encoding_mode,
+        horizon=horizon, constraint=constraint, encoding_mode=encoding_mode, second_encoding_mode=second_encoding_mode,
         solver_name=solver_name, use_local_solver=use_local_solver,
         use_tseintin=use_tseintin, chunk_width=chunk_width
     )
