@@ -139,12 +139,9 @@ CMakeFiles/sequenceNurse.dir/examples/mdd/sequenceNurse.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/10/bits/charconv.h \
- /usr/include/c++/10/bits/basic_string.tcc /usr/include/c++/10/cstring \
- /usr/include/string.h /usr/include/strings.h \
- /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
- /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/c++/10/sstream /usr/include/c++/10/istream \
- /usr/include/c++/10/ios /usr/include/c++/10/bits/ios_base.h \
+ /usr/include/c++/10/bits/basic_string.tcc /usr/include/c++/10/sstream \
+ /usr/include/c++/10/istream /usr/include/c++/10/ios \
+ /usr/include/c++/10/bits/ios_base.h \
  /usr/include/c++/10/bits/locale_classes.h \
  /usr/include/c++/10/bits/locale_classes.tcc \
  /usr/include/c++/10/system_error \
@@ -210,7 +207,10 @@ CMakeFiles/sequenceNurse.dir/examples/mdd/sequenceNurse.cpp.o: \
  /usr/include/c++/10/bits/deque.tcc /usr/include/c++/10/bits/stl_stack.h \
  /usr/include/c++/10/map /usr/include/c++/10/bits/stl_tree.h \
  /usr/include/c++/10/bits/stl_map.h \
- /usr/include/c++/10/bits/stl_multimap.h \
+ /usr/include/c++/10/bits/stl_multimap.h /usr/include/c++/10/cstring \
+ /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/include/c++/10/bits/regex_constants.h \
  /usr/include/c++/10/bits/regex_error.h \
  /usr/include/c++/10/bits/regex_automaton.h \

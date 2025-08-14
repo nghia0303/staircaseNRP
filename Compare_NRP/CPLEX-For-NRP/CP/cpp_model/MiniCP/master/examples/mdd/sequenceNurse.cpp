@@ -14,7 +14,6 @@
  */
 
 #include <string>
-#include <cstring>
 #include <sstream>
 #include <algorithm>
 #include <iterator>
@@ -88,7 +87,7 @@ void addCumulSeq(CPSolver::Ptr cp, const Veci &vars, int N, int L, int U, const 
   }
 }
 
-void buildModel(CPSolver::Ptr cp, int relaxSize, int mode)
+void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
 {
 
   /***
@@ -110,11 +109,18 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode)
    * The planning horizon H ranges from 40 to 100 days.
    ***/
 
-  int H = 40; // time horizon (number of days)
+  int H = day; // time horizon (number of days)
+
+  int N = nurse; // number of nurses
 
   // vars[i] is shift on day i
   // mapping: 0 = Off, 1 = Day, 2 = Evening, 3 = Night
-  auto vars = Factory::intVarArray(cp, H, 0, 3);
+  // auto vars = Factory::intVarArray(cp, H, 0, 3);
+
+  std::vector<Veci> schedule;
+  for (int n = 0; n < N; ++n)
+    schedule.push_back(Factory::intVarArray(cp, H, 0, 3));
+
   auto mdd = new MDDRelax(cp, relaxSize);
 
   int Q1 = 14, L1 = 4, U1 = 14;
@@ -132,63 +138,84 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode)
   int Q7 = 7, L7 = 0, U7 = 6;
   std::set<int> S7 = {1, 2, 3};
 
-  if (mode == 0)
+  for (int n = 0; n < N; ++n)
   {
-    cout << "Cumulative Sums encoding" << endl;
-    addCumulSeq(cp, vars, Q1, L1, U1, S1);
-    addCumulSeq(cp, vars, Q2, L2, U2, S2);
-    addCumulSeq(cp, vars, Q3, L3, U3, S3);
-    addCumulSeq(cp, vars, Q4, L4, U4, S4);
-    addCumulSeq(cp, vars, Q5, L5, U5, S5);
-    addCumulSeq(cp, vars, Q6, L6, U6, S6);
-    addCumulSeq(cp, vars, Q7, L7, U7, S7);
+    auto &vars = schedule[n];
+    // auto mdd = new MDDRelax(cp, relaxSize);
+    if (mode == 0)
+    {
+      std::cout << "Cumulative Sums encoding" << endl;
+      addCumulSeq(cp, vars, Q1, L1, U1, S1);
+      addCumulSeq(cp, vars, Q2, L2, U2, S2);
+      addCumulSeq(cp, vars, Q3, L3, U3, S3);
+      addCumulSeq(cp, vars, Q4, L4, U4, S4);
+      addCumulSeq(cp, vars, Q5, L5, U5, S5);
+      addCumulSeq(cp, vars, Q6, L6, U6, S6);
+      addCumulSeq(cp, vars, Q7, L7, U7, S7);
+    }
+    else if (mode == 1)
+    {
+      std::cout << "seqMDD encoding" << endl;
+      mdd->post(seqMDD(mdd, vars, Q1, L1, U1, S1));
+      mdd->post(seqMDD(mdd, vars, Q2, L2, U2, S2));
+      mdd->post(seqMDD(mdd, vars, Q3, L3, U3, S3));
+      mdd->post(seqMDD(mdd, vars, Q4, L4, U4, S4));
+      mdd->post(seqMDD(mdd, vars, Q5, L5, U5, S5));
+      mdd->post(seqMDD(mdd, vars, Q6, L6, U6, S6));
+      mdd->post(seqMDD(mdd, vars, Q7, L7, U7, S7));
+      cp->post(mdd);
+    }
+    else if (mode == 2)
+    {
+      std::cout << "seqMDD2 encoding" << endl;
+      mdd->post(seqMDD2(mdd, vars, Q1, L1, U1, S1));
+      mdd->post(seqMDD2(mdd, vars, Q2, L2, U2, S2));
+      mdd->post(seqMDD2(mdd, vars, Q3, L3, U3, S3));
+      mdd->post(seqMDD2(mdd, vars, Q4, L4, U4, S4));
+      mdd->post(seqMDD2(mdd, vars, Q5, L5, U5, S5));
+      mdd->post(seqMDD2(mdd, vars, Q6, L6, U6, S6));
+      mdd->post(seqMDD2(mdd, vars, Q7, L7, U7, S7));
+      cp->post(mdd);
+    }
+    else if (mode == 3)
+    {
+      std::cout << "seqMDD3 encoding" << endl;
+      cout << "seqMDD3 encoding" << endl;
+      mdd->post(seqMDD3(mdd, vars, Q1, L1, U1, S1));
+      mdd->post(seqMDD3(mdd, vars, Q2, L2, U2, S2));
+      mdd->post(seqMDD3(mdd, vars, Q3, L3, U3, S3));
+      mdd->post(seqMDD3(mdd, vars, Q4, L4, U4, S4));
+      mdd->post(seqMDD3(mdd, vars, Q5, L5, U5, S5));
+      mdd->post(seqMDD3(mdd, vars, Q6, L6, U6, S6));
+      mdd->post(seqMDD3(mdd, vars, Q7, L7, U7, S7));
+      cp->post(mdd);
+    }
   }
-  else if (mode == 1)
-  {
-    cout << "seqMDD encoding" << endl;
-    mdd->post(seqMDD(mdd, vars, Q1, L1, U1, S1));
-    mdd->post(seqMDD(mdd, vars, Q2, L2, U2, S2));
-    mdd->post(seqMDD(mdd, vars, Q3, L3, U3, S3));
-    mdd->post(seqMDD(mdd, vars, Q4, L4, U4, S4));
-    mdd->post(seqMDD(mdd, vars, Q5, L5, U5, S5));
-    mdd->post(seqMDD(mdd, vars, Q6, L6, U6, S6));
-    mdd->post(seqMDD(mdd, vars, Q7, L7, U7, S7));
-    cp->post(mdd);
-  }
-  else if (mode == 2)
-  {
-    cout << "seqMDD2 encoding" << endl;
-    mdd->post(seqMDD2(mdd, vars, Q1, L1, U1, S1));
-    mdd->post(seqMDD2(mdd, vars, Q2, L2, U2, S2));
-    mdd->post(seqMDD2(mdd, vars, Q3, L3, U3, S3));
-    mdd->post(seqMDD2(mdd, vars, Q4, L4, U4, S4));
-    mdd->post(seqMDD2(mdd, vars, Q5, L5, U5, S5));
-    mdd->post(seqMDD2(mdd, vars, Q6, L6, U6, S6));
-    mdd->post(seqMDD2(mdd, vars, Q7, L7, U7, S7));
-    cp->post(mdd);
-  }
-  else if (mode == 3)
-  {
-    cout << "seqMDD3 encoding" << endl;
-    mdd->post(seqMDD3(mdd, vars, Q1, L1, U1, S1));
-    mdd->post(seqMDD3(mdd, vars, Q2, L2, U2, S2));
-    mdd->post(seqMDD3(mdd, vars, Q3, L3, U3, S3));
-    mdd->post(seqMDD3(mdd, vars, Q4, L4, U4, S4));
-    mdd->post(seqMDD3(mdd, vars, Q5, L5, U5, S5));
-    mdd->post(seqMDD3(mdd, vars, Q6, L6, U6, S6));
-    mdd->post(seqMDD3(mdd, vars, Q7, L7, U7, S7));
-    cp->post(mdd);
-  }
+
+  // if (mode != 0)
+  //   cp->post(mdd);
+
+  Veci allVars = Factory::intVarArray(cp, N * H);
+  int idx = 0;
+  for (auto &row : schedule)
+    for (auto &v : row)
+      allVars[idx++] = v;
 
   DFSearch search(cp, [=]()
                   {                        
       unsigned i;
       // This is a lexicographic ordering search (skup bound variables)
       // ======================================================================
-      // for(i=0u;i< vars.size();i++)
-      //    if (vars[i]->size() > 1)
-      //       break;
-      // auto x = (i < vars.size()) ? vars[i] : nullptr;
+      for (i = 0u; i < allVars.size(); ++i)
+            if (allVars[i]->size() > 1) break;
+      auto x = (i < allVars.size()) ? allVars[i] : nullptr;
+      if (x) {
+            int c = x->min();
+            return  [=] { cp->post(x == c); }
+                 |  [=] { cp->post(x != c); };
+        }
+      return Branches({});
+
 
       // This block below computes the "depth" based on the number of bound variables.
       // ======================================================================
@@ -198,9 +225,9 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode)
       
       // This is a first fail search
       // ======================================================================
-      auto x = selectMin(vars,
-      			 [](const auto& x) { return x->size() > 1;},
-      			 [](const auto& x) { return x->size();});
+      // auto x = selectMin(vars,
+      // 			 [](const auto& x) { return x->size() > 1;},
+      // 			 [](const auto& x) { return x->size();});
      
       if (x) {
         int c = x->min();	
@@ -214,11 +241,14 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode)
               cp->post(x != c);
               //cout << tab(depth) << "!x(" << i << ") != " << c << " " <<  x << endl;
             };
-      } else return Branches({}); 
-    });
+      } else return Branches({}); });
 
-  search.onSolution([&vars]()
-                    { std::cout << "Assignment " << vars << "" << std::endl; });
+  search.onSolution([&schedule, N, H]()
+                    {
+    for (int n = 0; n < N; ++n) {
+      std::cout << "Nurse " << n << " : " << schedule[n] << '\n';
+    }
+    std::cout << "-----------------------------\n"; });
 
   auto start = RuntimeMonitor::cputime();
 
@@ -230,26 +260,32 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode)
 
   auto end = RuntimeMonitor::cputime();
   extern int iterMDD;
-  extern int nbCSDown;
+  // extern int nbCS;
+  std::cout << "solns: " << stat.numberOfSolutions() << '\n';
   std::cout << "Time : " << RuntimeMonitor::milli(start, end) << '\n';
   std::cout << "I/C  : " << (double)iterMDD / stat.numberOfNodes() << '\n';
-  std::cout << "#CS  : " << nbCSDown << '\n';
-  std::cout << "#L   : " << mdd->nbLayers() << '\n';
+  // std::cout << "#CS  : " << nbCS << '\n';
+  // std::cout << "#L   : " << mdd->nbLayers() << '\n';
 }
 
 int main(int argc, char *argv[])
 {
   int width = (argc >= 2 && strncmp(argv[1], "-w", 2) == 0) ? atoi(argv[1] + 2) : 1;
   int mode = (argc >= 3 && strncmp(argv[2], "-m", 2) == 0) ? atoi(argv[2] + 2) : 1;
+  int nurse = (argc >= 4 && strncmp(argv[3], "-n", 2) == 0) ? atoi(argv[3] + 2) : 1;
+  int day = (argc >= 5 && strncmp(argv[4], "-d", 2) == 0) ? atoi(argv[4] + 2) : 40;
 
   // mode: 0 (cumulative sums encoding), >=1 (MDD)
 
   std::cout << "width = " << width << std::endl;
   std::cout << "mode = " << mode << std::endl;
+  std::cout << "nurse = " << nurse << std::endl;
+  std::cout << "day = " << day << std::endl;
+
   try
   {
     CPSolver::Ptr cp = Factory::makeSolver();
-    buildModel(cp, width, mode);
+    buildModel(cp, width, mode, nurse, day);
   }
   catch (Status s)
   {

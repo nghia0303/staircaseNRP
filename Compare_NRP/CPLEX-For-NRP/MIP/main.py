@@ -114,14 +114,16 @@ print(f"Total time: {(end_time - start_time) * 1000:.2f} (ms)")
 
 # === Output sample solution ===
 if solution:
-    for n in range(NURSES):
-        schedule = []
-        for d in range(DAYS):
-            assigment = "O"
-            for s in SHIFTS:
-                if solution.get_value(x[n, d, s]) == 1:
-                    assigment = s
-            schedule.append(assigment)
-        print(f"Nurse {n+1}: {' '.join(schedule)}")
+    print("solns: 1")
+    # for n in range(NURSES):
+    #     schedule = []
+    #     for d in range(DAYS):
+    #         assigment = "O"
+    #         for s in SHIFTS:
+    #             if solution.get_value(x[n, d, s]) == 1:
+    #                 assigment = s
+    #         schedule.append(assigment)
+    #     print(f"Nurse {n+1}: {' '.join(schedule)}")
 else:
     print("No solution found")
+    print("solns: 0")

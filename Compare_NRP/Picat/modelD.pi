@@ -12,6 +12,15 @@ main([NBNurseSTR, NBDaySTR]) =>
     Schedule = new_array(Nurse, Day, 3),
     Schedule :: 0..1,  % Schedule[i, j, k] = 1 if nurse i works on day j in shift k, 0 otherwise
 
+    % Biến phụ: Work[N,D] = 1 nếu nurse N làm bất kỳ ca nào ngày D
+    Work = new_array(Nurse, Day),
+    Work :: 0..1,
+
+    % Liên kết Work với Schedule và đảm bảo mỗi ngày ≤ 1 ca
+    foreach (N in Nurses, D in Days)
+        Work[N,D] #= sum([Schedule[N,D,S] : S in Shifts])
+    end,
+
     % Objective: Max 1 shift per nurse per day
     foreach(N in Nurses)
         foreach(D in Days)
@@ -22,14 +31,14 @@ main([NBNurseSTR, NBDaySTR]) =>
     % Objective: Max 6 shifts per nurse per 7 days
     foreach(N in Nurses)
         foreach (D in 1..Day-6)
-            sum([Schedule[N,D+Off,S] : Off in 0..6, S in Shifts]) #=< 6
+            sum([Work[N,D+Off] : Off in 0..6]) #=< 6
         end
     end,
 
     % Objective: Min 4 off days per nurse per 14 days
     foreach(N in Nurses)
         foreach (D in 1..Day-13)
-            sum([Schedule[N,D+Off,S] : Off in 0..13, S in Shifts]) #=< 10
+            sum([Work[N,D+Off] : Off in 0..13]) #=< 10
         end
     end,
 
@@ -77,13 +86,13 @@ main([NBNurseSTR, NBDaySTR]) =>
 
     % Labeling
     Vars = [Schedule[N,D,S] : N in Nurses, D in Days, S in Shifts],
-    %solve(Vars),
+    solve(Vars),
 
     % In kết quả
-    if solve(Vars) then
-        printf("Solution found:\n"),
-        printf("solns: %d\n", 1)
-    else
-        printf("No solution found.\n"),
-        printf("solns: 0\n")
+    foreach (N in Nurses)
+        printf("Nurse %d:\n", N),
+        foreach (D in Days)
+            Shift = sum([S*Schedule[N,D,S] : S in Shifts]),
+            printf("%1d ", Shift)
+        end,
     end.

@@ -113,7 +113,7 @@ print(f"Optimization Time   : {optimization_time:.2f} milliseconds")
 print(f"Total Time          : {total_time:.2f} milliseconds")
 print(f"Memory Usaged       : {mem_after - mem_before:.2f} MB")
 
-result_line = f"{number_nurses},{number_weeks},Gurobi,,,,{processing_time:.3f}, {optimization_time:.3f}, {total_time:.3f}\n"
+result_line = f"{number_nurses},{number_days},Gurobi,,,,{processing_time:.3f}, {optimization_time:.3f}, {total_time:.3f}\n"
 with open(result_file_path, "a") as result_file:
     result_file.write(result_line)
 
@@ -206,7 +206,9 @@ def print_solution(x, NURSES, DAYS, SHIFTS):
 
 if model.status == GRB.INFEASIBLE:
     print("Model is infeasible.")
+    print("solns: 0")
 else:
-    verify_solution(x, NURSES, DAYS, SHIFTS)
+    print("solns: 1")
+    # verify_solution(x, NURSES, DAYS, SHIFTS)
     # print_solution(x, NURSES, DAYS, SHIFTS)
 

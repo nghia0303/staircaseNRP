@@ -208,9 +208,11 @@ def run_nurse_rostering(name: str, nurse: int, day: int, time_limit: int):
         ok_time = True
         if ret == 2560:  # SAT
             solver_return = 'SAT'
+            print("solns: 1")
             test_result(solver_output, nurse, day)
         elif ret == 5120:  # UNSAT
             print("UNSAT")
+            print("solns: 0")
             solver_return = 'UNSAT'
         else:
             if ret == 0:  # timeout

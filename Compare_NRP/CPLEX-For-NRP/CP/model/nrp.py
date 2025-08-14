@@ -107,6 +107,7 @@ print(f"Total time: {(end_time - start_time) * 1000:.2f} (ms)")
 # === Output sample solution ===
 if msol and msol.is_solution():
     print("Solution found")
+    print("solns: 1")
     # for n in range(NURSES):
     #     schedule = []
     #     for d in range(DAYS):
@@ -118,4 +119,5 @@ if msol and msol.is_solution():
     #         schedule.append(assignment)
     #     print(f"Nurse {n+1}: {' '.join(schedule)}")
 else:
+    print("solns: 0")
     print("No solution found")
