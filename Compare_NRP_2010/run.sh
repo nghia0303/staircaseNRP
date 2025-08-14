@@ -124,6 +124,7 @@ for C in "${C_LIST[@]}"; do
 
     echo "============================================"
     echo "CPLEX MP"
+    source "$VENV_3_8_PATH"
     OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$CPLEX_MP_PATH" "$H" "$C")
     PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     TIME=$(echo "$OUTPUT" | grep '"time" :' | awk '{print $3}' | tr -d ',')
@@ -161,7 +162,7 @@ for C in "${C_LIST[@]}"; do
     echo "============================================"
     echo "Picat"
     START_TIME=$(date +%s%N)
-    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" picat "$PICAT_PATH" "$C" "$H")
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" picat "$PICAT_PATH" "$C" "$H" 0)
     PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     END_TIME=$(date +%s%N)
     ELAPSED_TIME=$((($END_TIME - $START_TIME)/1000000)) # Convert nanoseconds to milliseconds

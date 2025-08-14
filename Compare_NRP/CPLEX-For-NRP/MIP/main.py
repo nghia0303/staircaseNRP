@@ -5,14 +5,14 @@ import sys
 
 # === Parameters ===
 NURSES = int(sys.argv[1])
-WEEKS = int(sys.argv[2])
+DAYS = int(sys.argv[2])
 MIN_SHIFTS_28DAYS = 20
 # MIN_SHIFTS_28DAYS = int(sys.argv[3])
 
 start_time = time.perf_counter()
 
-DAYS_PER_WEEK = 7
-DAYS = WEEKS * DAYS_PER_WEEK
+# DAYS_PER_WEEK = 7
+# DAYS = WEEKS * DAYS_PER_WEEK
 SHIFTS = ['D', 'E', 'N']
 
 # === Create model ===
@@ -85,13 +85,15 @@ for n in range(NURSES):
             mdl.sum(x[n, d, 'E'] for d in range(start, start + 7)) >= 2
         )
 
-# 9. Each nurse works at most 4 evening shifts per 7 consecutive days
+# 9. Each nurse works at most 4 evening or night shifts per 7 consecutive days
 for n in range(NURSES):
     for start in range(DAYS - 6):
-        mdl.add_constraint(
-            mdl.sum(x[n, d, 'E'] for d in range(start, start + 7)) <= 4
-        )
-
+        # mdl.add_constraint(
+        #     mdl.sum(x[n, d, 'E'] for d in range(start, start + 7)) <= 4
+        # )
+        total_EN = mdl.sum(x[(n, d, 'E')] + x[(n, d, 'N')] for d in range(start, start + 7))
+        mdl.add(total_EN >= 2)
+        mdl.add(total_EN <= 4)
 # 10. Each nurse must not work two night shifts in any two consecutive days
 for n in range(NURSES):
     for d in range(DAYS - 1):

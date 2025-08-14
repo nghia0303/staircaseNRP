@@ -1,62 +1,89 @@
 import cp.
 
-main =>
+main([NBNurseSTR, NBDaySTR]) =>
+    Nurse = to_integer(NBNurseSTR),  % Number of nurses
+    Day = to_integer(NBDaySTR),      % Number of days
 
-    Nurse = 5, % Thay bằng số thực tế
-    Week = 4,
-    MsPer28 = 15,
-
-    NbDays = Week * 7,
     Nurses = 1..Nurse,
-    Days = 1..NbDays,
-    Shifts = 0..2,
+    Days = 1..Day,
+    Shifts = 1..3,
 
-    array3d(Schedule, Nurse, NbDays, 3),
-    Schedule :: 0..1,
+    % 3D array for shifts
+    Schedule = new_array(Nurse, Day, 3),
+    Schedule :: 0..1,  % Schedule[i, j, k] = 1 if nurse i works on day j in shift k, 0 otherwise
 
-    % Ràng buộc 1
-    foreach (N in Nurses, D in Days)
-        sum([Schedule[N,D,S] : S in Shifts]) #=< 1
+    % Objective: Max 1 shift per nurse per day
+    foreach(N in Nurses)
+        foreach(D in Days)
+            sum(Schedule[N, D, 1..3]) #=< 1
+        end
     end,
 
-    % Ràng buộc 2
-    foreach (N in Nurses, D in 1..NbDays-6)
-        sum([Schedule[N,D+Offset,S] : Offset in 0..6, S in Shifts]) #=< 6
+    % Objective: Max 6 shifts per nurse per 7 days
+    foreach(N in Nurses)
+        foreach (D in 1..Day-6)
+            sum([Schedule[N,D+Off,S] : Off in 0..6, S in Shifts]) #=< 6
+        end
     end,
 
-    % Ràng buộc 3
-    foreach (N in Nurses, D in 1..NbDays-13)
-        sum([(sum([Schedule[N,D+Offset,S] : S in Shifts]) #= 0) : Offset in 0..13]) #>= 4
+    % Objective: Min 4 off days per nurse per 14 days
+    foreach(N in Nurses)
+        foreach (D in 1..Day-13)
+            sum([Schedule[N,D+Off,S] : Off in 0..13, S in Shifts]) #=< 10
+        end
     end,
 
-    % Ràng buộc 4
-    foreach (N in Nurses, D in 1..NbDays-13)
-        sum([Schedule[N,D+Offset,1] : Offset in 0..13]) #>= 4,
-        sum([Schedule[N,D+Offset,1] : Offset in 0..13]) #=< 8
+
+    % Objective: Betweeen 4 and 8 evening shifts per nurse per 14 days
+    foreach(N in Nurses)
+        foreach (D in 1..Day-13)
+            sum([Schedule[N,D+Off,S] : Off in 0..13, S in Shifts]) #>= 4,
+            sum([Schedule[N,D+Off,S] : Off in 0..13, S in Shifts]) #=< 8
+        end
     end,
 
-    % Ràng buộc 5
-    foreach (N in Nurses, D in 1..NbDays-27)
-        sum([Schedule[N,D+Offset,S] : Offset in 0..27, S in Shifts]) #>= MsPer28
+
+
+    % Between 1 and 4 night shift every 14 days
+    foreach(N in Nurses)
+        foreach (D in 1..Day-13)
+            sum([Schedule[N,D+Off,3] : Off in 0..13]) #>= 1,
+            sum([Schedule[N,D+Off,3] : Off in 0..13]) #=< 4
+        end
     end,
 
-    % Ràng buộc 6
-    foreach (N in Nurses, D in 1..NbDays-6)
-        sum([Schedule[N,D+Offset,2] : Offset in 0..6]) #=< 2
+    % Objective: Between 2 and 4 evening or night shifts every 7 days
+    foreach(N in Nurses)
+        foreach (D in 1..Day-6)
+            sum([Schedule[N,D+Off,S] : Off in 0..6, S in [2,3]]) #>= 2,
+            sum([Schedule[N,D+Off,S] : Off in 0..6, S in [2,3]]) #=< 4
+        end
     end,
 
-    % Ràng buộc 7
-    foreach (N in Nurses, D in 1..NbDays-13)
-        sum([Schedule[N,D+Offset,2] : Offset in 0..13]) #>= 1
+    % Objective: No consecutive night shifts
+    foreach(N in Nurses)
+        foreach (D in 1..Day-1)
+            Schedule[N,D,3] + Schedule[N,D+1,3] #=< 1
+        end
     end,
 
-    % Ràng buộc 8
-    foreach (N in Nurses, D in 1..NbDays-6)
-        sum([Schedule[N,D+Offset,1] + Schedule[N,D+Offset,2] : Offset in 0..6]) #>= 2,
-        sum([Schedule[N,D+Offset,1] + Schedule[N,D+Offset,2] : Offset in 0..6]) #=< 4
+    % Objective: Min 20 shifts per nurse per 28 days
+    foreach(N in Nurses)
+        foreach (D in 1..Day-27)
+            sum([Schedule[N,D+Off,S] : Off in 0..27, S in Shifts]) #>= 20
+        end
     end,
 
-    % Ràng buộc 9
-    foreach (N in Nurses, D in 1..NbDays-1)
-        Schedule[N,D,2] + Schedule[N,D+1,2] #=< 1
+
+    % Labeling
+    Vars = [Schedule[N,D,S] : N in Nurses, D in Days, S in Shifts],
+    solve(Vars),
+
+    % In kết quả
+    foreach (N in Nurses)
+        printf("Nurse %d:\n", N),
+        foreach (D in Days)
+            Shift = sum([S*Schedule[N,D,S] : S in Shifts]),
+            printf("%1d ", Shift)
+        end, nl
     end.

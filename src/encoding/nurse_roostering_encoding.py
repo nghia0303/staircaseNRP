@@ -317,6 +317,7 @@ class NurseRosteringEncoding:
 					del var
 			del encoder
 
+
 	def encode(self):
 
 		self._encode_ensure_nurse_1_shift_per_day()
@@ -337,3 +338,4 @@ class NurseRosteringEncoding:
 		self._encode_night_or_evening_shift_per_day(2, 4, 7)
 
 		self._encode_at_least_x_workshift_per_y_days(20, 28)
+

@@ -11,13 +11,13 @@ start_processing_time = time.perf_counter()
 start_total_time = time.perf_counter()
 # Parameters
 number_nurses = int(sys.argv[1]) # Number of nurses
-number_weeks = int(sys.argv[2]) # Number of weeks
+number_days = int(sys.argv[2]) # Number of days
 result_file_path = sys.argv[3] if len(sys.argv) > 3 else "result.txt"
 
 
 # Hard configurations
 number_days_per_week = 7
-number_days = number_weeks * number_days_per_week
+# number_days = number_weeks * number_days_per_week
 number_shifts_per_day = 3 # 0: day, 1: evening, 2: night
 off_day_index = number_shifts_per_day # 3: off day
 

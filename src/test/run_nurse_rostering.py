@@ -451,18 +451,18 @@ def run_single_nurse_rostering():
 	mem_before = process.memory_info().rss / (1024 * 1024)
 	print(f"Memory before: {mem_before:.2f} MB")
 	number_nurses = int(sys.argv[1])  # Number of nurses
-	number_weeks = int(sys.argv[2])  # Number of weeks
+	number_days = int(sys.argv[2])  # Number of days
 	encoding = sys.argv[3] if len(sys.argv) > 3 else "staircase_among"
 	result_file_path = sys.argv[4] if len(sys.argv) > 4 else "results_nurse_rostering.csv"
 
-	number_days = number_weeks * 7
+	# number_days = number_weeks * 7
 	encoding_time, solving_time, elapsed_time_ms, solver_return, num_var, num_clause = run_nurse_rostering(encoding, number_nurses, number_days, TIMEOUT)
 	mem_after = process.memory_info().rss / (1024 * 1024)
 	print(f"Memory after: {mem_after:.2f} MB")
 	print(f"Memory used: {mem_after - mem_before:.2f} MB")
 
 	# model,encoding,clauses,var,encoding_time,solving_time,total_time
-	result_line = f"{number_nurses},{number_weeks},Pysat,{encoding},{num_clause},{num_var},{encoding_time:.3f},{solving_time:.3f},{elapsed_time_ms:.3f}\n"
+	result_line = f"{number_nurses},{number_days},Pysat,{encoding},{num_clause},{num_var},{encoding_time:.3f},{solving_time:.3f},{elapsed_time_ms:.3f}\n"
 
 	with open(result_file_path, 'a') as result_file:
 		result_file.write(result_line)

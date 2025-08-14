@@ -86,21 +86,7 @@ constraints {
 }
 
 execute {
-    writeln("Nurse scheduling:");
-    for (var n in Nurses) {
-        write("Nurse ", n, ":\t");
-        for (var d in Days) {
-            var shiftAssigned = "O";
-            for (var s in Shifts) {
-                if (schedule[n][d][s] == 1) {
-                if (s == 0) shiftAssigned = "D";
-                else if (s == 1) shiftAssigned = "E";
-                else if (s == 2) shiftAssigned = "N";
-                }
-            }
-            write(shiftAssigned, " ");
-        }
-        writeln();
-    }
+    cp.param.LogPeriod = 0;
+    cp.param.LogVerbosity = 0;
 }
  

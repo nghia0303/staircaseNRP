@@ -11,3 +11,4 @@ Compare_NRP/CPLEX-For-NRP/MIP/runlim_log
 Compare_NRP/Gurobi-For-NRP/Gurobi/Results
 Compare_NRP/CSV
 /Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/
+/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/build/
