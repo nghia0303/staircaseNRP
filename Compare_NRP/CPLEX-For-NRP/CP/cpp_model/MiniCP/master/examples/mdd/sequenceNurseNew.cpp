@@ -42,15 +42,14 @@
 using namespace Factory;
 using namespace std;
 
-Veci all(CPSolver::Ptr cp, const set<int> &over, std::function<var<int>::Ptr(int)> clo)
+template <class Vec>
+Vec all(CPSolver::Ptr cp,const set<int>& over,const Vec& t)
 {
-  auto res = Factory::intVarArray(cp, (int)over.size());
-  int i = 0;
-  for (auto e : over)
-  {
-    res[i++] = clo(e);
-  }
-  return res;
+   Vec res(over.size(),t.get_allocator()); //= Factory::intVarArray(cp, (int) over.size());
+   int i = 0;
+   for(auto e : over)
+      res[i++] = t[e];
+   return res;
 }
 
 std::string tab(int d)
@@ -87,7 +86,60 @@ void addCumulSeq(CPSolver::Ptr cp, const Veci &vars, int N, int L, int U, const 
   }
 }
 
-void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
+MDDRelax* newMDDRelax(CPSolver::Ptr cp, int relaxSize, int maxRebootDistance, int maxSplitIter, int nodePriorityAggregateStrategy, int candidatePriorityAggregateStrategy, bool useApproxEquiv, bool approxThenExact, int maxPriority) {
+   auto mdd = new MDDRelax(cp,relaxSize,maxRebootDistance, relaxSize * maxSplitIter, approxThenExact, maxPriority);
+   if (useApproxEquiv) {
+      mdd->getSpec().useApproximateEquivalence();
+   }
+   mdd->getSpec().setNodePriorityAggregateStrategy(nodePriorityAggregateStrategy);
+   mdd->getSpec().setCandidatePriorityAggregateStrategy(candidatePriorityAggregateStrategy);
+   return mdd;
+}
+
+
+template <typename F>
+void addMDDConstraint(CPSolver::Ptr cp, MDDRelax* mdd, int relaxSize, int maxRebootDistance, int maxSplitIter, int nodePriorityAggregateStrategy, int candidatePriorityAggregateStrategy, bool useApproxEquiv, bool approxThenExact, int maxConstraintPriority, bool sameMDD, F&& constraint) {
+   if (!sameMDD) {
+      mdd = newMDDRelax(cp, relaxSize, maxRebootDistance, maxSplitIter, nodePriorityAggregateStrategy, candidatePriorityAggregateStrategy, useApproxEquiv, approxThenExact, maxConstraintPriority);
+   }
+   constraint(mdd);
+   if (!sameMDD) {
+      cp->post(mdd);
+   }
+}
+
+void addMDDAmongSequence(CPSolver::Ptr cp, MDDRelax* mdd, const Veci& vars, int H, int Q, int L, int U, const std::set<int>& S, const MDDOpts& opts){
+  for (int i = 0; i <= H - Q; ++i)
+  {
+    // Tạo tập chỉ số các biến trong đoạn [i, i+Q1-1]
+    set<int> amongVars;
+    for (int j = i; j < i + Q; ++j)
+    {
+      amongVars.insert(j);
+    }
+    auto adv = all(cp, amongVars, vars);
+    mdd->post(amongMDD2(mdd, adv, L, U, S, opts));
+  }
+}
+
+void buildModel(
+  CPSolver::Ptr cp, 
+  int relaxSize, 
+  int mode, 
+  int nurse, 
+  int day, 
+  int maxRebootDistance, 
+  int maxSplitIter, 
+  int nodePriority, 
+  int nodePriorityAggregateStrategy, 
+  int candidatePriority, 
+  int candidatePriorityAggregateStrategy, 
+  bool useApproxEquiv, 
+  bool approxThenExact, 
+  int approxEquivMode, 
+  int equivalenceThreshold, 
+  bool sameMDD
+)
 {
 
   /***
@@ -180,7 +232,7 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
     else if (mode == 3)
     {
       std::cout << "seqMDD3 encoding" << endl;
-      cout << "seqMDD3 encoding" << endl;
+      std::cout << "seqMDD3 encoding" << endl;
       mdd->post(seqMDD3(mdd, vars, Q1, L1, U1, S1));
       mdd->post(seqMDD3(mdd, vars, Q2, L2, U2, S2));
       mdd->post(seqMDD3(mdd, vars, Q3, L3, U3, S3));
@@ -192,6 +244,33 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
     }
     else if (mode == 4)
     {
+      std::cout << "amongMDD2 encoding" << endl;
+      
+      MDDOpts opts = {
+            .nodeP = nodePriority,
+            .candP = candidatePriority,
+            .appxEQMode = approxEquivMode,
+            .eqThreshold = equivalenceThreshold
+         };
+
+
+      for (int n = 0; n < N; ++n)
+      {
+        std::cout << "Nurse " << n << ": ";
+        auto &vars = schedule[n];
+        
+        addMDDAmongSequence(cp, mdd, vars, H, Q1, L1, U1, S1, opts);
+        addMDDAmongSequence(cp, mdd, vars, H, Q2, L2, U2, S2, opts);
+        addMDDAmongSequence(cp, mdd, vars, H, Q3, L3, U3, S3, opts);
+        addMDDAmongSequence(cp, mdd, vars, H, Q4, L4, U4, S4, opts);
+        addMDDAmongSequence(cp, mdd, vars, H, Q5, L5, U5, S5, opts);
+        addMDDAmongSequence(cp, mdd, vars, H, Q6, L6, U6, S6, opts);
+        addMDDAmongSequence(cp, mdd, vars, H, Q7, L7, U7, S7, opts);
+
+        cp->post(mdd);
+      }
+
+
 
     }
   }
@@ -260,7 +339,7 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
                            {
       //      return stats.numberOfSolutions() > INT_MAX;
       return stats.numberOfSolutions() > 0; });
-  cout << stat << endl;
+  std::cout << stat << endl;
 
   auto end = RuntimeMonitor::cputime();
   extern int iterMDD;
@@ -276,9 +355,27 @@ int main(int argc, char *argv[])
 {
   int width = (argc >= 2 && strncmp(argv[1], "-w", 2) == 0) ? atoi(argv[1] + 2) : 1;
   int mode = (argc >= 3 && strncmp(argv[2], "-m", 2) == 0) ? atoi(argv[2] + 2) : 1;
-  int nurse = (argc >= 4 && strncmp(argv[3], "-n", 2) == 0) ? atoi(argv[3] + 2) : 1;
-  int day = (argc >= 5 && strncmp(argv[4], "-d", 2) == 0) ? atoi(argv[4] + 2) : 40;
+  // int nurse = (argc >= 4 && strncmp(argv[3], "-nurse", 6) == 0) ? atoi(argv[3] + 6) : 1;
+  // int day = (argc >= 5 && strncmp(argv[4], "-day", 4) == 0) ? atoi(argv[4] + 4) : 40;
 
+  int maxRebootDistance = (argc >= 4 && strncmp(argv[3],"-r",2)==0) ? atoi(argv[3]+2) : INT_MAX;
+   int maxSplitIter = (argc >= 5 && strncmp(argv[4],"-i",2)==0) ? atoi(argv[4]+2) : INT_MAX;
+  //  int constraintSet = (argc >= 6 && strncmp(argv[5],"-c",2)==0) ? atoi(argv[5]+2) : 1;
+   int nurse = (argc >= 6 && strncmp(argv[5], "-nurse", 6) == 0) ? atoi(argv[5] + 6) : 1;
+  //  int horizonSize = (argc >= 7 && strncmp(argv[6],"-h",2)==0) ? atoi(argv[6]+2) : 40;
+   int day = (argc >= 7 && strncmp(argv[6], "-day", 4) == 0) ? atoi(argv[6] + 4) : 40;
+   int nodePriority = (argc >= 8 && strncmp(argv[7],"-n",2)==0) ? atoi(argv[7]+2) : 0;
+   int nodePriorityAggregateStrategy = (argc >= 9 && strncmp(argv[8],"-na",3)==0) ? atoi(argv[8]+3) : 1;
+   int candidatePriority = (argc >= 10 && strncmp(argv[9],"-d",2)==0) ? atoi(argv[9]+2) : 0;
+   int candidatePriorityAggregateStrategy = (argc >= 11 && strncmp(argv[10],"-ca",3)==0) ? atoi(argv[10]+3) : 1;
+   bool useApproxEquiv = (argc >= 12 && strncmp(argv[11],"-a",2)==0) ? atoi(argv[11]+2) : true;
+   bool approxThenExact = (argc >= 13 && strncmp(argv[12],"-e",2)==0) ? atoi(argv[12]+2) : true;
+   int approxEquivMode = (argc >= 14 && strncmp(argv[13],"-p",2)==0) ? atoi(argv[13]+2) : 0;
+   int equivalenceThreshold = (argc >= 15 && strncmp(argv[14],"-t",2)==0) ? atoi(argv[14]+2) : 3;
+   int maxWorkConstraintPriority = (argc >= 16 && strncmp(argv[15],"-maxP",5)==0) ? atoi(argv[15]+5) : 0;
+   int minWorkConstraintPriority = (argc >= 17 && strncmp(argv[16],"-minP",5)==0) ? atoi(argv[16]+5) : 0;
+   int weeklyWorkConstraintPriority = (argc >= 18 && strncmp(argv[17],"-wP",3)==0) ? atoi(argv[17]+3) : 0;
+  bool sameMDD = (argc >= 19 && strncmp(argv[18],"-j",2)==0) ? atoi(argv[18]+2) : true;
   // mode: 0 (cumulative sums encoding), >=1 (MDD)
 
   std::cout << "width = " << width << std::endl;
@@ -289,7 +386,7 @@ int main(int argc, char *argv[])
   try
   {
     CPSolver::Ptr cp = Factory::makeSolver();
-    buildModel(cp, width, mode, nurse, day);
+    buildModel(cp, width, mode, nurse, day, maxRebootDistance, maxSplitIter, nodePriority, nodePriorityAggregateStrategy, candidatePriority, candidatePriorityAggregateStrategy, useApproxEquiv, approxThenExact, approxEquivMode, equivalenceThreshold, sameMDD);
   }
   catch (Status s)
   {

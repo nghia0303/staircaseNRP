@@ -6,12 +6,12 @@ VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/venv4/bin/activate"
 
 SRC_PATH="/home/nghia/Desktop/NRP_nghia"
 
-AMONG_NURSE_SCRIPT="/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/amongNurse"
-STAIRCASE_PATH="/home/nghia/Desktop/NRP_nghia/src/test/NRP_2010.py"
-CPLEX_CP_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/CPLEX/CP/cp_model.py"
-CPLEX_MP_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/CPLEX/MP/mp_model.py"
-GUROBI_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/Gurobi/gurobi_model.py"
-PICAT_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/Picat/sample.pi"
+AMONG_NURSE_SCRIPT="$SRC_PATH/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/amongNurse"
+STAIRCASE_PATH="$SRC_PATH/src/test/NRP_2010.py"
+CPLEX_CP_PATH="$SRC_PATH/Compare_NRP_2010/CPLEX/CP/cp_model.py"
+CPLEX_MP_PATH="$SRC_PATH/Compare_NRP_2010/CPLEX/MP/mp_model.py"
+GUROBI_PATH="$SRC_PATH/Compare_NRP_2010/Gurobi/gurobi_model.py"
+PICAT_PATH="$SRC_PATH/Compare_NRP_2010/Picat/sample.pi"
 
 TIMEOUT=300  # Thời gian timeout cho mỗi lệnh (300 giây)
 

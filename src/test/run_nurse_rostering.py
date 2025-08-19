@@ -161,7 +161,7 @@ def solve_with_pysat(start_time, cannon_name: str, aux, add_clause: AddClause) -
 	if result:
 		return [2560, solver_output, model]
 	else:
-		return [5120, None]
+		return [5120, None, None]
 
 	return [None, None]
 
