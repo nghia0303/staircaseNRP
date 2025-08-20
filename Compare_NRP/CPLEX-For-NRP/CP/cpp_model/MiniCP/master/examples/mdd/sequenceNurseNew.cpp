@@ -258,16 +258,45 @@ void buildModel(
       {
         std::cout << "Nurse " << n << ": ";
         auto &vars = schedule[n];
-        
-        addMDDAmongSequence(cp, mdd, vars, H, Q1, L1, U1, S1, opts);
-        addMDDAmongSequence(cp, mdd, vars, H, Q2, L2, U2, S2, opts);
-        addMDDAmongSequence(cp, mdd, vars, H, Q3, L3, U3, S3, opts);
-        addMDDAmongSequence(cp, mdd, vars, H, Q4, L4, U4, S4, opts);
-        addMDDAmongSequence(cp, mdd, vars, H, Q5, L5, U5, S5, opts);
-        addMDDAmongSequence(cp, mdd, vars, H, Q6, L6, U6, S6, opts);
-        addMDDAmongSequence(cp, mdd, vars, H, Q7, L7, U7, S7, opts);
+        // auto mdd = new MDDRelax(cp, relaxSize);
+        if (!sameMDD) {
+          MDDRelax* mdd = nullptr;
 
-        cp->post(mdd);
+          mdd = newMDDRelax(
+            cp, 
+            relaxSize, 
+            maxRebootDistance, 
+            maxSplitIter, 
+            nodePriorityAggregateStrategy, 
+            candidatePriorityAggregateStrategy, 
+            useApproxEquiv, 
+            approxThenExact, 
+            0
+          );
+
+          addMDDAmongSequence(cp, mdd, vars, H, Q1, L1, U1, S1, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q2, L2, U2, S2, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q3, L3, U3, S3, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q4, L4, U4, S4, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q5, L5, U5, S5, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q6, L6, U6, S6, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q7, L7, U7, S7, opts);
+          cp->post(mdd);
+
+        } else {
+          addMDDAmongSequence(cp, mdd, vars, H, Q1, L1, U1, S1, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q2, L2, U2, S2, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q3, L3, U3, S3, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q4, L4, U4, S4, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q5, L5, U5, S5, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q6, L6, U6, S6, opts);
+          addMDDAmongSequence(cp, mdd, vars, H, Q7, L7, U7, S7, opts);
+
+          cp->post(mdd);
+        }
+        
+
+        
       }
 
 
