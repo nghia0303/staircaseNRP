@@ -1,22 +1,23 @@
 #!/bin/bash
 
 # ==== Đường dẫn ====
-VENV_3_12_PATH="/home/nghia/Desktop/Crew/staircase/venv/bin/activate"
-VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/venv4/bin/activate"
+VENV_3_12_PATH="/home/nghia/Desktop/Crew/staircase/.venv/bin/activate"
+VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/.venv1/bin/activate"
 
-SRC_PATH="/home/nghia/Desktop/NRP_nghia"
+SRC_PATH="/home/nghia/Desktop/Staircase/staircaseNRP"
+PICAT_RUN_PATH="/home/nghia/Desktop/Picat/Picat/picat"
 
-AMONG_NURSE_SCRIPT="/home/nghia/Desktop/NRP_nghia/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/amongNurse"
-STAIRCASE_PATH="/home/nghia/Desktop/NRP_nghia/src/test/NRP_2010.py"
-CPLEX_CP_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/CPLEX/CP/cp_model.py"
-CPLEX_MP_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/CPLEX/MP/mp_model.py"
-GUROBI_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/Gurobi/gurobi_model.py"
-PICAT_PATH="/home/nghia/Desktop/NRP_nghia/Compare_NRP_2010/Picat/sample.pi"
+AMONG_NURSE_SCRIPT="$SRC_PATH/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/amongNurse"
+STAIRCASE_PATH="$SRC_PATH/src/test/NRP_2010.py"
+CPLEX_CP_PATH="$SRC_PATH/Compare_NRP_2010/CPLEX/CP/cp_model.py"
+CPLEX_MP_PATH="$SRC_PATH/Compare_NRP_2010/CPLEX/MP/mp_model.py"
+GUROBI_PATH="$SRC_PATH/Compare_NRP_2010/Gurobi/gurobi_model.py"
+PICAT_PATH="$SRC_PATH/Compare_NRP_2010/Picat/sample.pi"
 
 TIMEOUT=300  # Thời gian timeout cho mỗi lệnh (300 giây)
 
 DATE_STR=$(date +%Y%m%d_%H%M%S)
-RESULT_CSV="${SRC_PATH}/Compare_NRP_2010/CSV/result_${DATE_STR}.csv"
+RESULT_CSV="${SRC_PATH}/Compare_NRP_2010/CSV/result_sat_${DATE_STR}.csv"
 mkdir -p "${SRC_PATH}/Compare_NRP_2010/CSV/"
 
 cleanup_memory() {
@@ -36,14 +37,14 @@ chmod +x "$AMONG_NURSE_SCRIPT"
 
 W_LIST=(1)
 M_LIST=(0)
-C_LIST=(3)
-H_LIST=(70 80)
+C_LIST=(1 2)
+H_LIST=(40 50 60 70 80)
 R_LIST=(1)
 I_LIST=(1)
 SOLVER_LIST=("m22")
 
-ENCODING_LIST=("staircase")
-SECOND_ENCODING_LIST=("nsc" "binomial" "pblib_bdd" "pblib_card")
+ENCODING_LIST=("staircase" "pblib_bdd" "pysat_bdd")
+SECOND_ENCODING_LIST=("nsc" "sc" "binomial" "pblib_bdd")
 
 # Chạy script AmongNurse
 #"$AMONG_NURSE_SCRIPT" -w128 -m2 -r2147483647 -i2147483647 -c1 -h

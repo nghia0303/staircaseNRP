@@ -159,9 +159,9 @@ class NRP:
         if not self.added_constraints:
             raise ValueError("Constraints have not been added to the model.")
 
-        # self.model.setParam(GRB.Param.OutputFlag, 0)
-        # self.model.setParam(GRB.Param.PoolSearchMode, 1)
-        # self.model.setParam(GRB.Param.PoolSolutions, 1)  # Giới hạn tối đa số nghiệm
+        self.model.setParam(GRB.Param.OutputFlag, 0)
+        self.model.setParam(GRB.Param.PoolSearchMode, 1)
+        self.model.setParam(GRB.Param.PoolSolutions, 1)  # Giới hạn tối đa số nghiệm
         # Tắt log nếu muốn
 
         self.model.optimize()

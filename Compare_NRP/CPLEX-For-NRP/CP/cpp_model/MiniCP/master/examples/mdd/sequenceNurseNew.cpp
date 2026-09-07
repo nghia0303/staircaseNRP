@@ -292,14 +292,13 @@ void buildModel(
           addMDDAmongSequence(cp, mdd, vars, H, Q6, L6, U6, S6, opts);
           addMDDAmongSequence(cp, mdd, vars, H, Q7, L7, U7, S7, opts);
 
-          cp->post(mdd);
         }
-        
-
         
       }
 
-
+      if (sameMDD) {
+        cp->post(mdd);
+      }
 
     }
   }

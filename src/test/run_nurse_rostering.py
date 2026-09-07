@@ -20,9 +20,9 @@ from src.encoding.nurse_roostering_encoding import NurseRosteringEncoding, Nurse
 from src.include.addline import write_full
 from src.include.common import myrange_inclusive, cl, AuxVariable, AddClause
 
-solver = "kissat"  # kissat, cadical, glucose, glucose-syrup
+solver = "glucose"  # kissat, cadical, glucose, glucose-syrup
 
-solve_mode = "local_solver" # pysat or local_solver (kissat, cadical, glucose, glucose-syrup)
+solve_mode = "pysat" # pysat or local_solver (kissat, cadical, glucose, glucose-syrup)
 
 KISSAT_PATH = "/home/nghia/Desktop/Crew/SAT/kissat/build/kissat"
 

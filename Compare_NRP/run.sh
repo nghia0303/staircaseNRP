@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # ==== Đường dẫn ====
-VENV_3_12_PATH="/home/nghia/Desktop/Crew/staircase/venv/bin/activate"
-VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/venv4/bin/activate"
-SRC_PATH="/home/nghia/Desktop/NRP_nghia"
+VENV_3_12_PATH="/home/nghia/Desktop/Crew/staircase/.venv/bin/activate"
+VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/.venv1/bin/activate"
+SRC_PATH="/home/nghia/Desktop/Staircase/staircaseNRP"
 
 SCRIPT1="${SRC_PATH}/src/test/run_nurse_rostering.py"
 SCRIPT2="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
@@ -12,6 +12,7 @@ CPLEX_MP_SCRIPT="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/MIP/main.py"
 #CPLEX_CP_PATH="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/model/NRP.mod"
 CPLEX_CP_PATH="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/model/nrp.py"
 HADDOCK_CP_SCRIPT="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/sequenceNurse"
+HADDOCK_CP_SEQ_SCRIPT="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/sequenceNurseNew"
  #-w32 -m0 -n30 -d84
 PICAT_PATH="${SRC_PATH}/Compare_NRP/Picat/model.pi"
 
@@ -24,12 +25,12 @@ mkdir -p "${SRC_PATH}/Compare_NRP/CSV/"
 
 RESULT_DIR="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/Results"
 METHOD="staircase_among"
-TIMEOUT=100 # Thời gian chạy tối đa cho mỗi lệnh (giây)
+TIMEOUT=600 # Thời gian chạy tối đa cho mỗi lệnh (giây)
 
 # ==== Thông số chạy ====
 NURSE_LIST=(1)
 #WEEK_LIST=(4)
-DAY_LIST=(40)
+DAY_LIST=(100)
 
 #NURSE_LIST=(120)
 #WEEK_LIST=(24)
@@ -73,9 +74,8 @@ for NURSES in "${NURSE_LIST[@]}"; do
     cleanup_memory
     echo "============================================"
     # Chạy script SAT
-    echo "[SAT] Running..."
+    echo "[SAT-Staircase] Running..."
     source "$VENV_3_12_PATH"
-    python3 "$SCRIPT1" "$NURSES" "$DAYS" "$METHOD" "$RESULT_CSV" > "tmp/solver_output/sat/NRP_sat_${NURSES}_${DAYS}.txt"
     mem_file=$(mktemp)
     OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$SCRIPT1" "$NURSES" "$DAYS" "$METHOD" "$RESULT_CSV" 2>&1)
     echo "$OUTPUT" > "tmp/solver_output/sat/NRP_sat_${NURSES}_${DAYS}.txt"
@@ -87,6 +87,23 @@ for NURSES in "${NURSE_LIST[@]}"; do
     echo "Solutions found: $solns"
     echo "Peak RAM: $PEAK_RAM KB"
     echo "staircase_among,$NURSES,$DAYS,$total_time,$PEAK_RAM,$solns" >> "$SHORTEN_RESULT_CSV"
+
+    cleanup_memory
+    echo "============================================"
+    # Chạy script SAT
+    echo "[SAT] Running..."
+    source "$VENV_3_12_PATH"
+    mem_file=$(mktemp)
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" python3 "$SCRIPT1" "$NURSES" "$DAYS" "pblib_bdd" "$RESULT_CSV" 2>&1)
+    echo "$OUTPUT" > "tmp/solver_output/sat/NRP_sat_${NURSES}_${DAYS}.txt"
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
+    total_time=$(echo "$OUTPUT" | grep "Total time:" | awk '{print $3}')
+    solns=$(echo "$OUTPUT" | grep "solns:" | awk '{print $2}')
+
+    echo "Total time for SAT: $total_time ms"
+    echo "Solutions found: $solns"
+    echo "Peak RAM: $PEAK_RAM KB"
+    echo "pblib_bdd,$NURSES,$DAYS,$total_time,$PEAK_RAM,$solns" >> "$SHORTEN_RESULT_CSV"
 
 
     # Chạy script Gurobi
@@ -122,7 +139,7 @@ for NURSES in "${NURSE_LIST[@]}"; do
     echo "Total time for CPLEX MP: $total_time ms"
     echo "Solutions found: $solns"
     echo "Peak RAM: $PEAK_RAM KB"
-    echo "cplex_mp,$NURSES,$DAYS,$total_time" >> "$SHORTEN_RESULT_CSV"
+    echo "cplex_mp,$NURSES,$DAYS,$total_time,$PEAK_RAM,$solns" >> "$SHORTEN_RESULT_CSV"
 
     echo "[CPLEX CP] Running..."
     cleanup_memory
@@ -140,11 +157,13 @@ for NURSES in "${NURSE_LIST[@]}"; do
     echo "Total time for CPLEX CP: $total_time ms"
     echo "Solutions found: $solns"
     echo "Peak RAM: $PEAK_RAM KB"
-    echo "cplex_cp,$NURSES,$DAYS,$total_time" >> "$SHORTEN_RESULT_CSV"
+    echo "cplex_cp,$NURSES,$DAYS,$total_time,$PEAK_RAM,$solns" >> "$SHORTEN_RESULT_CSV"
 
     echo "[HADDOCK classic CP] Running..."
+
     cleanup_memory
     mem_file=$(mktemp)
+    ulimit -v $((32 * 1024 * 1024))
     OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" "$HADDOCK_CP_SCRIPT" -w64 -m0 -n"$NURSES" -d"$DAYS" 2>&1)
 #    echo "$OUTPUT"
     echo "$OUTPUT" > "tmp/solver_output/cplex_cp/NRP_haddock_cp_${NURSES}_${DAYS}.txt"
@@ -158,6 +177,7 @@ for NURSES in "${NURSE_LIST[@]}"; do
 #
     echo "[HADDOCK seqMDD2 CP] Running..."
     cleanup_memory
+    ulimit -v $((32 * 1024 * 1024))
     mem_file=$(mktemp)
     OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" "$HADDOCK_CP_SCRIPT" -w64 -m2 -n"$NURSES" -d"$DAYS" 2>&1)
 #    echo "$OUTPUT"
@@ -170,10 +190,26 @@ for NURSES in "${NURSE_LIST[@]}"; do
     echo "Peak RAM: $PEAK_RAM KB"
     echo "haddock_seqMDD2,$NURSES,$DAYS,$total_time,$PEAK_RAM,$solns" >> "$SHORTEN_RESULT_CSV"
 
+    echo "[HADDOCK amongMDD2 CP] Running..."
+
+    cleanup_memory
+    mem_file=$(mktemp)
+    ulimit -v $((32 * 1024 * 1024))
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" "$HADDOCK_CP_SEQ_SCRIPT" -w64 -m4 -r5 -i10 -nurse"$NURSES" -day"$DAYS" -n3 -na1 -d3 -ca1 -a1 -e1 -p0 -t3 -j0 2>&1)
+#    echo "$OUTPUT"
+    echo "$OUTPUT" > "tmp/solver_output/cplex_cp/NRP_haddock_cp_${NURSES}_${DAYS}.txt"
+    PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
+    total_time=$(echo "$OUTPUT" | grep "Time :" | awk '{print $3}')
+    solns=$(echo "$OUTPUT" | grep "solns:" | awk '{print $2}')
+    echo "Total time for HADDOCK amongMDD2 CP: $total_time ms"
+    echo "Solutions found: $solns"
+    echo "Peak RAM: $PEAK_RAM KB"
+    echo "haddock_amongMDD2,$NURSES,$DAYS,$total_time,$PEAK_RAM,$solns" >> "$SHORTEN_RESULT_CSV"
 
     echo "[Picat] Running..."
     START_TIME=$(date +%s%N)
     mem_file=$(mktemp)
+    ulimit -v $((32 * 1024 * 1024))
     OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" picat "$PICAT_PATH" "$NURSES" "$DAYS")
     PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     END_TIME=$(date +%s%N)

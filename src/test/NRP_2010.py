@@ -142,7 +142,13 @@ class NRP:
         else:
             var = self.variables.get_all_variables()
             encoder = Encoder(str_to_type_enum(encoding_mode))
-            encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
+            for start in range(self.horizon - y + 1):
+                end = start + y
+                sub_var = var[start:end]
+                encoder.encode_at_most_k(sub_var, x, self.aux, self.add_clauses)
+                del sub_var
+
+            # encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
         del encoder
         gc.collect()
 
@@ -157,7 +163,13 @@ class NRP:
         else:
             var = self.variables.get_all_variables()
             encoder = Encoder(str_to_type_enum(encoding_mode))
-            encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
+            for start in range(self.horizon - y + 1):
+                end = start + y
+                sub_var = var[start:end]
+                encoder.encode_at_least_k(sub_var, x, self.aux, self.add_clauses)
+                del sub_var
+
+            # encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
         del encoder
         gc.collect()
     def separate_clauses(self, clauses: list[int], width: int):
@@ -527,6 +539,7 @@ def main():
     else:
         solve_one_solution = False
 
+
     print(sys.argv)
     print(f"Running NRP with horizon={horizon}, constraint={constraint}, encoding_mode={encoding_mode}, second_encoding_mode={second_encoding_mode}, solver_name={solver_name}, use_local_solver={use_local_solver}, use_tseintin={use_tseintin}, chunk_width={chunk_width}")
 
@@ -545,7 +558,7 @@ def main():
     end_time = time.perf_counter()
 
     print(f"\"time\" : {(end_time - start_time)*1000:.0f}")
-    print(f"\"timeToFirstSol\" : {(time_to_first_solve-start_time)*1000:.0f}")
+    # print(f"\"timeToFirstSol\" : {(time_to_first_solve-start_time)*1000:.0f}")
     print(f"\"solns\" : {sol_count}")
 
 

@@ -249,9 +249,9 @@ void buildModel(CPSolver::Ptr cp, int relaxSize, int mode, int nurse, int day)
 
   search.onSolution([&schedule, N, H]()
                     {
-    for (int n = 0; n < N; ++n) {
-      std::cout << "Nurse " << n << " : " << schedule[n] << '\n';
-    }
+    // for (int n = 0; n < N; ++n) {
+    //   std::cout << "Nurse " << n << " : " << schedule[n] << '\n';
+    // }
     std::cout << "-----------------------------\n"; });
 
   auto start = RuntimeMonitor::cputime();
