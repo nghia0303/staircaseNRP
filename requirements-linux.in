@@ -1,0 +1,39 @@
+# Linux development environment; resolved versions are in requirements-linux.lock.txt.
+# Latest compatible releases, as requested; python-sat publishes dev releases.
+python-sat>=1.9.dev15
+pypblib
+psutil
+openpyxl
+# Dependencies from the existing requirements.txt, resolved for current Linux Python.
+certifi
+cftime
+click
+cloudpickle
+dask
+docplex
+cplex
+et_xmlfile
+fsspec
+func_timeout
+gurobipy
+iniconfig
+locket
+netCDF4
+numpy
+packaging
+pandas
+partd
+pluggy
+portalocker
+pytest
+python-dateutil
+pytz
+PyYAML
+scipy
+# stopit 1.1.2 imports pkg_resources; setuptools 82+ removed that module.
+setuptools<82
+six
+stopit
+toolz
+tzdata
+xarray

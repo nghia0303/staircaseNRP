@@ -1,0 +1,364 @@
+{
+  "checked_at": "2026-09-21T00:58:24.406834+00:00",
+  "scope": "native runtime and bounded NRP-2010 count agreement; not full model audit",
+  "installation": {
+    "picat_version": "3.9#12",
+    "picat_url": "https://picat-lang.org/download/picat39_12_linux64.tar.gz",
+    "picat_archive_sha256": "f053b11cccabfb69a3ccd779f2dc1c24cdf889805799bc8c779e6c56da703e4a",
+    "minicpp_repository": "https://bitbucket.org/ldmbouge/minicpp.git",
+    "minicpp_commit": "9bf9110059c1e883efbc97d79640486c1cd5d8b2",
+    "project_patch_sha256": "fa5b1b14970efeefecfedc5fc908910bcbbe0b911d51ceebb034705435a8765c",
+    "patches": {
+      "project-frontends.patch": "5f84e0054088eac85f8bc1209e2677cd77d5419541ba03e4ce5b6670d2f9da8a",
+      "engine-defaults.patch": "604e3d3b6ed16929fd0851afdc3835641f17881a9534d5193a14df666540000d"
+    },
+    "build_type": "Release",
+    "build_log": "/home/nghia/.local/opt/sequenceconstraint/minicpp-9bf9110059c1-fa5b1b14970e/build.log",
+    "compiler": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+    "binaries": {
+      "picat": {
+        "path": "/home/nghia/.local/opt/sequenceconstraint/picat-3.9-12/Picat/picat",
+        "sha256": "b005a66f1b07e85e45fe620b6bc024169537be23f86a5b380e0eeb4fc9acadb0"
+      },
+      "amongNurse": {
+        "path": "/home/nghia/.local/opt/sequenceconstraint/minicpp-9bf9110059c1-fa5b1b14970e/build/amongNurse",
+        "sha256": "c577c591aa57d1f0fd31dfc43a60e3a9e24cf464339b3882095b00cee8576ffa"
+      },
+      "sequenceNurse": {
+        "path": "/home/nghia/.local/opt/sequenceconstraint/minicpp-9bf9110059c1-fa5b1b14970e/build/sequenceNurse",
+        "sha256": "9737a4e913f1ffd5189e7dcc7d30b11d85da9c0df8c5d18bfa7e3a5316793215"
+      },
+      "sequenceNurseNew": {
+        "path": "/home/nghia/.local/opt/sequenceconstraint/minicpp-9bf9110059c1-fa5b1b14970e/build/sequenceNurseNew",
+        "sha256": "74cca42bba0bc40f0da2d6a27c3c2c812b915cbb8cd6296277c2d21c275362da"
+      }
+    }
+  },
+  "checks": {
+    "picat_CII_H40_one0": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/picat",
+        "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/Compare_NRP_2010/Picat/sample.pi",
+        "2",
+        "40",
+        "0"
+      ],
+      "returncode": 0,
+      "expected_count": 3,
+      "observed_counts": [
+        "3"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "solns : 3\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/picat\n[runlim] argv[1]:\t\t/mnt/d/Research/SequenceConstraint/code/staircaseNRP/Compare_NRP_2010/Picat/sample.pi\n[runlim] argv[2]:\t\t2\n[runlim] argv[3]:\t\t40\n[runlim] argv[4]:\t\t0\n[runlim] start:\t\t\tMon Sep 21 07:58:24 2026\n[runlim] main pid:\t\t422\n[runlim] end:\t\t\tMon Sep 21 07:58:25 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t1.72 seconds\n[runlim] time:\t\t\t1.28 seconds\n[runlim] space:\t\t\t23.1 MB\n[runlim] samples:\t\t13\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/picat_CII_H40_one0.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/picat_CII_H40_one0.runlim"
+    },
+    "amongNurse_mode0_CII_H40_one0": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse",
+        "-w64",
+        "-m0",
+        "-r5",
+        "-i10",
+        "-c2",
+        "-h40",
+        "-n0",
+        "-na1",
+        "-d2",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP0",
+        "-minP0",
+        "-wP0",
+        "-j1",
+        "-so0"
+      ],
+      "returncode": 0,
+      "expected_count": 3,
+      "observed_counts": [
+        "3"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 0\nmaxRebootDistance = 5\nmaxSplitIter = 10\nconstraintSet = 2\nhorizonSize = 40\nnodePriority = 0\nnodePriorityAggregateStrategy = 1\ncandidatePriority = 2\ncandidatePriorityAggregateStrategy = 1\nuseApproxEquiv = 1\napproxThenExact = 1\napproxEquivMode = 0\nequivalenceThreshold = 3\nmaxWorkConstraintPriority = 0\nminWorkConstraintPriority = 0\nweeklyWorkConstraintPriority = 0\nsameMDD = 1\ndomain encoding of cumulative sums\nSum for week 0: 0 1 2 3 4 5 6 \nSum for week 1: 7 8 9 10 11 12 13 \nSum for week 2: 14 15 16 17 18 19 20 \nSum for week 3: 21 22 23 24 25 26 27 \nSum for week 4: 28 29 30 31 32 33 34 \n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=2.021\n%%%mzn-stat: solutions=3\n%%%mzn-stat: variables=132\n%%%mzn-stat: propagators=178\n%%%mzn-stat: propagations=55402788\n%%%mzn-stat: nodes=393750\n%%%mzn-stat: failures=393748\n%%%mzn-stat-end\n\n\"time\" : 2034,\n\"timeToFirstSol\" : 249,\n\"solns\" : 3\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m0\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-c2\n[runlim] argv[6]:\t\t-h40\n[runlim] argv[7]:\t\t-n0\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d2\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP0\n[runlim] argv[16]:\t\t-minP0\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j1\n[runlim] argv[19]:\t\t-so0\n[runlim] start:\t\t\tMon Sep 21 07:58:25 2026\n[runlim] main pid:\t\t424\n[runlim] end:\t\t\tMon Sep 21 07:58:27 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t2.80 seconds\n[runlim] time:\t\t\t1.99 seconds\n[runlim] space:\t\t\t4.5 MB\n[runlim] samples:\t\t20\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode0_CII_H40_one0.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode0_CII_H40_one0.runlim"
+    },
+    "amongNurse_mode1_CII_H40_one0": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse",
+        "-w64",
+        "-m1",
+        "-r5",
+        "-i10",
+        "-c2",
+        "-h40",
+        "-n3",
+        "-na1",
+        "-d3",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP1",
+        "-minP1",
+        "-wP0",
+        "-j1",
+        "-so0"
+      ],
+      "returncode": 0,
+      "expected_count": 3,
+      "observed_counts": [
+        "3"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 1\nmaxRebootDistance = 5\nmaxSplitIter = 10\nconstraintSet = 2\nhorizonSize = 40\nnodePriority = 3\nnodePriorityAggregateStrategy = 1\ncandidatePriority = 3\ncandidatePriorityAggregateStrategy = 1\nuseApproxEquiv = 1\napproxThenExact = 1\napproxEquivMode = 0\nequivalenceThreshold = 3\nmaxWorkConstraintPriority = 1\nminWorkConstraintPriority = 1\nweeklyWorkConstraintPriority = 0\nsameMDD = 1\namongMDD2 encoding\nConstraint type 1\namong 0: 0 1 2 3 4 5 6 7 8 \namong 1: 1 2 3 4 5 6 7 8 9 \namong 2: 2 3 4 5 6 7 8 9 10 \namong 3: 3 4 5 6 7 8 9 10 11 \namong 4: 4 5 6 7 8 9 10 11 12 \namong 5: 5 6 7 8 9 10 11 12 13 \namong 6: 6 7 8 9 10 11 12 13 14 \namong 7: 7 8 9 10 11 12 13 14 15 \namong 8: 8 9 10 11 12 13 14 15 16 \namong 9: 9 10 11 12 13 14 15 16 17 \namong 10: 10 11 12 13 14 15 16 17 18 \namong 11: 11 12 13 14 15 16 17 18 19 \namong 12: 12 13 14 15 16 17 18 19 20 \namong 13: 13 14 15 16 17 18 19 20 21 \namong 14: 14 15 16 17 18 19 20 21 22 \namong 15: 15 16 17 18 19 20 21 22 23 \namong 16: 16 17 18 19 20 21 22 23 24 \namong 17: 17 18 19 20 21 22 23 24 25 \namong 18: 18 19 20 21 22 23 24 25 26 \namong 19: 19 20 21 22 23 24 25 26 27 \namong 20: 20 21 22 23 24 25 26 27 28 \namong 21: 21 22 23 24 25 26 27 28 29 \namong 22: 22 23 24 25 26 27 28 29 30 \namong 23: 23 24 25 26 27 28 29 30 31 \namong 24: 24 25 26 27 28 29 30 31 32 \namong 25: 25 26 27 28 29 30 31 32 33 \namong 26: 26 27 28 29 30 31 32 33 34 \namong 27: 27 28 29 30 31 32 33 34 35 \namong 28: 28 29 30 31 32 33 34 35 36 \namong 29: 29 30 31 32 33 34 35 36 37 \namong 30: 30 31 32 33 34 35 36 37 38 \namong 31: 31 32 33 34 35 36 37 38 39 \nConstraint type 2\namong 0: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 \namong 1: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 \namong 2: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 \namong 3: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 \namong 4: 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 \namong 5: 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 \namong 6: 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 \namong 7: 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 \namong 8: 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 \namong 9: 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 \namong 10: 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 \nConstraint type 3\nAmong for week 0: 0 1 2 3 4 5 6 \nAmong for week 1: 7 8 9 10 11 12 13 \nAmong for week 2: 14 15 16 17 18 19 20 \nAmong for week 3: 21 22 23 24 25 26 27 \nAmong for week 4: 28 29 30 31 32 33 34 \nMDDRelax::buildDiagram\nDown State requires:384 bytes\nUp State requires:384 bytes\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=0.000\n%%%mzn-stat: solutions=3\n%%%mzn-stat: variables=40\n%%%mzn-stat: propagators=1\n%%%mzn-stat: propagations=110\n%%%mzn-stat: nodes=2\n%%%mzn-stat: failures=0\n%%%mzn-stat-end\n\n\"time\" : 33,\n\"timeToFirstSol\" : 28,\n\"solns\" : 3\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m1\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-c2\n[runlim] argv[6]:\t\t-h40\n[runlim] argv[7]:\t\t-n3\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d3\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP1\n[runlim] argv[16]:\t\t-minP1\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j1\n[runlim] argv[19]:\t\t-so0\n[runlim] start:\t\t\tMon Sep 21 07:58:27 2026\n[runlim] main pid:\t\t426\n[runlim] end:\t\t\tMon Sep 21 07:58:27 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t0.89 seconds\n[runlim] time:\t\t\t0.00 seconds\n[runlim] space:\t\t\t0.0 MB\n[runlim] samples:\t\t0\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode1_CII_H40_one0.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode1_CII_H40_one0.runlim"
+    },
+    "amongNurse_mode2_CII_H40_one0": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse",
+        "-w64",
+        "-m2",
+        "-r5",
+        "-i10",
+        "-c2",
+        "-h40",
+        "-n3",
+        "-na1",
+        "-d3",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP1",
+        "-minP1",
+        "-wP0",
+        "-j1",
+        "-so0"
+      ],
+      "returncode": 0,
+      "expected_count": 3,
+      "observed_counts": [
+        "3"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 2\nmaxRebootDistance = 5\nmaxSplitIter = 10\nconstraintSet = 2\nhorizonSize = 40\nnodePriority = 3\nnodePriorityAggregateStrategy = 1\ncandidatePriority = 3\ncandidatePriorityAggregateStrategy = 1\nuseApproxEquiv = 1\napproxThenExact = 1\napproxEquivMode = 0\nequivalenceThreshold = 3\nmaxWorkConstraintPriority = 1\nminWorkConstraintPriority = 1\nweeklyWorkConstraintPriority = 0\nsameMDD = 1\nSequence MDD2 encoding\nSequence(vars,9,0,6,{1})\nSequence(vars,30,20,30,{1})\nConstraint type 3\nAmong for week 0: 0 1 2 3 4 5 6 \nAmong for week 1: 7 8 9 10 11 12 13 \nAmong for week 2: 14 15 16 17 18 19 20 \nAmong for week 3: 21 22 23 24 25 26 27 \nAmong for week 4: 28 29 30 31 32 33 34 \nMDDRelax::buildDiagram\nDown State requires:208 bytes\nUp State requires:40 bytes\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=5.804\n%%%mzn-stat: solutions=3\n%%%mzn-stat: variables=40\n%%%mzn-stat: propagators=1\n%%%mzn-stat: propagations=10779\n%%%mzn-stat: nodes=2734\n%%%mzn-stat: failures=2732\n%%%mzn-stat-end\n\n\"time\" : 5828,\n\"timeToFirstSol\" : 739,\n\"solns\" : 3\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m2\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-c2\n[runlim] argv[6]:\t\t-h40\n[runlim] argv[7]:\t\t-n3\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d3\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP1\n[runlim] argv[16]:\t\t-minP1\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j1\n[runlim] argv[19]:\t\t-so0\n[runlim] start:\t\t\tMon Sep 21 07:58:27 2026\n[runlim] main pid:\t\t428\n[runlim] end:\t\t\tMon Sep 21 07:58:33 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t6.79 seconds\n[runlim] time:\t\t\t5.77 seconds\n[runlim] space:\t\t\t29.8 MB\n[runlim] samples:\t\t58\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode2_CII_H40_one0.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode2_CII_H40_one0.runlim"
+    },
+    "picat_CII_H40_one1": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/picat",
+        "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/Compare_NRP_2010/Picat/sample.pi",
+        "2",
+        "40",
+        "1"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "solving one solution...\nsolns : 1\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/picat\n[runlim] argv[1]:\t\t/mnt/d/Research/SequenceConstraint/code/staircaseNRP/Compare_NRP_2010/Picat/sample.pi\n[runlim] argv[2]:\t\t2\n[runlim] argv[3]:\t\t40\n[runlim] argv[4]:\t\t1\n[runlim] start:\t\t\tMon Sep 21 07:58:33 2026\n[runlim] main pid:\t\t433\n[runlim] end:\t\t\tMon Sep 21 07:58:33 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t1.00 seconds\n[runlim] time:\t\t\t0.08 seconds\n[runlim] space:\t\t\t23.1 MB\n[runlim] samples:\t\t1\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/picat_CII_H40_one1.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/picat_CII_H40_one1.runlim"
+    },
+    "amongNurse_mode0_CII_H40_one1": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse",
+        "-w64",
+        "-m0",
+        "-r5",
+        "-i10",
+        "-c2",
+        "-h40",
+        "-n0",
+        "-na1",
+        "-d2",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP0",
+        "-minP0",
+        "-wP0",
+        "-j1",
+        "-so1"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 0\nmaxRebootDistance = 5\nmaxSplitIter = 10\nconstraintSet = 2\nhorizonSize = 40\nnodePriority = 0\nnodePriorityAggregateStrategy = 1\ncandidatePriority = 2\ncandidatePriorityAggregateStrategy = 1\nuseApproxEquiv = 1\napproxThenExact = 1\napproxEquivMode = 0\nequivalenceThreshold = 3\nmaxWorkConstraintPriority = 0\nminWorkConstraintPriority = 0\nweeklyWorkConstraintPriority = 0\nsameMDD = 1\ndomain encoding of cumulative sums\nSum for week 0: 0 1 2 3 4 5 6 \nSum for week 1: 7 8 9 10 11 12 13 \nSum for week 2: 14 15 16 17 18 19 20 \nSum for week 3: 21 22 23 24 25 26 27 \nSum for week 4: 28 29 30 31 32 33 34 \n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=0.254\n%%%mzn-stat: solutions=1\n%%%mzn-stat: variables=132\n%%%mzn-stat: propagators=178\n%%%mzn-stat: propagations=6900077\n%%%mzn-stat: nodes=47528\n%%%mzn-stat: failures=47545\n%%%mzn-stat-end\n\n\"time\" : 270,\n\"timeToFirstSol\" : 256,\n\"solns\" : 1\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m0\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-c2\n[runlim] argv[6]:\t\t-h40\n[runlim] argv[7]:\t\t-n0\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d2\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP0\n[runlim] argv[16]:\t\t-minP0\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j1\n[runlim] argv[19]:\t\t-so1\n[runlim] start:\t\t\tMon Sep 21 07:58:34 2026\n[runlim] main pid:\t\t435\n[runlim] end:\t\t\tMon Sep 21 07:58:34 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t0.33 seconds\n[runlim] time:\t\t\t0.19 seconds\n[runlim] space:\t\t\t4.4 MB\n[runlim] samples:\t\t2\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode0_CII_H40_one1.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode0_CII_H40_one1.runlim"
+    },
+    "amongNurse_mode1_CII_H40_one1": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse",
+        "-w64",
+        "-m1",
+        "-r5",
+        "-i10",
+        "-c2",
+        "-h40",
+        "-n3",
+        "-na1",
+        "-d3",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP1",
+        "-minP1",
+        "-wP0",
+        "-j1",
+        "-so1"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 1\nmaxRebootDistance = 5\nmaxSplitIter = 10\nconstraintSet = 2\nhorizonSize = 40\nnodePriority = 3\nnodePriorityAggregateStrategy = 1\ncandidatePriority = 3\ncandidatePriorityAggregateStrategy = 1\nuseApproxEquiv = 1\napproxThenExact = 1\napproxEquivMode = 0\nequivalenceThreshold = 3\nmaxWorkConstraintPriority = 1\nminWorkConstraintPriority = 1\nweeklyWorkConstraintPriority = 0\nsameMDD = 1\namongMDD2 encoding\nConstraint type 1\namong 0: 0 1 2 3 4 5 6 7 8 \namong 1: 1 2 3 4 5 6 7 8 9 \namong 2: 2 3 4 5 6 7 8 9 10 \namong 3: 3 4 5 6 7 8 9 10 11 \namong 4: 4 5 6 7 8 9 10 11 12 \namong 5: 5 6 7 8 9 10 11 12 13 \namong 6: 6 7 8 9 10 11 12 13 14 \namong 7: 7 8 9 10 11 12 13 14 15 \namong 8: 8 9 10 11 12 13 14 15 16 \namong 9: 9 10 11 12 13 14 15 16 17 \namong 10: 10 11 12 13 14 15 16 17 18 \namong 11: 11 12 13 14 15 16 17 18 19 \namong 12: 12 13 14 15 16 17 18 19 20 \namong 13: 13 14 15 16 17 18 19 20 21 \namong 14: 14 15 16 17 18 19 20 21 22 \namong 15: 15 16 17 18 19 20 21 22 23 \namong 16: 16 17 18 19 20 21 22 23 24 \namong 17: 17 18 19 20 21 22 23 24 25 \namong 18: 18 19 20 21 22 23 24 25 26 \namong 19: 19 20 21 22 23 24 25 26 27 \namong 20: 20 21 22 23 24 25 26 27 28 \namong 21: 21 22 23 24 25 26 27 28 29 \namong 22: 22 23 24 25 26 27 28 29 30 \namong 23: 23 24 25 26 27 28 29 30 31 \namong 24: 24 25 26 27 28 29 30 31 32 \namong 25: 25 26 27 28 29 30 31 32 33 \namong 26: 26 27 28 29 30 31 32 33 34 \namong 27: 27 28 29 30 31 32 33 34 35 \namong 28: 28 29 30 31 32 33 34 35 36 \namong 29: 29 30 31 32 33 34 35 36 37 \namong 30: 30 31 32 33 34 35 36 37 38 \namong 31: 31 32 33 34 35 36 37 38 39 \nConstraint type 2\namong 0: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 \namong 1: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 \namong 2: 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 \namong 3: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 \namong 4: 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 \namong 5: 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 \namong 6: 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 \namong 7: 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 \namong 8: 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 \namong 9: 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 \namong 10: 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 \nConstraint type 3\nAmong for week 0: 0 1 2 3 4 5 6 \nAmong for week 1: 7 8 9 10 11 12 13 \nAmong for week 2: 14 15 16 17 18 19 20 \nAmong for week 3: 21 22 23 24 25 26 27 \nAmong for week 4: 28 29 30 31 32 33 34 \nMDDRelax::buildDiagram\nDown State requires:384 bytes\nUp State requires:384 bytes\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=0.000\n%%%mzn-stat: solutions=1\n%%%mzn-stat: variables=40\n%%%mzn-stat: propagators=1\n%%%mzn-stat: propagations=41\n%%%mzn-stat: nodes=1\n%%%mzn-stat: failures=0\n%%%mzn-stat-end\n\n\"time\" : 29,\n\"timeToFirstSol\" : 25,\n\"solns\" : 1\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m1\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-c2\n[runlim] argv[6]:\t\t-h40\n[runlim] argv[7]:\t\t-n3\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d3\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP1\n[runlim] argv[16]:\t\t-minP1\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j1\n[runlim] argv[19]:\t\t-so1\n[runlim] start:\t\t\tMon Sep 21 07:58:34 2026\n[runlim] main pid:\t\t437\n[runlim] end:\t\t\tMon Sep 21 07:58:34 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t0.43 seconds\n[runlim] time:\t\t\t0.00 seconds\n[runlim] space:\t\t\t0.0 MB\n[runlim] samples:\t\t0\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode1_CII_H40_one1.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode1_CII_H40_one1.runlim"
+    },
+    "amongNurse_mode2_CII_H40_one1": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse",
+        "-w64",
+        "-m2",
+        "-r5",
+        "-i10",
+        "-c2",
+        "-h40",
+        "-n3",
+        "-na1",
+        "-d3",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP1",
+        "-minP1",
+        "-wP0",
+        "-j1",
+        "-so1"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 2\nmaxRebootDistance = 5\nmaxSplitIter = 10\nconstraintSet = 2\nhorizonSize = 40\nnodePriority = 3\nnodePriorityAggregateStrategy = 1\ncandidatePriority = 3\ncandidatePriorityAggregateStrategy = 1\nuseApproxEquiv = 1\napproxThenExact = 1\napproxEquivMode = 0\nequivalenceThreshold = 3\nmaxWorkConstraintPriority = 1\nminWorkConstraintPriority = 1\nweeklyWorkConstraintPriority = 0\nsameMDD = 1\nSequence MDD2 encoding\nSequence(vars,9,0,6,{1})\nSequence(vars,30,20,30,{1})\nConstraint type 3\nAmong for week 0: 0 1 2 3 4 5 6 \nAmong for week 1: 7 8 9 10 11 12 13 \nAmong for week 2: 14 15 16 17 18 19 20 \nAmong for week 3: 21 22 23 24 25 26 27 \nAmong for week 4: 28 29 30 31 32 33 34 \nMDDRelax::buildDiagram\nDown State requires:208 bytes\nUp State requires:40 bytes\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=0.715\n%%%mzn-stat: solutions=1\n%%%mzn-stat: variables=40\n%%%mzn-stat: propagators=1\n%%%mzn-stat: propagations=1664\n%%%mzn-stat: nodes=432\n%%%mzn-stat: failures=445\n%%%mzn-stat-end\n\n\"time\" : 736,\n\"timeToFirstSol\" : 724,\n\"solns\" : 1\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/amongNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m2\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-c2\n[runlim] argv[6]:\t\t-h40\n[runlim] argv[7]:\t\t-n3\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d3\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP1\n[runlim] argv[16]:\t\t-minP1\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j1\n[runlim] argv[19]:\t\t-so1\n[runlim] start:\t\t\tMon Sep 21 07:58:34 2026\n[runlim] main pid:\t\t439\n[runlim] end:\t\t\tMon Sep 21 07:58:35 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t1.24 seconds\n[runlim] time:\t\t\t0.68 seconds\n[runlim] space:\t\t\t28.0 MB\n[runlim] samples:\t\t7\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode2_CII_H40_one1.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/amongNurse_mode2_CII_H40_one1.runlim"
+    },
+    "sequenceNurse_mode0_N1_H28": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/sequenceNurse",
+        "-w64",
+        "-m0",
+        "-n1",
+        "-d28"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 0\nnurse = 1\nday = 28\nCumulative Sums encoding\n-----------------------------\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=4.896\n%%%mzn-stat: solutions=1\n%%%mzn-stat: variables=427\n%%%mzn-stat: propagators=633\n%%%mzn-stat: propagations=140436616\n%%%mzn-stat: nodes=438077\n%%%mzn-stat: failures=438087\n%%%mzn-stat-end\n\nsolns: 1\nTime : 4908\nI/C  : 0.000\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/sequenceNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m0\n[runlim] argv[3]:\t\t-n1\n[runlim] argv[4]:\t\t-d28\n[runlim] start:\t\t\tMon Sep 21 07:58:35 2026\n[runlim] main pid:\t\t441\n[runlim] end:\t\t\tMon Sep 21 07:58:40 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t5.20 seconds\n[runlim] time:\t\t\t4.89 seconds\n[runlim] space:\t\t\t5.1 MB\n[runlim] samples:\t\t49\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/sequenceNurse_mode0_N1_H28.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/sequenceNurse_mode0_N1_H28.runlim"
+    },
+    "sequenceNurse_mode2_N1_H28": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/sequenceNurse",
+        "-w64",
+        "-m2",
+        "-n1",
+        "-d28"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": null,
+      "stdout": "width = 64\nmode = 2\nnurse = 1\nday = 28\nseqMDD2 encoding\nMDDRelax::buildDiagram\nDown State requires:376 bytes\nUp State requires:0 bytes\n-----------------------------\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=18.568\n%%%mzn-stat: solutions=1\n%%%mzn-stat: variables=28\n%%%mzn-stat: propagators=1\n%%%mzn-stat: propagations=84593\n%%%mzn-stat: nodes=26054\n%%%mzn-stat: failures=26064\n%%%mzn-stat-end\n\nsolns: 1\nTime : 18580\nI/C  : 1.978\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/sequenceNurse\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m2\n[runlim] argv[3]:\t\t-n1\n[runlim] argv[4]:\t\t-d28\n[runlim] start:\t\t\tMon Sep 21 07:58:40 2026\n[runlim] main pid:\t\t443\n[runlim] sample:\t\t10.0 time, 10.2 real, 44.4 MB\n[runlim] end:\t\t\tMon Sep 21 07:58:58 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t18.84 seconds\n[runlim] time:\t\t\t18.49 seconds\n[runlim] space:\t\t\t44.4 MB\n[runlim] samples:\t\t185\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/sequenceNurse_mode2_N1_H28.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/sequenceNurse_mode2_N1_H28.runlim"
+    },
+    "sequenceNurseNew_mode4_N1_H28": {
+      "passed": true,
+      "command": [
+        "/home/nghia/.local/opt/sequenceconstraint/bin/sequenceNurseNew",
+        "-w64",
+        "-m4",
+        "-r5",
+        "-i10",
+        "-nurse1",
+        "-day28",
+        "-n3",
+        "-na1",
+        "-d3",
+        "-ca1",
+        "-a1",
+        "-e1",
+        "-p0",
+        "-t3",
+        "-maxP0",
+        "-minP0",
+        "-wP0",
+        "-j0"
+      ],
+      "returncode": 0,
+      "expected_count": 1,
+      "observed_counts": [
+        "1"
+      ],
+      "independent_witness_valid": true,
+      "stdout": "width = 64\nmode = 4\nnurse = 1\nday = 28\namongMDD2 encoding\nNurse 0: MDDRelax::buildDiagram\nDown State requires:936 bytes\nUp State requires:936 bytes\nNurse 0 : [x_0(0), x_1(0), x_2(0), x_3(1), x_4(1), x_5(2), x_6(2), x_7(0), x_8(1), x_9(1), x_10(1), x_11(2), x_12(2), x_13(3), x_14(0), x_15(0), x_16(0), x_17(1), x_18(1), x_19(2), x_20(2), x_21(0), x_22(1), x_23(1), x_24(1), x_25(2), x_26(2), x_27(3)]\n-----------------------------\n%%%mzn-stat: initTime=0.000\n%%%mzn-stat: solveTime=16.360\n%%%mzn-stat: solutions=1\n%%%mzn-stat: variables=28\n%%%mzn-stat: propagators=1\n%%%mzn-stat: propagations=2754\n%%%mzn-stat: nodes=806\n%%%mzn-stat: failures=810\n%%%mzn-stat-end\n\nsolns: 1\nTime : 16372\nI/C  : 7.483\n",
+      "runlim": "[runlim] version:\t\t1.10\n[runlim] time limit:\t\t311040000 seconds\n[runlim] real time limit:\t30 seconds\n[runlim] space limit:\t\t2048 MB\n[runlim] argv[0]:\t\t/home/nghia/.local/opt/sequenceconstraint/bin/sequenceNurseNew\n[runlim] argv[1]:\t\t-w64\n[runlim] argv[2]:\t\t-m4\n[runlim] argv[3]:\t\t-r5\n[runlim] argv[4]:\t\t-i10\n[runlim] argv[5]:\t\t-nurse1\n[runlim] argv[6]:\t\t-day28\n[runlim] argv[7]:\t\t-n3\n[runlim] argv[8]:\t\t-na1\n[runlim] argv[9]:\t\t-d3\n[runlim] argv[10]:\t\t-ca1\n[runlim] argv[11]:\t\t-a1\n[runlim] argv[12]:\t\t-e1\n[runlim] argv[13]:\t\t-p0\n[runlim] argv[14]:\t\t-t3\n[runlim] argv[15]:\t\t-maxP0\n[runlim] argv[16]:\t\t-minP0\n[runlim] argv[17]:\t\t-wP0\n[runlim] argv[18]:\t\t-j0\n[runlim] start:\t\t\tMon Sep 21 07:58:58 2026\n[runlim] main pid:\t\t448\n[runlim] sample:\t\t10.0 time, 10.9 real, 72.8 MB\n[runlim] end:\t\t\tMon Sep 21 07:59:15 2026\n[runlim] status:\t\tok\n[runlim] result:\t\t0\n[runlim] children:\t\t0\n[runlim] real:\t\t\t17.31 seconds\n[runlim] time:\t\t\t16.38 seconds\n[runlim] space:\t\t\t78.2 MB\n[runlim] samples:\t\t164\n",
+      "output_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/sequenceNurseNew_mode4_N1_H28.log",
+      "resource_log": "/mnt/d/Research/SequenceConstraint/code/staircaseNRP/tmp/native-solvers-check-logs/sequenceNurseNew_mode4_N1_H28.runlim"
+    }
+  },
+  "passed": true
+}

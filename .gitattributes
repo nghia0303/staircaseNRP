@@ -1,0 +1,5 @@
+# Keep the Linux setup scripts runnable after checkout from Windows.
+scripts/*.sh text eol=lf
+Compare_NRP/*.sh text eol=lf
+Compare_NRP_2010/*.sh text eol=lf
+native/minicpp/*.patch text eol=lf

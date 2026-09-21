@@ -3,7 +3,7 @@ import sys
 import os
 
 from docplex.cp.config import context
-context.solver.local.execfile = "/home/nghia/cplex/CPLEX_Studio2211/cpoptimizer/bin/x86-64_linux/cpoptimizer"
+context.solver.local.execfile = os.environ.get("CPO_EXECUTABLE", "cpoptimizer")
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from docplex.cp.model import CpoModel
 

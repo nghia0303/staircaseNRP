@@ -1,13 +1,7 @@
 #!/bin/bash
 
 # ==== Đường dẫn ====
-VENV_3_12_PATH="/home/nghia/Desktop/Crew/staircase/.venv/bin/activate"
-VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/.venv1/bin/activate"
-
-SRC_PATH="/home/nghia/Desktop/Staircase/staircaseNRP"
-PICAT_RUN_PATH="/home/nghia/Desktop/Picat/Picat/picat"
-
-AMONG_NURSE_SCRIPT="$SRC_PATH/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/amongNurse"
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)/scripts/linux_env.sh"
 STAIRCASE_PATH="$SRC_PATH/src/test/NRP_2010.py"
 CPLEX_CP_PATH="$SRC_PATH/Compare_NRP_2010/CPLEX/CP/cp_model.py"
 CPLEX_MP_PATH="$SRC_PATH/Compare_NRP_2010/CPLEX/MP/mp_model.py"

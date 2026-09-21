@@ -1,9 +1,12 @@
-from pypblib import pblib
+try:
+	from pypblib import pblib
+	from src.encoding.pblib_encoding import PBLibEncoding
+except ImportError:
+	pblib = None
+	PBLibEncoding = None
 
-from src.encoding.all import Encoder, EncodingType
 from src.encoding.nsc_encoding import NSCEncoding, get_calc_clause_build, get_calc_clause_at_least, \
 	get_calc_clause_range
-from src.encoding.pblib_encoding import PBLibEncoding
 from src.include.common import AuxVariable, AddClause, myrange_inclusive
 
 

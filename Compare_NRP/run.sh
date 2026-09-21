@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # ==== Đường dẫn ====
-VENV_3_12_PATH="/home/nghia/Desktop/Crew/staircase/.venv/bin/activate"
-VENV_3_8_PATH="/home/nghia/Desktop/Crew/staircase/.venv1/bin/activate"
-SRC_PATH="/home/nghia/Desktop/Staircase/staircaseNRP"
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)/scripts/linux_env.sh"
 
 SCRIPT1="${SRC_PATH}/src/test/run_nurse_rostering.py"
 SCRIPT2="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
@@ -11,8 +9,6 @@ SCRIPT2="${SRC_PATH}/Compare_NRP/Gurobi-For-NRP/Gurobi/NRP_gurobi.py"
 CPLEX_MP_SCRIPT="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/MIP/main.py"
 #CPLEX_CP_PATH="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/model/NRP.mod"
 CPLEX_CP_PATH="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/model/nrp.py"
-HADDOCK_CP_SCRIPT="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/sequenceNurse"
-HADDOCK_CP_SEQ_SCRIPT="${SRC_PATH}/Compare_NRP/CPLEX-For-NRP/CP/cpp_model/MiniCP/master/build/sequenceNurseNew"
  #-w32 -m0 -n30 -d84
 PICAT_PATH="${SRC_PATH}/Compare_NRP/Picat/model.pi"
 
@@ -210,7 +206,7 @@ for NURSES in "${NURSE_LIST[@]}"; do
     START_TIME=$(date +%s%N)
     mem_file=$(mktemp)
     ulimit -v $((32 * 1024 * 1024))
-    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" picat "$PICAT_PATH" "$NURSES" "$DAYS")
+    OUTPUT=$(/usr/bin/time -f "%M" -o "$mem_file" timeout "$TIMEOUT" "$PICAT_RUN_PATH" "$PICAT_PATH" "$NURSES" "$DAYS")
     PEAK_RAM=$(cat "$mem_file"); rm -f "$mem_file"
     END_TIME=$(date +%s%N)
     ELAPSED_TIME=$((($END_TIME - $START_TIME)/1000000)) # Convert nanoseconds to milliseconds

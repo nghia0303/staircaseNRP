@@ -1,0 +1,10 @@
+--- a/solver.hpp
++++ b/solver.hpp
+@@ -70,1 +70,1 @@
+-   bool                 _inBranching;
++   bool                 _inBranching = false;
+--- a/mddstate.hpp
++++ b/mddstate.hpp
+@@ -1532,1 +1532,1 @@
+-   bool _onlyApproximateFirstIteration;
++   bool _onlyApproximateFirstIteration = false;
