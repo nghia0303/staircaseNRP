@@ -23,8 +23,7 @@ solver_source="${TABULAR_ALLSAT_SOURCE:-$NRP_NATIVE_HOME/src/tabularAllSAT}"
 solver_bin="${TABULAR_ALLSAT_BIN:-$solver_source/cdcl-vsads/solver}"
 timeout_s="${ALLSAT_TIMEOUT_S:-300}"
 memory_mb="${ALLSAT_MEMORY_MB:-4096}"
-repo_root="$(cd -- "$SRC_PATH/../.." && pwd)"
-output_root="${ALLSAT_OUTPUT_ROOT:-$repo_root/tmp/amongNurse-allsat}"
+output_root="${ALLSAT_OUTPUT_ROOT:-$SRC_PATH/tmp/amongNurse-allsat}"
 run_dir="$output_root/$(date +%Y%m%d_%H%M%S)_$$"
 
 if [[ ! -x "$python_bin" ]]; then

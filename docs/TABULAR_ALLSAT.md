@@ -4,12 +4,12 @@
 
 ## Cài trên máy Ubuntu chạy thực nghiệm
 
-Từ **gốc monorepo `SequenceConstraint`** sau khi pull code:
+Từ **gốc repo `staircaseNRP`** sau khi pull code:
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y git build-essential libgmp-dev runlim coreutils
-source code/staircaseNRP/scripts/linux_env.sh
+source scripts/linux_env.sh
 mkdir -p "$NRP_NATIVE_HOME/src"
 git clone https://github.com/giuspek/tabularAllSAT.git "$NRP_NATIVE_HOME/src/tabularAllSAT"
 git -C "$NRP_NATIVE_HOME/src/tabularAllSAT" checkout --detach ad4a071310581990b7834f1f076ccfb54d592bbf
@@ -22,11 +22,11 @@ make -j2
 
 Commit bắt buộc: `ad4a071310581990b7834f1f076ccfb54d592bbf` của [giuspek/tabularAllSAT](https://github.com/giuspek/tabularAllSAT). Lệnh `rev-parse HEAD` phải in đúng commit đó. Nếu thư mục cài đã tồn tại, **không clone đè**: kiểm tra commit và trạng thái source trước khi dùng. Máy đã cài MiniCPP/Picat không mặc nhiên có TabularAllSAT. Binary mặc định được runner tìm tại `$NRP_NATIVE_HOME/src/tabularAllSAT/cdcl-vsads/solver`; có thể chỉ đường dẫn khác qua `TABULAR_ALLSAT_BIN`. Report mỗi lượt ghi SHA256 binary, CNF và các file model/encoding chính để đối chiếu hai máy.
 
-Python cần môi trường Linux của dự án (`NRP_VENV` trong `scripts/linux_env.sh`) với `python-sat` và các dependency tại `requirements-linux.lock.txt`. Nếu máy chưa thiết lập môi trường, xem [WSL_ENVIRONMENT.md](WSL_ENVIRONMENT.md) và chạy `bash code/staircaseNRP/scripts/setup_linux.sh` từ gốc monorepo; không dùng virtualenv Windows.
+Python cần môi trường Linux của dự án (`NRP_VENV` trong `scripts/linux_env.sh`) với `python-sat` và các dependency tại `requirements-linux.lock.txt`. Nếu máy chưa thiết lập môi trường, xem [WSL_ENVIRONMENT.md](WSL_ENVIRONMENT.md) và chạy `bash scripts/setup_linux.sh` từ gốc repo; không dùng virtualenv Windows.
 
 ## Chạy
 
-Từ bất kỳ thư mục nào sau khi đã `source code/staircaseNRP/scripts/linux_env.sh` từ gốc monorepo:
+Từ bất kỳ thư mục nào sau khi đã `source scripts/linux_env.sh` từ gốc repo:
 
 ```bash
 # Mặc định: C-III, H=40; chạy Ladder rồi DE, liệt kê các lịch đầy đủ
@@ -39,7 +39,7 @@ bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" 2 40
 bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" --grid
 ```
 
-`ALLSAT_TIMEOUT_S=300` và `ALLSAT_MEMORY_MB=4096` là giới hạn mặc định **cho từng method/instance**; chỉnh bằng biến môi trường khi cần. `ALLSAT_OUTPUT_ROOT` đổi nơi lưu kết quả; mặc định là `tmp/amongNurse-allsat/` ở gốc monorepo, đã bị Git ignore. Mỗi lượt tạo CNF projected, JSON report, stdout và log runlim riêng. Nếu một lượt timeout/lỗi, script vẫn chạy các lượt còn lại, giữ log, rồi trả exit code 1 ở cuối. Không dùng `sudo`, không xóa cache máy, không sửa script benchmark cũ.
+`ALLSAT_TIMEOUT_S=300` và `ALLSAT_MEMORY_MB=4096` là giới hạn mặc định **cho từng method/instance**; chỉnh bằng biến môi trường khi cần. `ALLSAT_OUTPUT_ROOT` đổi nơi lưu kết quả; mặc định là `tmp/amongNurse-allsat/` ở gốc repo `staircaseNRP`, đã bị Git ignore. Mỗi lượt tạo CNF projected, JSON report, stdout và log runlim riêng. Nếu một lượt timeout/lỗi, script vẫn chạy các lượt còn lại, giữ log, rồi trả exit code 1 ở cuối. Không dùng `sudo`, không xóa cache máy, không sửa script benchmark cũ.
 
 Muốn kiểm tra từng lịch và tính duy nhất ngoài việc đối chiếu số dòng, bật validator; thời gian sẽ gồm thêm overhead Python:
 
