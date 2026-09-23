@@ -49,7 +49,7 @@ def projected_model(line: str, horizon: int) -> tuple[int, ...]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--method", choices=("ladder", "de"), default="ladder")
+    parser.add_argument("--method", choices=("ladder", "de", "pblib_bdd-pblib_bdd"), default="ladder")
     parser.add_argument("--class-id", type=int, choices=(1, 2, 3), default=3)
     parser.add_argument("--horizon", type=int, choices=(40, 50, 60, 70, 80), default=40)
     parser.add_argument("--solver-bin", type=Path, required=True)
@@ -68,7 +68,8 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     encoding_mode = "staircase" if args.method == "ladder" else "pblib_bdd"
-    encoding_label = f"{encoding_mode}-binomial"
+    second_encoding_mode = "pblib_bdd" if args.method == "pblib_bdd-pblib_bdd" else "binomial"
+    encoding_label = f"{encoding_mode}-{second_encoding_mode}"
     prefix = f"{args.method}_C{args.class_id}_H{args.horizon}"
     cnf_path = output_dir / f"{prefix}.projected.cnf"
     stderr_path = output_dir / f"{prefix}.stderr.txt"
@@ -79,7 +80,7 @@ def main() -> int:
         horizon=args.horizon,
         constraint=args.class_id,
         encoding_mode=encoding_mode,
-        second_encoding_mode="binomial",
+        second_encoding_mode=second_encoding_mode,
     )
     nrp.add_constraints()
     projection = nrp.variables.get_all_variables()

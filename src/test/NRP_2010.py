@@ -281,59 +281,81 @@ class NRP:
 
 
         if not self.use_local_solver:
-            pysat_solver = Solver(
+            # Code cũ, giữ nguyên để đối chiếu:
+            # pysat_solver = Solver(
+            #     name=self.solver_name,
+            #     bootstrap_with=self.get_clauses()
+            # )
+            #
+            # for model in pysat_solver.enum_models():
+            #     time_to_first_solution = time.perf_counter()
+            #     # blocking_clause = [-lit for lit in model if abs(lit) <= self.horizon]
+            #     blocking_clause = []
+            #     for day in range(1, self.horizon+1):
+            #         if model[self.variables.get_variable(day)-1] > 0:
+            #             blocking_clause.append(-self.variables.get_variable(day))
+            #         else:
+            #             blocking_clause.append(self.variables.get_variable(day))
+            #
+            #
+            #     # print(blocking_clause)
+            #     # print(f"Blocking clause: {blocking_clause}")
+            #     if self.use_tseintin:
+            #         separated_clauses = self.separate_clauses(blocking_clause, self.chunk_width)
+            #         for clause in separated_clauses:
+            #             # print(clause)
+            #             pysat_solver.add_clause(clause)
+            #     else:
+            #         pysat_solver.add_clause(blocking_clause)
+            #
+            #     solution_count += 1
+            #
+            #
+            #     # print(solution_count)
+            #     # solution = []
+            #     # for day in range(1, self.horizon + 1):
+            #     #     solution.append(model[self.variables.get_variable(day)-1])
+            #
+            #     # print(f"Solution {solution_count + 1}: {self.validate_solution(solution)}")
+            #
+            #     # print(f"Solution {solution_count}")
+            #     # with open('tmp/solution.txt', 'a') as f:
+            #     #     # f.write(f"Solution: {model}\n")
+            #     #     solution = []
+            #     #     for day in range(1, self.horizon + 1):
+            #     #         solution.append(model[self.variables.get_variable(day)-1])
+            #     #
+            #     #         # f.write(str(model[self.variables.get_variable(day)-1]) + " ")
+            #     #         # # if model[self.variables.get_variable(day)] > 0:
+            #     #         # #     f.write(f"Day {day}: Work\n")
+            #     #         # # else:
+            #     #         # #     f.write(f"Day {day}: Off\n")
+            #     #     f.write(f"Solution {solution_count}: ")
+            #     #     f.write(" ".join(map(str, solution)) + "\n")
+            #
+            #     # del blocking_clause
+            #     # del separated_clauses
+
+            with Solver(
                 name=self.solver_name,
                 bootstrap_with=self.get_clauses()
-            )
+            ) as pysat_solver:
+                work_days = self.variables.get_all_variables()
+                while pysat_solver.solve():
+                    if time_to_first_solution is None:
+                        time_to_first_solution = time.perf_counter()
+                    model = pysat_solver.get_model()
+                    blocking_clause = [-var if model[var - 1] > 0 else var for var in work_days]
 
-            for model in pysat_solver.enum_models():
-                time_to_first_solution = time.perf_counter()
-                # blocking_clause = [-lit for lit in model if abs(lit) <= self.horizon]
-                blocking_clause = []
-                for day in range(1, self.horizon+1):
-                    if model[self.variables.get_variable(day)-1] > 0:
-                        blocking_clause.append(-self.variables.get_variable(day))
+                    if self.use_tseintin:
+                        for clause in self.separate_clauses(blocking_clause, self.chunk_width):
+                            pysat_solver.add_clause(clause)
                     else:
-                        blocking_clause.append(self.variables.get_variable(day))
+                        pysat_solver.add_clause(blocking_clause)
+
+                    solution_count += 1
 
 
-                # print(blocking_clause)
-                # print(f"Blocking clause: {blocking_clause}")
-                if self.use_tseintin:
-                    separated_clauses = self.separate_clauses(blocking_clause, self.chunk_width)
-                    for clause in separated_clauses:
-                        # print(clause)
-                        pysat_solver.add_clause(clause)
-                else:
-                    pysat_solver.add_clause(blocking_clause)
-
-                solution_count += 1
-
-
-                # print(solution_count)
-                # solution = []
-                # for day in range(1, self.horizon + 1):
-                #     solution.append(model[self.variables.get_variable(day)-1])
-
-                # print(f"Solution {solution_count + 1}: {self.validate_solution(solution)}")
-
-                # print(f"Solution {solution_count}")
-                # with open('tmp/solution.txt', 'a') as f:
-                #     # f.write(f"Solution: {model}\n")
-                #     solution = []
-                #     for day in range(1, self.horizon + 1):
-                #         solution.append(model[self.variables.get_variable(day)-1])
-                #
-                #         # f.write(str(model[self.variables.get_variable(day)-1]) + " ")
-                #         # # if model[self.variables.get_variable(day)] > 0:
-                #         # #     f.write(f"Day {day}: Work\n")
-                #         # # else:
-                #         # #     f.write(f"Day {day}: Off\n")
-                #     f.write(f"Solution {solution_count}: ")
-                #     f.write(" ".join(map(str, solution)) + "\n")
-
-                # del blocking_clause
-                # del separated_clauses
         else:
             # print("Hello")
             if not os.path.exists('tmp/cnf'):
@@ -564,4 +586,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
