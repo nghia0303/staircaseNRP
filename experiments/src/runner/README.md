@@ -45,3 +45,26 @@ startup and shutdown are excluded from this metric. Validation is intended for
 correctness runs, not timed performance runs. Raw results and `summary.csv`
 are written under
 `experiments/runs/amongNurse-ladder-solvers/` by default.
+
+## Python timing runner
+
+`run_among_nurse_ladder_solvers.py` runs the same grid, methods, driver,
+limits, and environment-variable interface without using the shell as the
+batch orchestrator:
+
+```bash
+$HOME/.venvs/sequenceconstraint/bin/python -B \
+  experiments/src/runner/run_among_nurse_ladder_solvers.py
+$HOME/.venvs/sequenceconstraint/bin/python -B \
+  experiments/src/runner/run_among_nurse_ladder_solvers.py 3 40
+$HOME/.venvs/sequenceconstraint/bin/python -B \
+  experiments/src/runner/run_among_nurse_ladder_solvers.py --grid
+```
+
+Its primary external measurement is `python_subprocess_wall_s`, obtained with
+`time.perf_counter_ns()` around exactly `timeout -> Python method driver`.
+This has the same intended boundary as `gnu_time_real_s` in the shell runner,
+but records sub-millisecond precision. `python_runner_wall_s` also includes
+runlim startup and shutdown and is diagnostic only. Results go to
+`experiments/runs/amongNurse-ladder-solvers-python/` by default so they cannot
+overwrite shell-runner results.
