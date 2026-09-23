@@ -110,7 +110,7 @@ failed=0
 echo "Output dir: $run_dir"
 echo "Plan: C=[${classes[*]}], H=[${horizons[*]}], methods=[${methods[*]}], runs=$total_runs"
 echo "Per-run limits: ${timeout_s}s; ${memory_mb} MB RAM"
-echo "Elapsed metric: GNU wall time around the complete method process."
+echo "Elapsed metric: GNU wall time for the complete method process; runlim overhead is excluded."
 
 for class_id in "${classes[@]}"; do
     for horizon in "${horizons[@]}"; do
@@ -140,10 +140,17 @@ for class_id in "${classes[@]}"; do
             printf '[%d/%d] C=%s H=%s | %s: START\n' \
                 "$run_number" "$total_runs" "$class_id" "$horizon" "$method"
 
-            if /usr/bin/time -f '%e' -o "$gnu_time_file" \
-                    runlim -o "$runlim_file" -r "$((timeout_s + 60))" -s "$memory_mb" \
-                    bash -c '"$@"; code=$?; printf "%s\n" "$code" > "$0"; exit "$code"' \
-                    "$exit_file" timeout --foreground --signal=TERM --kill-after=5s "${timeout_s}s" \
+            if runlim -o "$runlim_file" -r "$((timeout_s + 60))" -s "$memory_mb" \
+                    bash -c '
+                        exit_file=$1
+                        gnu_time_file=$2
+                        shift 2
+                        /usr/bin/time -f "%e" -o "$gnu_time_file" "$@"
+                        code=$?
+                        printf "%s\n" "$code" > "$exit_file"
+                        exit "$code"
+                    ' _ "$exit_file" "$gnu_time_file" \
+                    timeout --foreground --signal=TERM --kill-after=5s "${timeout_s}s" \
                     "$python_bin" -B "$driver" "${args[@]}" \
                     > "$stdout_file" 2>&1; then
                 run_code=0

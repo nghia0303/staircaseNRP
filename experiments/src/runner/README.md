@@ -38,7 +38,10 @@ Useful environment variables:
 - `LADDER_SOLVER_VALIDATE_MODELS=1`: validate every schedule and uniqueness;
 - `TABULAR_ALLSAT_SOURCE` or `TABULAR_ALLSAT_BIN`: pinned solver location.
 
-The main timing is GNU elapsed wall time around the complete method process.
-Validation is intended for correctness runs, not timed performance runs. Raw
-results and `summary.csv` are written under
+The main timing is GNU elapsed wall time for the complete method process,
+including `timeout`, Python startup, encoding/CNF I/O, enumeration, and normal
+process shutdown. `runlim` wraps GNU time, so the resource monitor's own
+startup and shutdown are excluded from this metric. Validation is intended for
+correctness runs, not timed performance runs. Raw results and `summary.csv`
+are written under
 `experiments/runs/amongNurse-ladder-solvers/` by default.
