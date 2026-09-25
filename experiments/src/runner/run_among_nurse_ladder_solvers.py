@@ -76,13 +76,37 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         description="Compare four AllSAT backends on the same Ladder amongNurse CNF."
     )
     parser.add_argument("--grid", action="store_true", help="run all 15 C/H instances")
+    parser.add_argument(
+        "--classes",
+        nargs="+",
+        type=int,
+        choices=(1, 2, 3),
+        metavar="C",
+        help="classes to run; omitted --horizons means all five horizons",
+    )
+    parser.add_argument(
+        "--horizons",
+        nargs="+",
+        type=int,
+        choices=VALID_HORIZONS,
+        metavar="H",
+        help="horizons to run; omitted --classes means all three classes",
+    )
     parser.add_argument("class_id", nargs="?", type=int, choices=(1, 2, 3))
     parser.add_argument("horizon", nargs="?", type=int, choices=VALID_HORIZONS)
     args = parser.parse_args(argv)
-    if args.grid and (args.class_id is not None or args.horizon is not None):
-        parser.error("--grid cannot be combined with CLASS HORIZON")
+    selected = args.classes is not None or args.horizons is not None
+    positional = args.class_id is not None or args.horizon is not None
+    if args.grid and (selected or positional):
+        parser.error("--grid cannot be combined with class or horizon selections")
     if (args.class_id is None) != (args.horizon is None):
         parser.error("provide both CLASS and HORIZON, or neither")
+    if selected and positional:
+        parser.error("--classes/--horizons cannot be combined with CLASS HORIZON")
+    if args.classes is not None and len(set(args.classes)) != len(args.classes):
+        parser.error("--classes contains a duplicate class")
+    if args.horizons is not None and len(set(args.horizons)) != len(args.horizons):
+        parser.error("--horizons contains a duplicate horizon")
     return args
 
 
@@ -205,7 +229,7 @@ def main(argv: list[str]) -> int:
     args = parse_args(argv)
     repo_root = Path(__file__).resolve().parents[3]
     home = Path.home()
-    nrp_venv = Path(os.environ.get("NRP_VENV", home / ".venvs/sequenceconstraint"))
+    nrp_venv = Path(os.environ.get("NRP_VENV", repo_root / ".venv"))
     native_home = Path(
         os.environ.get("NRP_NATIVE_HOME", home / ".local/opt/sequenceconstraint")
     )
@@ -232,6 +256,9 @@ def main(argv: list[str]) -> int:
 
     if args.grid:
         classes, horizons = (1, 2, 3), VALID_HORIZONS
+    elif args.classes is not None or args.horizons is not None:
+        classes = tuple(args.classes) if args.classes is not None else (1, 2, 3)
+        horizons = tuple(args.horizons) if args.horizons is not None else VALID_HORIZONS
     elif args.class_id is not None:
         classes, horizons = (args.class_id,), (args.horizon,)
     else:

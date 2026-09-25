@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Rerun amongNurse with TabularAllSAT, PySAT g421, and the legacy methods.
+# Rerun amongNurse with TabularAllSAT, multiple PySAT backends, and the legacy methods.
 set -euo pipefail
 
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -14,16 +14,26 @@ if [[ $# -eq 0 ]]; then
 elif [[ $# -eq 1 && $1 == --grid ]]; then
     classes=(1 2 3)
     horizons=(40 50 60 70 80)
+elif [[ $# -eq 1 && $1 == --ci-cii ]]; then
+    classes=(1 2)
+    horizons=(40 50 60 70 80)
+elif [[ $# -eq 1 && $1 == --ciii ]]; then
+    classes=(3)
+    horizons=(40 50 60 70 80)
 elif [[ $# -eq 2 ]]; then
     classes=("$1")
     horizons=("$2")
 else
-    echo "Usage: bash run_all_sat.sh [CLASS HORIZON | --grid]" >&2
+    echo "Usage: bash run_all_sat.sh [CLASS HORIZON | --ci-cii | --ciii | --grid]" >&2
     exit 2
 fi
 
 all_methods=(ladder pblib_bdd-pblib_bdd de
+    # Old G421-only method list, kept for comparison with the previous experiment:
+    # sat_g421_staircase-binomial sat_g421_pblib_bdd-pblib_bdd sat_g421_pblib_bdd-binomial
     sat_g421_staircase-binomial sat_g421_pblib_bdd-pblib_bdd sat_g421_pblib_bdd-binomial
+    sat_cadical195_staircase-binomial sat_cadical195_pblib_bdd-pblib_bdd sat_cadical195_pblib_bdd-binomial
+    sat_cadical300_staircase-binomial sat_cadical300_pblib_bdd-pblib_bdd sat_cadical300_pblib_bdd-binomial
     classic amongMDD2 seqMDD2 CPLEX_CP CPLEX_MP Gurobi Picat)
 if [[ -n "${ALLSAT_METHODS:-}" ]]; then
     read -r -a methods <<< "$ALLSAT_METHODS"
@@ -95,7 +105,10 @@ method_label() {
         ladder) echo "TabularAllSAT Ladder (staircase-binomial)" ;;
         pblib_bdd-pblib_bdd) echo "TabularAllSAT pblib_bdd-pblib_bdd" ;;
         de) echo "TabularAllSAT DE (pblib_bdd-binomial)" ;;
-        sat_g421_*) echo "PySAT g421 (${1#sat_g421_})" ;;
+        # sat_g421_*) echo "PySAT g421 (${1#sat_g421_})" ;;
+        sat_g421_*) echo "PySAT G421 (${1#sat_g421_})" ;;
+        sat_cadical195_*) echo "PySAT CaDiCaL 1.9.5 (${1#sat_cadical195_})" ;;
+        sat_cadical300_*) echo "PySAT CaDiCaL 3.0 (${1#sat_cadical300_})" ;;
         classic) echo "MiniCPP Classic" ;;
         amongMDD2) echo "MiniCPP amongMDD2" ;;
         seqMDD2) echo "MiniCPP seqMDD2" ;;
@@ -157,9 +170,22 @@ run_legacy() {
     local -a command
 
     case "$method" in
+        # Old G421 dispatch, kept for comparison with the previous experiment:
+        # sat_g421_*)
+        #     encoding="${method#sat_g421_}"
+        #     command=("$python_bin" -B "$SRC_PATH/src/test/NRP_2010.py" "$horizon" "$class_id" "$encoding" g421)
+        #     ;;
         sat_g421_*)
             encoding="${method#sat_g421_}"
             command=("$python_bin" -B "$SRC_PATH/src/test/NRP_2010.py" "$horizon" "$class_id" "$encoding" g421)
+            ;;
+        sat_cadical195_*)
+            encoding="${method#sat_cadical195_}"
+            command=("$python_bin" -B "$SRC_PATH/src/test/NRP_2010.py" "$horizon" "$class_id" "$encoding" cadical195)
+            ;;
+        sat_cadical300_*)
+            encoding="${method#sat_cadical300_}"
+            command=("$python_bin" -B "$SRC_PATH/src/test/NRP_2010.py" "$horizon" "$class_id" "$encoding" cadical300)
             ;;
         classic|amongMDD2|seqMDD2)
             local mode=0 n=0 d=2 max_p=0
@@ -236,9 +262,19 @@ result = {
     "runlim_space_mb": resource("space"), "command": command,
     "stdout_file": stdout, "stderr_file": stderr, "runlim_file": runlim,
 }
+# Old G421 metadata, kept for comparison with the previous experiment:
+# if method.startswith("sat_g421_"):
+#     result["encoding"] = method.removeprefix("sat_g421_")
+#     result["solver"] = "g421"
 if method.startswith("sat_g421_"):
     result["encoding"] = method.removeprefix("sat_g421_")
     result["solver"] = "g421"
+if method.startswith("sat_cadical195_"):
+    result["encoding"] = method.removeprefix("sat_cadical195_")
+    result["solver"] = "cadical195"
+if method.startswith("sat_cadical300_"):
+    result["encoding"] = method.removeprefix("sat_cadical300_")
+    result["solver"] = "cadical300"
 Path(report).write_text(json.dumps(result, indent=2) + "\n")
 raise SystemExit(0 if status == "complete" else 1)
 PY

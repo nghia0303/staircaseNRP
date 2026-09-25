@@ -1,5 +1,8 @@
-from openpyxl.styles import Alignment
-from pysat.formula import CNF
+# Old eager import loaded openpyxl (and numpy) for every SAT experiment:
+# from openpyxl.styles import Alignment
+# Unused by the active AddClause implementation; kept for the commented
+# PySAT-backed implementation below:
+# from pysat.formula import CNF
 
 
 def cl(x: list[int], file=None) -> None:
@@ -81,6 +84,10 @@ def myrange_inclusive(f: int, t: int):
 
 
 def write_to_cell(cell, value):
+	# Excel formatting is only needed by spreadsheet exporters. Import it here
+	# so SAT encoding and solving do not pay the openpyxl startup cost.
+	from openpyxl.styles import Alignment
+
 	cell.value = value
 	if type(cell.value) == float:
 		cell.number_format = 'General'

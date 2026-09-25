@@ -1,6 +1,6 @@
 # Chạy amongNurse với TabularAllSAT và các phương pháp legacy
 
-`Compare_NRP_2010/run_all_sat.sh` chạy các phương pháp và tham số của `run.sh`, đồng thời chạy cả ba cấu hình SAT bằng TabularAllSAT **và** PySAT `g421` trên model legacy `src/test/NRP_2010.py`. `run.sh` vẫn giữ nguyên. Không tự đưa số đo WSL vào paper. Không commit source/binary của solver bên thứ ba vào repo này.
+`Compare_NRP_2010/run_all_sat.sh` chạy các phương pháp và tham số của `run.sh`, đồng thời chạy cả ba cấu hình SAT bằng TabularAllSAT và các backend PySAT `g421`, `cadical195`, `cadical300` trên model legacy `src/test/NRP_2010.py`. `run.sh` vẫn giữ nguyên. Không tự đưa số đo WSL vào paper. Không commit source/binary của solver bên thứ ba vào repo này.
 
 ## Cài trên máy Ubuntu chạy thực nghiệm
 
@@ -35,17 +35,23 @@ bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh"
 # Chỉ định một instance
 bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" 2 40
 
-# Quét đủ 15 cấu hình cho cả 13 phương pháp, có thể rất lâu
+# Quét đủ 15 cấu hình cho tất cả phương pháp, có thể rất lâu
 bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" --grid
+
+# Chỉ C-I/C-II, đủ 19 phương pháp và một summary.csv chung
+bash "$SRC_PATH/Compare_NRP_2010/run_all_sat_ci_cii.sh"
 
 # Chạy riêng các cấu hình SAT qua TabularAllSAT
 ALLSAT_METHODS="ladder pblib_bdd-pblib_bdd de" bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" 2 40
 
-# Chạy riêng ba cấu hình SAT qua PySAT g421
-ALLSAT_METHODS="sat_g421_staircase-binomial sat_g421_pblib_bdd-pblib_bdd sat_g421_pblib_bdd-binomial" bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" 2 40
+# Cấu hình G421 cũ (đã comment trong runner):
+# ALLSAT_METHODS="sat_g421_staircase-binomial sat_g421_pblib_bdd-pblib_bdd sat_g421_pblib_bdd-binomial" bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" 2 40
+
+# Chạy riêng ba cấu hình SAT qua PySAT CaDiCaL 1.9.5
+ALLSAT_METHODS="sat_cadical195_staircase-binomial sat_cadical195_pblib_bdd-pblib_bdd sat_cadical195_pblib_bdd-binomial" bash "$SRC_PATH/Compare_NRP_2010/run_all_sat.sh" 2 40
 ```
 
-Ba cấu hình TabularAllSAT là `ladder` = `staircase-binomial`, `pblib_bdd-pblib_bdd` và `de` = `pblib_bdd-binomial`. Ba cấu hình PySAT `g421` tương ứng có tiền tố `sat_g421_`; chúng gọi `NRP_2010.py` với tên solver `g421` và liệt kê nghiệm bằng vòng SAT tăng dần. Bảy phương pháp còn lại là `classic`, `amongMDD2`, `seqMDD2`, `CPLEX_CP`, `CPLEX_MP`, `Gurobi`, `Picat`; chúng dùng cùng model và tham số như `run.sh`. `ALLSAT_METHODS` nhận danh sách tên cách nhau bằng dấu cách nếu chỉ muốn chạy một phần. Nếu có một lượt TabularAllSAT hoàn tất trước các phương pháp khác, runner dùng số lịch đó để phát hiện sai lệch số nghiệm.
+Ba cấu hình TabularAllSAT là `ladder` = `staircase-binomial`, `pblib_bdd-pblib_bdd` và `de` = `pblib_bdd-binomial`. Mỗi backend PySAT `g421`, `cadical195`, `cadical300` chạy đủ ba encoding và liệt kê nghiệm bằng vòng SAT tăng dần với projected blocking clause. Bảy phương pháp còn lại là `classic`, `amongMDD2`, `seqMDD2`, `CPLEX_CP`, `CPLEX_MP`, `Gurobi`, `Picat`; chúng dùng cùng model và tham số như `run.sh`. `ALLSAT_METHODS` nhận danh sách tên cách nhau bằng dấu cách nếu chỉ muốn chạy một phần. Nếu có một lượt TabularAllSAT hoàn tất trước các phương pháp khác, runner dùng số lịch đó để phát hiện sai lệch số nghiệm.
 
 Trên màn hình, mỗi lượt có số thứ tự, C/H và tên phương pháp, sau đó là trạng thái, số nghiệm, thời gian toàn lượt và RAM tối đa. Thông báo terminal chỉ dùng ký tự ASCII để tránh lỗi font. Thời gian này là `GNU wall`, đo bằng `/usr/bin/time -f '%e'` bao ngoài runlim; `runlim wall`, CPU và các thời gian nội bộ nằm trong `summary.csv` và log riêng. Khi lỗi, màn hình chỉ tên report và log trong thư mục output; stdout chi tiết của chương trình được lưu vào file để dễ xem lại.
 

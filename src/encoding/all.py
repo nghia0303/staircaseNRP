@@ -1,18 +1,18 @@
 from enum import Enum, auto
 from typing import Callable
 
-from pypblib import pblib
-from pysat.pb import EncType
-
-from src.encoding.binary_encoding import BinaryEncoding
-from src.encoding.binomial_encoding import BinomialEncoding
-from src.encoding.commander_encoding import CommanderEncoding
-from src.encoding.nsc_encoding import NSCEncoding
-from src.encoding.pblib_encoding import PBLibEncoding
-from src.encoding.product_encoding import ProductEncoding
-from src.encoding.sc_encoding import SCEncoding
-from src.encoding.at_most_seq_card_encoding import AtMostSeqCard
-from src.encoding.pblib_encoding_pysat import PBLibCardEncodingPysat
+# Old eager imports loaded every encoding backend for each experiment process:
+# from pypblib import pblib
+# from pysat.pb import EncType  # Unused.
+# from src.encoding.binary_encoding import BinaryEncoding
+# from src.encoding.binomial_encoding import BinomialEncoding
+# from src.encoding.commander_encoding import CommanderEncoding
+# from src.encoding.nsc_encoding import NSCEncoding
+# from src.encoding.pblib_encoding import PBLibEncoding
+# from src.encoding.product_encoding import ProductEncoding
+# from src.encoding.sc_encoding import SCEncoding
+# from src.encoding.at_most_seq_card_encoding import AtMostSeqCard
+# from src.encoding.pblib_encoding_pysat import PBLibCardEncodingPysat
 from src.include.common import AuxVariable, AddClause
 
 
@@ -62,34 +62,49 @@ def str_to_type_enum(encoding_type: str) -> EncodingType:
 class Encoder:
 	def __init__(self, encoding_type: EncodingType, str_encoding_type: str = ""):
 		if encoding_type == EncodingType.BINARY:
+			from src.encoding.binary_encoding import BinaryEncoding
 			self.internal_encoder = BinaryEncoding()
 		elif encoding_type == EncodingType.BINOMIAL:
+			from src.encoding.binomial_encoding import BinomialEncoding
 			self.internal_encoder = BinomialEncoding()
 		elif encoding_type == EncodingType.COMMANDER:
+			from src.encoding.commander_encoding import CommanderEncoding
 			self.internal_encoder = CommanderEncoding()
 		elif encoding_type == EncodingType.NEW_SEQUENCE_COUNTER:
+			from src.encoding.nsc_encoding import NSCEncoding
 			self.internal_encoder = NSCEncoding()
 		elif encoding_type == EncodingType.PRODUCT:
+			from src.encoding.product_encoding import ProductEncoding
 			self.internal_encoder = ProductEncoding()
 		elif encoding_type == EncodingType.SEQUENCE_COUNTER:
+			from src.encoding.sc_encoding import SCEncoding
 			self.internal_encoder = SCEncoding()
 		elif encoding_type == EncodingType.PBLIB_ADD:
+			from pypblib import pblib
+			from src.encoding.pblib_encoding import PBLibEncoding
 			config = pblib.PBConfig()
 			config.set_AMK_Encoder(pblib.AMK_BEST)
 			self.internal_encoder = PBLibEncoding(config)
 		elif encoding_type == EncodingType.PBLIB_BDD:
+			from pypblib import pblib
+			from src.encoding.pblib_encoding import PBLibEncoding
 			config = pblib.PBConfig()
 			config.set_AMK_Encoder(pblib.AMK_BDD)
 			self.internal_encoder = PBLibEncoding(config)
 		elif encoding_type == EncodingType.PBLIB_CARD:
+			from pypblib import pblib
+			from src.encoding.pblib_encoding import PBLibEncoding
 			config = pblib.PBConfig()
 			config.set_AMK_Encoder(pblib.AMK_CARD)
 			self.internal_encoder = PBLibEncoding(config)
 		elif encoding_type == EncodingType.PBLIB_CARD_PYSAT:
+			from src.encoding.pblib_encoding_pysat import PBLibCardEncodingPysat
 			self.internal_encoder = PBLibCardEncodingPysat()
 		elif encoding_type == EncodingType.PYSAT:
+			from src.encoding.pblib_encoding_pysat import PBLibCardEncodingPysat
 			self.internal_encoder = PBLibCardEncodingPysat(str_encoding_type)
 		elif encoding_type == EncodingType.AT_MOST_SEQ_CARD_SEQUENTIAL_COUNTER:
+			from src.encoding.at_most_seq_card_encoding import AtMostSeqCard
 			self.internal_encoder = AtMostSeqCard.SequentialCounter()
 		else:
 			raise RuntimeError(f"No such encoding: {encoding_type}")
@@ -132,6 +147,7 @@ class Encoder:
 
 	@staticmethod
 	def encode_hybrid(var: list[int], k: int, first_new_var: int, formula: list[list[int]]) -> int:
+		from src.encoding.nsc_encoding import NSCEncoding
 		nsc = NSCEncoding()
 		aux = AuxVariable(first_new_var)
 		add_clause = AddClause(formula)

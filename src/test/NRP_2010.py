@@ -19,13 +19,25 @@ import gc
 import time
 import sys
 import os
-from pysat.solvers import Solver
+# Old eager import loaded every public PySAT wrapper even for the separate
+# direct-pysolvers experiment:
+# from pysat.solvers import Solver
+_PublicSolver = None
 
+
+def _get_public_solver():
+    global _PublicSolver
+    if _PublicSolver is None:
+        from pysat.solvers import Solver
+        _PublicSolver = Solver
+    return _PublicSolver
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from src.include.allSATSolver import LocalSolver
-from src.encoding.nsc_encoding import NSCEncoding
+# Old eager imports. LocalSolver is only needed by the optional external-solver
+# branch, and NSCEncoding is not referenced directly by this module:
+# from src.include.allSATSolver import LocalSolver
+# from src.encoding.nsc_encoding import NSCEncoding
 from src.encoding.staircase_encoding import StaircaseEncoding
 from src.include.common import AuxVariable, AddClause
 from src.encoding.all import Encoder, str_to_type_enum
@@ -150,7 +162,11 @@ class NRP:
 
             # encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
         del encoder
-        gc.collect()
+        # Old unconditional full collection found no unreachable objects in
+        # the benchmark grid but added milliseconds to every short run:
+        # gc.collect()
+        if os.environ.get("NRP_FORCE_GC") == "1":
+            gc.collect()
 
     def add_at_least_x_working_day_per_y_day(self, x: int, y: int, encoding_mode: str):
         """
@@ -171,7 +187,12 @@ class NRP:
 
             # encoder.encode_at_most_k(var, x, self.aux, self.add_clauses)
         del encoder
-        gc.collect()
+        # Old unconditional collection; set NRP_FORCE_GC=1 to retain it for a
+        # memory-focused batch:
+        # gc.collect()
+        if os.environ.get("NRP_FORCE_GC") == "1":
+            gc.collect()
+
     def separate_clauses(self, clauses: list[int], width: int):
         """
             Separate long clauses into smaller ones by Tseitin Method
@@ -233,7 +254,8 @@ class NRP:
         time_to_first_solution = None
 
         if not self.use_local_solver:
-            pysat_solver = Solver(
+            solver_class = _get_public_solver()
+            pysat_solver = solver_class(
                 name=self.solver_name,
                 bootstrap_with=self.get_clauses()
             )
@@ -251,6 +273,7 @@ class NRP:
 
             self.to_cnf('tmp/cnf/nrp.cnf')
 
+            from src.include.allSATSolver import LocalSolver
             local_solver = LocalSolver()
             ret = 0
             res = []
@@ -336,7 +359,8 @@ class NRP:
             #     # del blocking_clause
             #     # del separated_clauses
 
-            with Solver(
+            solver_class = _get_public_solver()
+            with solver_class(
                 name=self.solver_name,
                 bootstrap_with=self.get_clauses()
             ) as pysat_solver:
@@ -365,6 +389,7 @@ class NRP:
 
             solvable = True
 
+            from src.include.allSATSolver import LocalSolver
             local_solver = LocalSolver()
             ret = 0
             res = []
@@ -561,6 +586,11 @@ def main():
     else:
         solve_one_solution = False
 
+
+    # Preserve the old internal timing boundary: public PySAT is imported
+    # before start_time. Importers that only build the CNF do not pay for it.
+    if not use_local_solver:
+        _get_public_solver()
 
     print(sys.argv)
     print(f"Running NRP with horizon={horizon}, constraint={constraint}, encoding_mode={encoding_mode}, second_encoding_mode={second_encoding_mode}, solver_name={solver_name}, use_local_solver={use_local_solver}, use_tseintin={use_tseintin}, chunk_width={chunk_width}")

@@ -3,6 +3,7 @@
 out/
 tmp/
 venv/
+.venv/
 input*.txt
 /inputs/
 

@@ -1,9 +1,11 @@
-try:
-	from pypblib import pblib
-	from src.encoding.pblib_encoding import PBLibEncoding
-except ImportError:
-	pblib = None
-	PBLibEncoding = None
+# Old eager imports loaded PBLib even when the active Staircase encoding did
+# not use the legacy staircase_brute_pblib() helper:
+# try:
+# 	from pypblib import pblib
+# 	from src.encoding.pblib_encoding import PBLibEncoding
+# except ImportError:
+# 	pblib = None
+# 	PBLibEncoding = None
 
 from src.encoding.nsc_encoding import NSCEncoding, get_calc_clause_build, get_calc_clause_at_least, \
 	get_calc_clause_range
@@ -362,6 +364,9 @@ class StaircaseEncoding:
 		return self.aux.get_total_added_var()
 
 	def staircase_brute_pblib(self, var: list[int], window_size: int, cap: int, first_new_var: int, formula: list[list[int]]) -> int:
+		from pypblib import pblib
+		from src.encoding.pblib_encoding import PBLibEncoding
+
 		self.var = var
 		self.n = len(var)
 		self.window_size = window_size

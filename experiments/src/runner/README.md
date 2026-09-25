@@ -53,13 +53,18 @@ limits, and environment-variable interface without using the shell as the
 batch orchestrator:
 
 ```bash
-$HOME/.venvs/sequenceconstraint/bin/python -B \
+.venv/bin/python -B \
   experiments/src/runner/run_among_nurse_ladder_solvers.py
-$HOME/.venvs/sequenceconstraint/bin/python -B \
+.venv/bin/python -B \
   experiments/src/runner/run_among_nurse_ladder_solvers.py 3 40
-$HOME/.venvs/sequenceconstraint/bin/python -B \
+.venv/bin/python -B \
+  experiments/src/runner/run_among_nurse_ladder_solvers.py --classes 1 2
+.venv/bin/python -B \
   experiments/src/runner/run_among_nurse_ladder_solvers.py --grid
 ```
+
+`--classes 1 2` runs all five horizons for C-I and C-II in one output
+directory. `--horizons` can restrict the horizon list when needed.
 
 Its primary external measurement is `python_subprocess_wall_s`, obtained with
 `time.perf_counter_ns()` around exactly `timeout -> Python method driver`.

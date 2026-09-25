@@ -55,7 +55,7 @@ for method in "${methods[@]}"; do
     seen_methods[$method]=1
 done
 
-python_bin="${LADDER_SOLVER_PYTHON_BIN:-$NRP_VENV/bin/python}"
+python_bin="${LADDER_SOLVER_PYTHON_BIN:-$repo_root/.venv/bin/python}"
 driver="$repo_root/experiments/src/methods/among_nurse_ladder_solvers.py"
 solver_source="${TABULAR_ALLSAT_SOURCE:-$NRP_NATIVE_HOME/src/tabularAllSAT}"
 solver_bin="${TABULAR_ALLSAT_BIN:-$solver_source/cdcl-vsads/solver}"
@@ -162,6 +162,41 @@ for class_id in "${classes[@]}"; do
             if [[ -s "$exit_file" ]]; then child_code="$(<"$exit_file")"; fi
             if ((run_code != 0)) || [[ "$child_code" != 0 ]] || [[ ! -s "$report" ]]; then
                 failed=$((failed + 1))
+                failure_status=error
+                if [[ "$child_code" == 124 ]]; then failure_status=timeout; fi
+                if [[ ! -s "$report" ]]; then
+                    "$python_bin" -B - "$report" "$method" "$class_id" "$horizon" \
+                        "$failure_status" "$child_code" "$run_code" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+report_path = Path(sys.argv[1])
+method, class_id, horizon, status = sys.argv[2:6]
+child_code, runlim_code = map(int, sys.argv[6:8])
+solver, enumeration_mode = {
+    "g421-legacy-enum-models": ("g421", "legacy_enum_models"),
+    "g421-projected": ("g421", "projected_blocking"),
+    "cadical195-projected": ("cadical195", "projected_blocking"),
+    "tabularallsat": ("TabularAllSAT", "projected_tabularallsat"),
+}[method]
+report_path.write_text(json.dumps({
+    "format_version": 1,
+    "status": status,
+    "benchmark": "amongNurse",
+    "method": method,
+    "class_id": int(class_id),
+    "horizon": int(horizon),
+    "encoding": "staircase-binomial",
+    "solver": solver,
+    "enumeration_mode": enumeration_mode,
+    "reported_solutions": None,
+    "validation": "none",
+    "process_exit_code": child_code,
+    "runlim_exit_code": runlim_code,
+}, indent=2, sort_keys=True) + "\n")
+PY
+                fi
                 echo "    ERROR/TIMEOUT | child=$child_code runlim=$run_code | log: $stdout_file"
                 continue
             fi
